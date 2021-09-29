@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "financial_entity_cleaner"
+version = "0.6.0"
+description = "Normalization of data for entity matching"
+authors = ["Os-Climate Foundation <test_os-climate@gmail.com>"]
+license = "Apache 2"
+readme = "README.md"
+homepage = "https://github.com/os-c/financial-entity-cleaner"
+repository = "https://github.com/os-c/financial-entity-cleaner"
+keywords = ["lei", "isin", "sedol", "cleaner", "validator"]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Developers",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9"
+]
+
+include = [
+    "LICENSE.md",
+]
+
+[tool.black]
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.venv
+  | \.env
+  | build
+  | dist
+  | \.mypy_cache
+)\
+'''
+
+[tool.poetry.scripts]
+test = 'scripts:test'
+
+[tool.poetry.dependencies]
+python = ">=3.7,<3.11"
+numpy = "^1.21.2"
+hdx-python-country = "^3.0.2"
+python-stdnum = "^1.16"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+black = "^21.8b0"
+pre-commit = "^2.15.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
