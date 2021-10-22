@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "financial_entity_cleaner"
-version = "0.6.0"
+name = "financial-entity-cleaner"
+version = "0.0.1"
 description = "Normalization of data for entity matching"
 authors = ["Os-Climate Foundation <test_os-climate@gmail.com>"]
 license = "Apache 2"
@@ -42,8 +42,8 @@ exclude = '''
 test = 'scripts:test'
 
 [tool.poetry.dependencies]
-python = ">=3.7,<3.11"
-numpy = "^1.21.2"
+python = ">=3.6,<3.11"
+numpy = ">=1.19.5"
 hdx-python-country = "^3.0.2"
 python-stdnum = "^1.16"
 

@@ -1,6 +1,6 @@
 import unittest
 
-from financial_entity_cleaner import country
+from financial_entity_cleaner.country_cleaner import country
 from tests import test_data_reader
 
 # Test data from csv excel files

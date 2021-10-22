@@ -1,0 +1,507 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2021-09-20",
+    "updated": "2021-09-20",
+    "legal_forms": {
+        "en": {
+            "us": {
+                "registered limited liability limited partnership": [
+                        "registered limited liability ltd. partnership",
+                        "registered l.l.l.p.",
+                        "registered l.l.l.p",
+                        "registered lllp",
+                        "registered lllp.",
+                        "r.l.l.l.p.",
+                        "r.l.l.l.p",
+                        "rlllp.",
+                        "rlllp"
+                ],
+                "registered limited liability partnership": [
+                        "registered limited liability partnership",
+                        "registered l.l.p.",
+                        "registered l.l.p",
+                        "registered llp.",
+                        "registered llp",
+                        " r.l.l.p.",
+                        " r.l.l.p",
+                        "rllp.",
+                        "rllp"
+                ],
+                "limited liability limited partnership": [
+                        "professional limited liability limited partnership",
+                        "limited liability limited partnership",
+                        "limited l.l.p.",
+                        "limited l.l.p",
+                        "limited llp.",
+                        "limited llp",
+                        "lllp",
+                        "lllp.",
+                        "l.l.l.p.",
+                        "l.l.l.p"
+                ],
+                "limited liability partnership": [
+                        "professional limited liabity partnership",
+                        "limited liability partnership",
+                        "limited l.p.",
+                        "limited l.p",
+                        "limited lp.",
+                        "limited lp",
+                        "pllp",
+                        "p.l.l.p",
+                        "p.l.l.p.",
+                        "l.l.p.",
+                        "l.l.p",
+                        "llp",
+                        "llp."
+                ],
+                "limited liability company": [
+                        "professional series limited liability company",
+                        "low-profit limited liability company",
+                        "farm/ranch limited laibility company",
+                        "series limited liability company",
+                        "master limited liability company",
+                        "limited liabilty company",
+                        "limited liability company",
+                        "limited liability co.",
+                        "limited liability co",
+                        "company llc",
+                        "company llc.",
+                        "co llc",
+                        "co. llc",
+                        "co llc.",
+                        "co. llc.",
+                        "co, llc",
+                        "ltd. liability company",
+                        "ltd. liability co.",
+                        "ltd. liability co",
+                        "ltd liability co.",
+                        "ltd liability co",
+                        "l3c low llc",
+                        "benefit llc",
+                        "l.l.c.",
+                        "l.l.c",
+                        "llc",
+                        "llc.",
+                        "low llc",
+                        "l3c",
+                        "l3c.",
+                        "l.3.c."
+                ],
+                "professional limited liability company": [
+                        "professional llc",
+                        "professional llc.",
+                        "professional l.l.c.",
+                        "p.l.l.c.",
+                        "pllc",
+                        "pllc."
+                ],
+                "public limited company": [
+                        "public lc",
+                        "public lc.",
+                        "plc",
+                        "plc."
+                ],
+                "limited partnership": [
+                        "limited partnership",
+                        "limted partnership",
+                        "ltd. partnership.",
+                        "ltd. partnership",
+                        "ltd partnership",
+                        "lp.",
+                        "lp",
+                        "l.p.",
+                        "l.p"
+                ],
+                "corporation": [
+                        "sustainable business corporation",
+                        "religious society or religious corporation",
+                        "ecclesiastical corporation",
+                        "religious society",
+                        "religious corporation",
+                        "religious corporations",
+                        "corporation religious",
+                        "county agricultural fair",
+                        "farm/ranch corporation",
+                        "business development corporation",
+                        "general business corporation",
+                        "congressional chartered corporation",
+                        "professional service corporation",
+                        "professional benefit corporation",
+                        "corp professional corporation",
+                        "corporation professional corporation",
+                        "professional close corporation",
+                        "benefit professional corporation",
+                        "professional corporation",
+                        "corporation professional",
+                        "professional firms",
+                        "professional firm",
+                        "community development corporation",
+                        "corporation mutual benefit",
+                        "mutual benefit corporation",
+                        "nebraska benefit corporation",
+                        "corporation general stock",
+                        "corporation nonstock",
+                        "nonstock corporation",
+                        "non stock corporation",
+                        "stock corporation",
+                        "non taxable corporation",
+                        "corporation benefit",
+                        "business corporation",
+                        "development corporation",
+                        "public benefit corporation",
+                        "a benefit corporation",
+                        "benefit corporation",
+                        "captive insurance company",
+                        "insurance company",
+                        "insurance corporation",
+                        "insurance corporations",
+                        "financial corporation",
+                        "financial corporations",
+                        "investment company",
+                        "corporation sole",
+                        "limited corp",
+                        "company, co.",
+                        "statutory close corporation",
+                        "close corporation",
+                        "corporation close",
+                        "chartered",
+                        "prof. corp.",
+                        "prof corp.",
+                        "prof corp",
+                        "company",
+                        "corporation",
+                        "corp.",
+                        "corp",
+                        "co.",
+                        "co",
+                        "& co.",
+                        "& co",
+                        "p.a.",
+                        "pa.",
+                        "p.c.",
+                        "p.c",
+                        "pc.",
+                        "psc",
+                        "bc.",
+                        "b.c.",
+                        "chtd",
+                        "chtd.",
+                        "cdc",
+                        "cdc.",
+                        "c.d.c."
+                ],
+                "trust": [
+                        "voluntary association and business trusts",
+                        "real estate investment trust",
+                        "family trust company",
+                        "real estate investment trusts",
+                        "common law trust",
+                        "statutory trust",
+                        "business trust",
+                        "business trust",
+                        "investment trust",
+                        "community trust",
+                        "trust company",
+                        "trust",
+                        "reit",
+                        "reit.",
+                        "r.e.i.t.",
+                        "b.t.",
+                        "bt."
+                ],
+                "general partnership": [
+                        "gp.",
+                        "g.p."
+                ],
+                "commercial registered agent": [
+                        "commercial registered agent",
+                        "c.r.a.",
+                        "cra",
+                        "cra."
+                ],
+                "credit union": [
+                        "corporate credit union",
+                        "credit union"
+                ],
+                "authority": [
+                        "hospital authority",
+                        "transportation authority",
+                        "authority",
+                        "auth",
+                        "auth."
+                ],
+                "foundation": [
+                        "statutory foundation",
+                        "foundation",
+                        "found",
+                        "found.",
+                        "sf.",
+                        "s.f."
+                ],
+                "cooperative": [
+                        "electric generation and transmission cooperative corporation",
+                        "electric cooperative membership corporation",
+                        "electric membership cooperative",
+                        "electric cooperative corporation",
+                        "electric cooperative corporations",
+                        "uniform limited cooperative association",
+                        "limited cooperative association",
+                        "general cooperative association",
+                        "cooperative marketing association",
+                        "cooperative grazing associations",
+                        "agricultural cooperative",
+                        "housing cooperative corporation",
+                        "employee cooperative corporation",
+                        "limited cooperative",
+                        "mutual aid cooperative",
+                        "cooperative corporation",
+                        "cooperative association",
+                        "workers cooperative",
+                        "cooperative",
+                        "co-operatives",
+                        "co-operative",
+                        "co operative",
+                        "ltd. co-op",
+                        "ltd. coop",
+                        "ltd. co-op.",
+                        "ltd. coop.",
+                        "ltd co-op",
+                        "ltd coop",
+                        "emc.",
+                        "co-op",
+                        "coop",
+                        "coop.",
+                        "l.c.a.",
+                        "lca",
+                        "lca.",
+                        "c.a.",
+                        "c.a"
+                ],
+                "association": [
+                        "common interest development association",
+                        "builiding and loan association",
+                        "agricultural marketing association",
+                        "agricultural association",
+                        "rural cooperative association",
+                        "limited partnership association",
+                        "savings & loan association",
+                        "savings and loan association",
+                        "unincorporated association",
+                        "professional association",
+                        "cemetery association",
+                        "cemetery associations",
+                        "mutual burial association",
+                        "mutual association",
+                        "voluntary association",
+                        "s&l",
+                        "assoc.",
+                        "assoc",
+                        "assn.",
+                        "assn"
+                ],
+                "basin irrigation district": [
+                        "basin irr district",
+                        "basin irr dist",
+                        "basin irr. dist",
+                        "basin irr. dist.",
+                        "basin irr dist."
+                ],
+                "limited": [
+                        "ltd",
+                        "ltd.",
+                        "l.t.d.",
+                        "lt.",
+                        "lt"
+                ],
+                "unlimited": [
+                        "unltd",
+                        "ultd.",
+                        "ult.",
+                        "ult"
+                ],
+                "incorporated": [
+                        "inc",
+                        "inc.",
+                        "incorp",
+                        "incorp."
+                ],
+                "district": [
+                        "dist",
+                        "dist."
+                ],
+                "commission": [
+                        "comm",
+                        "comm."
+                ]
+            }
+        },
+        "pt": {
+            "br": {
+                "empresa pública": [
+                    "ep",
+                    "e.p",
+                    "ep.",
+                    "e.p."
+                ],
+                "sociedade em nome coletivo": [
+                    "s.n.c.",
+                    "snc",
+                    "snc."
+                ],
+                "sociedade simples": [
+                    "s/s",
+                    "s.s",
+                    "ss."
+                ],
+                "fundação": [
+                    "fund.",
+                    "fund"
+                ],
+                "associação": [
+                    "assoc.",
+                    "assoc",
+                    "ass.",
+                    "ass"
+                ],
+                "empresa individual de responsabilidade limitada": [
+                    "eireli",
+                    "eireli.",
+                    "e.i.r.e.l.i.",
+                    "e.i.r.e.l.i",
+                    "eire lt",
+                    "eire lt.",
+                    "eire ltd",
+                    "eire ltd.",
+                    "eire ltda",
+                    "eire ltda."
+                ],
+                "sociedade cooperativa": [
+                    "sc",
+                    "sc.",
+                    "soc coop",
+                    "soc coop.",
+                    "soc. coop",
+                    "soc. coop."
+                ],
+                "sociedade limitada": [
+                    "ltda.",
+                    "l.t.d.a.",
+                    "ltd.",
+                    "ltd",
+                    "l.t.d",
+                    "l.t.d.",
+                    "lda.",
+                    "lda",
+                    "l.d.a.",
+                    "l.d.a"
+                ],
+                "sociedade em comdandita simples": [
+                    "s.c.s.",
+                    "scs.",
+                    "scs",
+                    "soc. c.s.",
+                    "soc. cs.",
+                    "soc. cs",
+                    "soc c.s.",
+                    "soc cs.",
+                    "soc cs"
+                ],
+                "sociedade anônima": [
+                    "s.a.",
+                    "s.a",
+                    "s/a",
+                    "sa",
+                    "sa."
+                ],
+                "companhia": [
+                    "c.o.",
+                    "c/o",
+                    "co",
+                    "co."
+                ],
+                "sociedade em comandita por ações": [
+                    "c/a",
+                    "c.a.",
+                    "ca.",
+                    "c.a",
+                    "soc c/a",
+                    "soc c.a.",
+                    "soc ca.",
+                    "soc c.a",
+                    "soc. c/a",
+                    "soc. c.a.",
+                    "soc. ca.",
+                    "soc. c.a"
+                ],
+                "sociedade em conta de participação": [
+                    "s.c.p.",
+                    "scp",
+                    "scp.",
+                    "soc c.p.",
+                    "soc cp",
+                    "soc cp.",
+                    "soc. c.p.",
+                    "soc. cp",
+                    "soc. cp."
+                ]
+            },
+            "pt": {
+                "sociedade limitada": [
+                    "lda.",
+                    "lda",
+                    "l.d.a.",
+                    "l.d.a"
+                ],
+                "sociedade anônima": [
+                    "s.a.",
+                    "s.a",
+                    "s/a",
+                    "sa",
+                    "sa."
+                ]
+            }
+        },
+        "fr": {
+            "fr": {
+                "société par actions simplifiée": [
+                    "sas.",
+                    "sas",
+                    "s.a.s",
+                    "s.a.s."
+                ],
+                "société en nom collectif": [
+                    "s.n.c",
+                    "s.n.c.",
+                    "snc.",
+                    "snc"
+                ],
+                "société civile immobilière": [
+                    "s.c.i",
+                    "s.c.i.",
+                    "sci.",
+                    "sci"
+                ],
+                "société anonyme": [
+                    "sa.",
+                    "sa",
+                    "s.a.",
+                    "s.a"
+                ],
+                "société à responsabilité limitée": [
+                    "sarl",
+                    "sarl.",
+                    "s.a.r.l.",
+                    "s.a.r.l"
+                ],
+                "société de gestion de portefeuille": [
+                    "sgp",
+                    "sgp.",
+                    "s.g.p.",
+                    "s.g.p"
+                ]
+            }
+        }
+    }
+}

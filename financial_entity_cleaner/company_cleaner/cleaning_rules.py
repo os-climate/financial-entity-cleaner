@@ -1,13 +1,3 @@
-""" This module defines a dictionary of legal terms found in company's name."""
-
-legal_terms_dict = {
-    "Agrupamento Complementar de Empresas": ["ace", "a.c.e"],
-    "Asociacion Civil": ["ac"],
-    "Limited": ["ltd", "lt"],
-    "Corporation": ["co", "c.o"],
-    "Incorporated": ["inc", "inc."],
-}
-
 cleaning_rules_dict = {
     "remove_email": ["", "\S*@\S*\s?"],
     "remove_url": ["", "https*\S+"],
@@ -27,8 +17,8 @@ default_company_cleaning_rules = [
     "remove_email",
     "remove_url",
     "remove_www_address",
-    "remove_numbers",
     "remove_words_in_parentheses",
+    "remove_numbers",
     "replace_hyphen_underscore_by_space",
     "remove_all_punctuation",
     "enforce_single_space_between_words",

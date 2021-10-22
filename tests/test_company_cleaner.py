@@ -1,6 +1,6 @@
 from unittest import TestCase, TestSuite, TextTestRunner
 
-from financial_entity_cleaner import company
+from financial_entity_cleaner.company_cleaner import company
 from tests import test_data_reader
 
 # Test data from csv excel files

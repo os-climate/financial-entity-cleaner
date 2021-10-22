@@ -2,7 +2,7 @@ import unittest
 
 from tests import test_data_reader
 from financial_entity_cleaner import simple_cleaner
-from financial_entity_cleaner import cleaner_data
+from financial_entity_cleaner.company_cleaner import cleaner_data
 
 # Test data from csv excel files
 # - column_0: name to clean
