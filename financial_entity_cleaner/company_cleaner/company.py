@@ -55,7 +55,7 @@ class CompanyNameCleaner:
     __NAME_LEGAL_TERMS_DICT = 'legal_forms.json'
     __NAME_JSON_ENTRY_LEGAL_TERMS = 'legal_forms'
 
-    __AVAILABLE_LEGAL_TERMS_DICT = ["en,us", "pt,pt", "pt,br", "fr,fr"]
+    __AVAILABLE_LEGAL_TERMS_DICT = ["en,us", "pt,pt", "pt,br", "fr,fr", "id,id"]
 
     def __init__(self):
         """
@@ -261,6 +261,10 @@ class CompanyNameCleaner:
         self._lang_legal_terms = language
         self._country_legal_terms = country
 
+    def replace_and_normalize(self, match, replacement, company_name):
+        left, center, right = company_name.partition(match)
+        return ' '.join([self.get_clean_name(left), replacement, self.get_clean_name(right)])
+    
     def get_clean_name(self, company_name):
         """
         This method cleans up a company's name.
@@ -294,14 +298,14 @@ class CompanyNameCleaner:
             for replacement, legal_terms in self._current_dict_legal_terms.items():
                 # Each replacement has a list of possible terms to be searched for
                 replacement = ' ' + replacement.lower() + ' '
-                for legal_term in legal_terms:
-                    # Make sure to use raw string
-                    legal_term = legal_term.lower()
-                    # Make sure the legal term is a complete word and it's a raw string
-                    legal_term = "\\b" + legal_term + "\\b"
-                    regex_rule = r"{}".format(legal_term)
-                    # Apply the replacement
-                    clean_company_name = re.sub(regex_rule, replacement, clean_company_name)
+                abbrev_regex = "(\\b" + '|'.join([re.escape(legal_term.lower()) for legal_term in legal_terms]) + "\\b)"
+                if abbrev_regex:
+                    re_match = re.search(abbrev_regex, clean_company_name)
+                    if re_match:
+                        # Apply the replacement
+                        clean_company_name = self.replace_and_normalize (re_match.group(0), replacement, clean_company_name)
+                        # And stop here because the above recursively normalizes the remaining terms
+                        break
 
         # Get the custom dictionary of regex rules to be applied in the cleaning
         cleaning_dict = {}

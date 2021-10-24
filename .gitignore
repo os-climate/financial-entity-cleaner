@@ -51,3 +51,4 @@ target/
 
 # Pycharm
 .idea
+**/.ipynb_checkpoints/*
