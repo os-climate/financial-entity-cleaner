@@ -21,3 +21,9 @@ class TypeOfBankingIdNotSupported(FinancialCleanerError):
     """ The type of banking id informed is not supported."""
 
     message = 'The type of banking id informed is not supported.'
+
+
+class IdNotFoundInDataFrame(FinancialCleanerError):
+    """Id attribute does not exist in the dataframe"""
+
+    message = 'Id attribute does not exist in the dataframe'
