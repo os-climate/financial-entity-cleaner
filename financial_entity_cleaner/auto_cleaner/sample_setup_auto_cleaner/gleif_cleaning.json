@@ -1,0 +1,49 @@
+{
+  "file_processing": {
+    "csv_file_encoding": "utf-8",
+    "csv_file_sep": ","
+  },
+  "attribute_processing": {
+    "LEI":  "lei",
+    "Entity.LegalName":  "entity_name",
+    "Entity.LegalAddress.Country":  "legal_address_country",
+    "Entity.LegalAddress.PostalCode": "legal_address_postal_code",
+    "Entity.HeadquartersAddress.Country":  "headquarters_address_country",
+    "Entity.HeadquartersAddress.PostalCode": "headquarters_address_postal_code"
+  },
+  "country_cleaner": {
+    "input_countries": ["legal_address_country", "headquarters_address_country"],
+    "name_suffix_clean": "name_clean",
+    "alpha2_suffix_clean": "alpha2_clean",
+    "alpha3_suffix_clean": "alpha3_clean",
+    "output_letter_case": "upper"
+  },
+  "id_cleaner": {
+    "input_ids": {
+      "lei":  "lei"
+    },
+    "id_suffix_clean": "clean",
+    "id_suffix_valid": "valid",
+    "set_null_for_invalid_ids": "False",
+    "output_letter_case": "upper"
+  },
+  "company_cleaner": {
+    "input_company_name": "entity_name",
+    "output_company_name": "entity_name_clean",
+    "input_country": "legal_address_country",
+    "use_clean_country": "True",
+    "cleaning_rules": [
+      "remove_email",
+      "remove_url",
+      "remove_www_address",
+      "remove_words_in_parentheses",
+      "replace_hyphen_underscore_by_space",
+      "remove_all_punctuation",
+      "enforce_single_space_between_words"
+    ],
+    "normalize_legal_terms": "True",
+    "merge_legal_terms": "True",
+    "remove_unicode_chars": "False",
+    "output_letter_case": "upper"
+  }
+}
