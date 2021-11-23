@@ -1,0 +1,15 @@
+{
+  "file_processing": {
+    "csv_file_encoding": "utf-8",
+    "csv_file_sep": ","
+  },
+  "id_cleaner": {
+    "input_ids": {
+      "ID":  "lei"
+    },
+    "id_suffix_clean": "clean",
+    "id_suffix_valid": "valid",
+    "set_null_for_invalid_ids": "True",
+    "output_letter_case": "upper"
+  }
+}

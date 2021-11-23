@@ -1,0 +1,32 @@
+{
+  "file_processing": {
+    "csv_file_encoding": "utf-8",
+    "csv_file_sep": ","
+  },
+  "country_cleaner": {
+    "input_countries": ["COUNTRY_ALPHA2"],
+    "name_suffix_clean": "name_clean",
+    "alpha2_suffix_clean": "clean",
+    "alpha3_suffix_clean": "alpha3_clean",
+    "output_letter_case": "lower"
+  },
+  "company_cleaner": {
+    "input_company_name": "NAME",
+    "output_company_name": "NAME_CLEAN",
+    "input_country": "COUNTRY_ALPHA2",
+    "use_clean_country": "True",
+    "cleaning_rules": [
+      "remove_email",
+      "remove_url",
+      "remove_www_address",
+      "remove_words_in_parentheses",
+      "replace_hyphen_underscore_by_space",
+      "remove_all_punctuation",
+      "enforce_single_space_between_words"
+    ],
+    "normalize_legal_terms": "True",
+    "merge_legal_terms": "True",
+    "remove_unicode_chars": "False",
+    "output_letter_case": "lower"
+  }
+}

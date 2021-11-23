@@ -1,0 +1,13 @@
+{
+  "file_processing": {
+    "csv_file_encoding": "utf-8",
+    "csv_file_sep": ","
+  },
+  "country_cleaner": {
+    "input_countries": ["COUNTRY"],
+    "name_suffix_clean": "name_clean",
+    "alpha2_suffix_clean": "alpha2_clean",
+    "alpha3_suffix_clean": "alpha3_clean",
+    "output_letter_case": "upper"
+  }
+}
