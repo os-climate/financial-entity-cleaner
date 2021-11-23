@@ -21,3 +21,9 @@ class CountryNotFound(FinancialCleanerError):
     """Country was not found."""
 
     message = 'Invalid country: country not found.'
+
+
+class CountryNotFoundInDataFrame(FinancialCleanerError):
+    """Country attribute does not exist in the dataframe"""
+
+    message = 'Country attribute does not exist in the dataframe'

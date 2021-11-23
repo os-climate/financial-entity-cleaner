@@ -24,14 +24,14 @@ class CountryCleaner:
             _mode (int): defines if the cleaning task should be performed in silent or exception mode.
                          - EXCEPTION_MODE: the library throws exceptions in case of error during cleaning.
                          - SILENT_MODE: the library returns NaN as the result of the cleaning.
-            _output_lettercase (str): indicates the letter case (lower, by default) as the result of the cleaning
+            _lettercase_output (str): indicates the letter case (lower, by default) as the result of the cleaning
                         Other options are: 'upper' and 'title'.
     """
 
     # Constants used interally by the class
-    __ATTRIBUTE_COUNTRY_NAME = 'country_name'
-    __ATTRIBUTE_ALPHA2 = 'country_alpha2'
-    __ATTRIBUTE_ALPHA3 = 'country_alpha3'
+    __ATTRIBUTE_COUNTRY_NAME = 'country_name_clean'
+    __ATTRIBUTE_ALPHA2 = 'country_alpha2_clean'
+    __ATTRIBUTE_ALPHA3 = 'country_alpha3_clean'
 
     def __init__(self):
         """
@@ -51,7 +51,12 @@ class CountryCleaner:
         self._mode = ModeOfUse.SILENT_MODE
 
         # Define the letter case of the cleaning output
-        self._output_lettercase = LOWER_LETTER_CASE
+        self._lettercase_output = LOWER_LETTER_CASE
+
+        # Define the name of the output attributes for country name, alpha2 and alpha3
+        self._country_name_output = self.__ATTRIBUTE_COUNTRY_NAME
+        self._country_alpha2_output = self.__ATTRIBUTE_ALPHA2
+        self._country_alpha3_output = self.__ATTRIBUTE_ALPHA3
 
     # Setters and Getters for the properties, so to allow user to setup the library according to his/her needs.
     @property
@@ -63,12 +68,36 @@ class CountryCleaner:
         self._mode = new_mode
 
     @property
-    def output_lettercase(self):
-        return self._output_lettercase
+    def lettercase_output(self):
+        return self._lettercase_output
 
-    @output_lettercase.setter
-    def output_lettercase(self, new_value):
-        self._output_lettercase = new_value
+    @lettercase_output.setter
+    def lettercase_output(self, new_value):
+        self._lettercase_output = new_value
+
+    @property
+    def country_name_output(self):
+        return self._country_name_output
+
+    @country_name_output.setter
+    def country_name_output(self, new_value):
+        self._country_name_output = new_value
+
+    @property
+    def country_alpha2_output(self):
+        return self._country_alpha2_output
+
+    @country_alpha2_output.setter
+    def country_alpha2_output(self, new_value):
+        self._country_alpha2_output = new_value
+
+    @property
+    def country_alpha3_output(self):
+        return self._country_alpha3_output
+
+    @country_alpha3_output.setter
+    def country_alpha3_output(self, new_value):
+        self._country_alpha3_output = new_value
 
     def __is_country_param_valid(self, country):
         """
@@ -81,7 +110,7 @@ class CountryCleaner:
             (bool)  True if the country passed the validation or False, otherwise
         Raises:
             CountryIsNotAString: if the country parameter is not a string and ModeOfUse=EXCEPTION_MODE
-            InvalidCountry: if the country parameter is invalid due to its size and ModeOfUse=EXCEPTION_MODE
+            InvalidCountry: if the country parameter is invalid due to its size and ModeOfUse=EXCEPTION_MODE \ZXC VB -
         """
         if not isinstance(country, str):
             if self._mode == ModeOfUse.EXCEPTION_MODE:
@@ -112,16 +141,16 @@ class CountryCleaner:
                 - dictionary: containing the name, alpha2 and alpha3 code if the country informed is valid
                 - empty dict: if the country informed couldn't be found or the user parameter is null
         Raises:
-            No exception is raised.
+            CountryNotFound: when [ModeOfUse.EXCEPTION_MODE] and the country was not found
         """
 
         # Default Null country info
         country_name = np.nan
         alpha2_name = np.nan
         alpha3_name = np.nan
-        null_dict_country = {self.__ATTRIBUTE_COUNTRY_NAME: country_name,
-                             self.__ATTRIBUTE_ALPHA2: alpha2_name,
-                             self.__ATTRIBUTE_ALPHA3: alpha3_name}
+        null_dict_country = {self._country_name_output: country_name,
+                             self._country_alpha2_output: alpha2_name,
+                             self._country_alpha3_output: alpha3_name}
 
         # Check the country information passed as parameter
         is_valid_param = self.__is_country_param_valid(country)
@@ -155,17 +184,17 @@ class CountryCleaner:
 
         # Return all info if they were retrieved successfully
         if country_name and alpha2_name and alpha3_name:
-            dict_country = {self.__ATTRIBUTE_COUNTRY_NAME: country_name,
-                            self.__ATTRIBUTE_ALPHA2: alpha2_name,
-                            self.__ATTRIBUTE_ALPHA3: alpha3_name}
+            dict_country = {self._country_name_output: country_name,
+                            self._country_alpha2_output: alpha2_name,
+                            self._country_alpha3_output: alpha3_name}
             # Apply the requested letter case
             # By default the function returns the result in lower case
             for key, value in dict_country.items():
-                if self._output_lettercase == UPPER_LETTER_CASE:
+                if self._lettercase_output == UPPER_LETTER_CASE:
                     dict_country[key] = value.upper()
-                elif self._output_lettercase == LOWER_LETTER_CASE:
+                elif self._lettercase_output == LOWER_LETTER_CASE:
                     dict_country[key] = value.lower()
-                elif self._output_lettercase == TITLE_LETTER_CASE:
+                elif self._lettercase_output == TITLE_LETTER_CASE:
                     dict_country[key] = value.title()
             return dict_country
         else:
@@ -173,3 +202,55 @@ class CountryCleaner:
                 raise custom_exception.CountryNotFound
             else:
                 return null_dict_country
+
+    def __get_country_info_for_df(self, country):
+        """
+        This is a private method that supports the apply_clean_to_df() method as a mean to unpack the dictionary
+        returned by the search method get_country_info().
+
+        Parameters:
+            country (str): the value of the country attribute to be normalized
+        Returns:
+            country_name (str): the name of the country according to iso
+            country_alpha2 (str): the alpha2 of the country according to iso
+            country_alpha3 (str): the alpha3 of the country according to iso
+        Raises:
+            No exception is raised.
+        """
+        dict_country_info = self.get_country_info(country)
+        country_name = dict_country_info[self._country_name_output]
+        country_alpha2 = dict_country_info[self._country_alpha2_output]
+        country_alpha3 = dict_country_info[self._country_alpha3_output]
+        return country_name, country_alpha2, country_alpha3
+
+    def apply_cleaner_to_df(self, df, in_country_attribute):
+        """
+        This method searches the complete country information (name, alpha2 and alpha3) for all entries of a
+        dataframe that contains a country attribute, as a mean to normalize the data set.
+
+        Parameters:
+            df (dataframe): the input dataframe that contains the country attribute to be normalized
+            in_country_attribute (str): the attribute in the dataframe that indicates the country to be searched for
+        Returns:
+            df (dataframe): the normalized version of the input dataframe
+        Raises:
+            CountryNotFoundInDataFrame: when [in_country_attribute] is not a dataframe's attribute
+        """
+
+        # Check if the country attribute exists in the dataframe
+        if in_country_attribute not in df.columns:
+            raise custom_exception.CountryNotFoundInDataFrame
+
+        # Make a copy so not to change the original dataframe
+        new_df = df.copy()
+
+        # Creates the new output attribute that will have the normalized version of the country info
+        new_df[self._country_name_output] = np.nan
+        new_df[self._country_alpha2_output] = np.nan
+        new_df[self._country_alpha3_output] = np.nan
+
+        # Get the country info (name, alpha2 and alpha3) for all entries in the dataframe
+        new_df.loc[:, [self._country_name_output, self._country_alpha2_output, self._country_alpha3_output]] = \
+            [self.__get_country_info_for_df(country) for country in new_df[in_country_attribute]]
+
+        return new_df
