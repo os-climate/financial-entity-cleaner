@@ -57,3 +57,21 @@ class CleaningRuleNotFoundInTheDictionary(FinancialCleanerError):
     """The cleaning rule informed was not found in the dictionary of cleaning rules."""
 
     message = 'Some of the cleaning rules was not found in the dictionary.'
+
+
+class ListOfLegalTermsAvailableDoesNotExist(FinancialCleanerError):
+    """The file that describes the legal terms available does not exist"""
+
+    message = 'The file that describes the legal terms available does not exist.'
+
+
+class CompanyNameNotFoundInDataFrame(FinancialCleanerError):
+    """Company name attribute does not exist in the dataframe"""
+
+    message = 'Company name attribute does not exist in the dataframe'
+
+
+class CountryNotFoundInDataFrame(FinancialCleanerError):
+    """Country attribute does not exist in the dataframe"""
+
+    message = 'Country attribute does not exist in the dataframe'
