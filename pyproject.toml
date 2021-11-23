@@ -43,7 +43,7 @@ test = 'scripts:test'
 
 [tool.poetry.dependencies]
 python = ">=3.6,<3.11"
-numpy = ">=1.19.5"
+numpy = ">=1.16.0"
 hdx-python-country = "^3.0.2"
 python-stdnum = "^1.16"
 
