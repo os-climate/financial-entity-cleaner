@@ -8,46 +8,52 @@ from stdnum.gb import sedol
 # Import internal libraries
 from financial_entity_cleaner.utils import utils
 from financial_entity_cleaner.exceptions.exception_handler import ModeOfUse
-from financial_entity_cleaner.id_cleaner import exceptions_id_cleaner as custom_exception
-from financial_entity_cleaner.utils.utils import LOWER_LETTER_CASE, TITLE_LETTER_CASE, UPPER_LETTER_CASE
+from financial_entity_cleaner.id_cleaner import (
+    exceptions_id_cleaner as custom_exception,
+)
+from financial_entity_cleaner.utils.utils import (
+    LOWER_LETTER_CASE,
+    TITLE_LETTER_CASE,
+    UPPER_LETTER_CASE,
+)
 
 
 class BankingIdCleaner:
     """
-        Class to normalize/clean up banking id's, such as LEI, SEDOL and ISIN.
+    Class to normalize/clean up banking id's, such as LEI, SEDOL and ISIN.
 
-        Attributes:
-            _mode (int): defines if the cleaning task should be performed in silent or exception mode.
-                         - EXCEPTION_MODE: the library throws exceptions in case of error during cleaning.
-                         - SILENT_MODE: the library returns NaN as the result of the cleaning.
-            _id_type (str): defines the type of validation to be performed (isin, lei or sedol)
-            _set_null_for_invalid_ids (bool): defines a return value equal to null value if the id is invalid
-            _cleaned_id_output (str): the name of the output attribbute that indicates the cleaned id
-            _validated_id_output (str): the name of the output attribbute that indicates the if the id is valid
+    Attributes:
+        _mode (int): defines if the cleaning task should be performed in silent or exception mode.
+                     - EXCEPTION_MODE: the library throws exceptions in case of error during cleaning.
+                     - SILENT_MODE: the library returns NaN as the result of the cleaning.
+        _id_type (str): defines the type of validation to be performed (isin, lei or sedol)
+        _set_null_for_invalid_ids (bool): defines a return value equal to null value if the id is invalid
+        _cleaned_id_output (str): the name of the output attribbute that indicates the cleaned id
+        _validated_id_output (str): the name of the output attribbute that indicates the if the id is valid
     """
 
     # Constants used interally by the class
-    __LEI_NAME = 'lei'
-    __ISIN_NAME = 'isin'
-    __SEDOL_NAME = 'sedol'
+    __LEI_NAME = "lei"
+    __ISIN_NAME = "isin"
+    __SEDOL_NAME = "sedol"
 
     # Types of id validation available
     __VALIDATIONS_SUPPORTED = [__LEI_NAME, __ISIN_NAME, __SEDOL_NAME]
 
     # Suffix used to name the attributes for cleaned and validated id
-    __ATTRIBUTE_CLEANED_ID = 'id_cleaned'
-    __ATTRIBUTE_VALIDATED_ID = 'id_validated'
+    __ATTRIBUTE_CLEANED_ID = "id_cleaned"
+    __ATTRIBUTE_VALIDATED_ID = "id_validated"
 
     def __init__(self):
         """
-            Constructor method.
+        Constructor method.
 
-            Parameters:
-                No parameters are needed.
-            Returns:
-                CountryCleaner (object)
-            Raises:
-                No exception is raised.
+        Parameters:
+            No parameters are needed.
+        Returns:
+            CountryCleaner (object)
+        Raises:
+            No exception is raised.
         """
 
         # The mode property defines if exceptions must be thrown in case of errors
@@ -176,8 +182,10 @@ class BankingIdCleaner:
         validation_return = self.__validate_id(id_value)
 
         # Creates an empty dict that will hold the return values for cleaned and validated id
-        dict_clean_id = {self._cleaned_id_output: np.nan,
-                         self._validated_id_output: np.nan}
+        dict_clean_id = {
+            self._cleaned_id_output: np.nan,
+            self._validated_id_output: np.nan,
+        }
 
         # Check if the validation was performed an in case of null values, return a null dict result
         if not validation_return:
@@ -243,7 +251,9 @@ class BankingIdCleaner:
         validated_id = dict_cleaned_validated_id[self._validated_id_output]
         return cleaned_id, validated_id
 
-    def apply_cleaner_to_df(self, df, in_id_attribute, out_id_suffix_clean, out_id_suffix_valid):
+    def apply_cleaner_to_df(
+        self, df, in_id_attribute, out_id_suffix_clean, out_id_suffix_valid
+    ):
         """
         This method cleans up and validates ids (isin, sedol or lei) in a dataframe
 
@@ -267,15 +277,16 @@ class BankingIdCleaner:
         new_df = df.copy()
 
         # Defines the name of the output attributes
-        new_attribute_id_cleaned = in_id_attribute + '_' + out_id_suffix_clean
-        new_attribute_id_validated = in_id_attribute + '_' + out_id_suffix_valid
+        new_attribute_id_cleaned = in_id_attribute + "_" + out_id_suffix_clean
+        new_attribute_id_validated = in_id_attribute + "_" + out_id_suffix_valid
 
         # Creates the new output attribute that will have the cleaned and validated version of the input dataframe
         new_df[new_attribute_id_cleaned] = np.nan
         new_df[new_attribute_id_validated] = np.nan
 
         # Clean up and validate the id
-        new_df.loc[:, [new_attribute_id_cleaned, new_attribute_id_validated]] = \
-            [self.__get_cleaned_validated_id_for_df(id_to_clean_validate)
-             for id_to_clean_validate in new_df[in_id_attribute]]
+        new_df.loc[:, [new_attribute_id_cleaned, new_attribute_id_validated]] = [
+            self.__get_cleaned_validated_id_for_df(id_to_clean_validate)
+            for id_to_clean_validate in new_df[in_id_attribute]
+        ]
         return new_df

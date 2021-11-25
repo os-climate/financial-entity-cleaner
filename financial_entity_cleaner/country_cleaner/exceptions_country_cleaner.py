@@ -8,22 +8,22 @@ from financial_entity_cleaner.exceptions.exception_handler import FinancialClean
 class CountryIsNotAString(FinancialCleanerError):
     """The country information is not a string."""
 
-    message = 'Invalid country: country information is not a string'
+    message = "Invalid country: country information is not a string"
 
 
 class InvalidCountry(FinancialCleanerError):
     """The country information is too small, therefore is not valid."""
 
-    message = 'Invalid country: country information is too small.'
+    message = "Invalid country: country information is too small."
 
 
 class CountryNotFound(FinancialCleanerError):
     """Country was not found."""
 
-    message = 'Invalid country: country not found.'
+    message = "Invalid country: country not found."
 
 
 class CountryNotFoundInDataFrame(FinancialCleanerError):
     """Country attribute does not exist in the dataframe"""
 
-    message = 'Country attribute does not exist in the dataframe'
+    message = "Country attribute does not exist in the dataframe"

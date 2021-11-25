@@ -8,41 +8,47 @@ import numpy as np
 
 # Import internal libraries
 from financial_entity_cleaner.utils.utils import remove_unicode, remove_extra_spaces
-from financial_entity_cleaner.utils.utils import LOWER_LETTER_CASE, TITLE_LETTER_CASE, UPPER_LETTER_CASE
+from financial_entity_cleaner.utils.utils import (
+    LOWER_LETTER_CASE,
+    TITLE_LETTER_CASE,
+    UPPER_LETTER_CASE,
+)
 
 from financial_entity_cleaner.exceptions.exception_handler import ModeOfUse
-from financial_entity_cleaner.country_cleaner import exceptions_country_cleaner as custom_exception
+from financial_entity_cleaner.country_cleaner import (
+    exceptions_country_cleaner as custom_exception,
+)
 
 from financial_entity_cleaner.country_cleaner import search_country
 
 
 class CountryCleaner:
     """
-        Class to normalize/clean up country information.
+    Class to normalize/clean up country information.
 
-        Attributes:
-            _mode (int): defines if the cleaning task should be performed in silent or exception mode.
-                         - EXCEPTION_MODE: the library throws exceptions in case of error during cleaning.
-                         - SILENT_MODE: the library returns NaN as the result of the cleaning.
-            _lettercase_output (str): indicates the letter case (lower, by default) as the result of the cleaning
-                        Other options are: 'upper' and 'title'.
+    Attributes:
+        _mode (int): defines if the cleaning task should be performed in silent or exception mode.
+                     - EXCEPTION_MODE: the library throws exceptions in case of error during cleaning.
+                     - SILENT_MODE: the library returns NaN as the result of the cleaning.
+        _lettercase_output (str): indicates the letter case (lower, by default) as the result of the cleaning
+                    Other options are: 'upper' and 'title'.
     """
 
     # Constants used interally by the class
-    __ATTRIBUTE_COUNTRY_NAME = 'country_name_clean'
-    __ATTRIBUTE_ALPHA2 = 'country_alpha2_clean'
-    __ATTRIBUTE_ALPHA3 = 'country_alpha3_clean'
+    __ATTRIBUTE_COUNTRY_NAME = "country_name_clean"
+    __ATTRIBUTE_ALPHA2 = "country_alpha2_clean"
+    __ATTRIBUTE_ALPHA3 = "country_alpha3_clean"
 
     def __init__(self):
         """
-            Constructor method.
+        Constructor method.
 
-            Parameters:
-                No parameters are needed.
-            Returns:
-                CountryCleaner (object)
-            Raises:
-                No exception is raised.
+        Parameters:
+            No parameters are needed.
+        Returns:
+            CountryCleaner (object)
+        Raises:
+            No exception is raised.
         """
 
         # The mode property defines if exceptions must be thrown in case of errors
@@ -148,9 +154,11 @@ class CountryCleaner:
         country_name = np.nan
         alpha2_name = np.nan
         alpha3_name = np.nan
-        null_dict_country = {self._country_name_output: country_name,
-                             self._country_alpha2_output: alpha2_name,
-                             self._country_alpha3_output: alpha3_name}
+        null_dict_country = {
+            self._country_name_output: country_name,
+            self._country_alpha2_output: alpha2_name,
+            self._country_alpha3_output: alpha3_name,
+        }
 
         # Check the country information passed as parameter
         is_valid_param = self.__is_country_param_valid(country)
@@ -184,9 +192,11 @@ class CountryCleaner:
 
         # Return all info if they were retrieved successfully
         if country_name and alpha2_name and alpha3_name:
-            dict_country = {self._country_name_output: country_name,
-                            self._country_alpha2_output: alpha2_name,
-                            self._country_alpha3_output: alpha3_name}
+            dict_country = {
+                self._country_name_output: country_name,
+                self._country_alpha2_output: alpha2_name,
+                self._country_alpha3_output: alpha3_name,
+            }
             # Apply the requested letter case
             # By default the function returns the result in lower case
             for key, value in dict_country.items():
@@ -250,7 +260,16 @@ class CountryCleaner:
         new_df[self._country_alpha3_output] = np.nan
 
         # Get the country info (name, alpha2 and alpha3) for all entries in the dataframe
-        new_df.loc[:, [self._country_name_output, self._country_alpha2_output, self._country_alpha3_output]] = \
-            [self.__get_country_info_for_df(country) for country in new_df[in_country_attribute]]
+        new_df.loc[
+            :,
+            [
+                self._country_name_output,
+                self._country_alpha2_output,
+                self._country_alpha3_output,
+            ],
+        ] = [
+            self.__get_country_info_for_df(country)
+            for country in new_df[in_country_attribute]
+        ]
 
         return new_df

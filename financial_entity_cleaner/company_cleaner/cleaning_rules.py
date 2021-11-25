@@ -21,5 +21,5 @@ default_company_cleaning_rules = [
     "remove_numbers",
     "replace_hyphen_underscore_by_space",
     "remove_all_punctuation",
-    "enforce_single_space_between_words"
+    "enforce_single_space_between_words",
 ]

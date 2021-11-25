@@ -3,9 +3,9 @@ import re
 import json
 
 # Constants that define the letter case for return strings
-LOWER_LETTER_CASE = 'lower'
-UPPER_LETTER_CASE = 'upper'
-TITLE_LETTER_CASE = 'title'
+LOWER_LETTER_CASE = "lower"
+UPPER_LETTER_CASE = "upper"
+TITLE_LETTER_CASE = "title"
 
 
 def perform_basic_cleaning(value):
@@ -97,6 +97,6 @@ def load_json_file(file_to_read):
         No exception is raised.
     """
     # Reads a json file
-    with open(file_to_read, encoding='utf-8') as json_file:
+    with open(file_to_read, encoding="utf-8") as json_file:
         dict_content = json.load(json_file)
     return dict_content
