@@ -1,0 +1,55 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2021-12-16",
+    "updated": "2021-12-16",
+    "legal_forms": {
+        "it": {
+            "società a responsabilità limitata semplificata": [
+                "s.r.l. semplificata",
+                "s.r.l.s.",
+                "s.r.l.s",
+                "srls"
+            ],
+            "società consortile a responsabilità limitata": [
+                "s.c.a.r.l.",
+                "s.c.a.r.l",
+                "scarl"
+            ],
+            "società cooperativa a responsabilità limitata": [
+                "s.c.r.l.",
+                "s.c.r.l",
+                "scrl"
+            ],
+            "società a responsabilità limitata": [
+                "s.r.l.",
+                "s.r.l",
+                "srl"
+            ],
+            "società in nome collettivo": [
+                "s.n.c.",
+                "s.n.c",
+                "snc"
+            ],
+            "società per azioni": [
+                "s.p.a.",
+                "s.p.a",
+                "spa"
+            ],
+            "società cooperativa": [
+                "soc. coop.",
+                "soc. coop",
+                "soc coop",
+                "s.c.",
+                "s.c",
+                "sc"
+            ],
+            "società semplice": [
+                "s.s.",
+                "s.s",
+                "ss"
+            ]
+        }
+    }
+}
