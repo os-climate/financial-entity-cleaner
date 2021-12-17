@@ -1,7 +1,7 @@
-from datetime import datetime
-import logging
+import sys
 import os
 import pandas as pd
+import traceback
 
 from financial_entity_cleaner.utils import utils
 from financial_entity_cleaner.company_cleaner import company
@@ -29,28 +29,17 @@ class AutoCleaner:
     __SETUP_KEY_COUNTRY_CLEANER = "country_cleaner"
     __SETUP_KEY_IDS_CLEANER = "id_cleaner"
 
-    def __init__(self, log_filename="", log_level="INFO"):
+    def __init__(self):
         """
         Constructor method.
 
         Parameters:
-            log_filename (str): complete path and filename to store the autocleaner logs. This is an optional
-                attribute, therefore if it is not specified a default directory is used instead.
+            No parameters required
         Returns:
             AutoCleaner (object)
         Raises:
             No exception is raised.
         """
-        # Setup logging system
-        self._logger = None
-        if log_filename == "":
-            print(self.__DEFAULT_LOGS_FOLDER)
-            self._log_filename = self.__DEFAULT_LOGS_FOLDER
-        else:
-            self._log_filename = os.path.abspath(log_filename)
-        self._log_level = str(log_level).lower()
-        self.__configure_logging()
-
         # Internal dictionaries to store required settings for the cleaners by company's name, country and id
         self._setup_dict_company_cleaner = None
         self._setup_dict_country_cleaner = None
@@ -61,36 +50,6 @@ class AutoCleaner:
 
         # Internal dictionary to store required settings to process the attributes of the input dataset
         self._setup_dict_attribute_processing = None
-
-    def __configure_logging(self):
-        """
-        Prepares a logger object as to write logging info and errors into a file
-
-        Parameters:
-            No parameters.
-        Returns:
-            No return value.
-        Raises:
-            No exception is raised.
-        """
-        current_time = datetime.now()
-        log_date_time = current_time.strftime("%d%m%Y_%H%M%S")
-        self._logger = logging.getLogger("financial_entity_cleaner_AUTO_CLEANER")
-        stream_handler = logging.StreamHandler()
-        formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
-        stream_handler.setFormatter(formatter)
-        self._logger.addHandler(stream_handler)
-        name_log = "Financial_Entity_Cleaner_" + log_date_time + ".log"
-        filename_log = os.path.join(self._log_filename, name_log)
-        file_handler = logging.FileHandler(filename_log)
-        file_handler.setFormatter(formatter)
-        self._logger.addHandler(file_handler)
-        if self._log_level == "error":
-            self._logger.setLevel(logging.ERROR)
-        else:
-            self._logger.setLevel(logging.INFO)
 
     def __read_cleaning_settings(self, setup_cleaning_filename):
         """
@@ -105,8 +64,8 @@ class AutoCleaner:
         Raises:
             No exception is raised.
         """
-        # Logger info
-        self._logger.info("Reading cleaning settings from " + setup_cleaning_filename)
+        # Print info...
+        print("Reading cleaning settings from " + setup_cleaning_filename, file=sys.stdout)
 
         # Read the json file that contains the parameters for automatic cleaning
         dict_json = utils.load_json_file(setup_cleaning_filename)
@@ -150,8 +109,8 @@ class AutoCleaner:
         Raises:
             No exception is raised.
         """
-        # Logger info
-        self._logger.info("Executing automatic cleaning by country")
+        # Print info
+        print("Executing automatic cleaning by country", file=sys.stdout)
 
         country_cleaner_obj = country.CountryCleaner()
         country_cleaner_obj.lettercase_output = self._setup_dict_country_cleaner[
@@ -197,8 +156,8 @@ class AutoCleaner:
             No exception is raised.
         """
 
-        # Logger info
-        self._logger.info("Executing automatic cleaning by id")
+        # Print info
+        print("Executing automatic cleaning by id", file=sys.stdout)
 
         id_cleaner_obj = banking_id.BankingIdCleaner()
         id_cleaner_obj.lettercase_output = self._setup_dict_ids_cleaner[
@@ -230,8 +189,8 @@ class AutoCleaner:
             No exception is raised.
         """
 
-        # Logger info
-        self._logger.info("Executing automatic cleaning by company name")
+        # Print info
+        print("Executing automatic cleaning by company name", file=sys.stdout)
 
         company_cleaner_obj = company.CompanyNameCleaner()
         company_cleaner_obj.normalize_legal_terms = eval(
@@ -266,7 +225,6 @@ class AutoCleaner:
 
         # Creates a temporary country attribute in lower case to match the country used in the dictionaries
         if input_country != "":
-            self._logger.info("Using the dictionary of legal terms by country to clean up the company name")
             temp_input_country = input_country + "__temp"
             df[temp_input_country] = df[input_country].str.lower()
             df = company_cleaner_obj.apply_cleaner_to_df(
@@ -274,7 +232,6 @@ class AutoCleaner:
             )
             df.drop(columns=[temp_input_country], inplace=True)
         else:
-            self._logger.info("Using the default dictionary of legal terms to clean up the company name")
             df = company_cleaner_obj.apply_cleaner_to_df(
                 df, input_name, output_name, "", merge_legal_terms
             )
@@ -295,8 +252,6 @@ class AutoCleaner:
         # If the settings for selecting and renaming attributes were provided in the json file,
         # then select only the attributes of interest and rename them
         if self._setup_dict_attribute_processing:
-            # Logger info
-            self._logger.info("Selecting and renaming dataset attributes")
             # Get the names of attribute to be selected from the dataset
             attributes_to_read = list(
                 self._setup_dict_attribute_processing.keys()
@@ -341,8 +296,8 @@ class AutoCleaner:
             # Get the settings for automatic cleaning
             self.__read_cleaning_settings(setup_cleaning_filename)
 
-            # Logger info
-            self._logger.info("Reading csv file from " + input_filename)
+            # Print info
+            print("Reading csv file from " + input_filename, file=sys.stdout)
 
             df = pd.read_csv(
                 input_filename,
@@ -354,8 +309,8 @@ class AutoCleaner:
             # Execute automatic cleaning
             df_cleaned = self.__execute_auto_cleaning(df)
 
-            # Logger info
-            self._logger.info("Saving csv output file at " + output_filename)
+            # Print info
+            print("Saving csv output file at " + output_filename, file=sys.stdout)
 
             # Save results to csv file
             df_cleaned.to_csv(
@@ -367,10 +322,9 @@ class AutoCleaner:
             )
             return True
         except Exception as e:
-            # Logger info
-            self._logger.error("Error " + repr(e) + " ocurred")
-            self._logger.error("Error message: " + str(e))
-            self._logger.exception(e)
+            # Print error
+            print("Error " + repr(e) + " ocurred", file=sys.stderr)
+            traceback.print_exc(file=sys.stderr)
             return False
 
     def clean_df(self, df, setup_cleaning_filename):
@@ -394,8 +348,7 @@ class AutoCleaner:
             df_cleaned = self.__execute_auto_cleaning(df)
             return df_cleaned
         except Exception as e:
-            # Logger info
-            self._logger.error("Error " + repr(e) + " ocurred")
-            self._logger.error("Error message: " + str(e))
-            self._logger.exception(e)
+            # Print error
+            print("Error " + repr(e) + " ocurred", file=sys.stderr)
+            traceback.print_exc(file=sys.stderr)
             return None

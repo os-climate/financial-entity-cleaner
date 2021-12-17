@@ -23,19 +23,11 @@ def read_command_args():
     parser.add_argument(
         "--out", dest="output_filename", metavar="L", type=str, help="output filename"
     )
-    parser.add_argument(
-        "--logs",
-        dest="log_filename",
-        metavar="L",
-        type=str,
-        help="directory for the logs",
-    )
     args = parser.parse_args()
     cleaner_args = {
         "json_filename": args.json_filename,
         "input_filename": args.input_filename,
         "output_filename": args.output_filename,
-        "log_filename": args.log_filename,
     }
     if cleaner_args["json_filename"] is None:
         raise Exception('The financial_entity_cleaner from command line requires a json file (cleaning settings)')
@@ -51,16 +43,13 @@ def main():
     cleaner_args = read_command_args()
 
     # Create cleaner object with log directory specified by user or using the default directory
-    if cleaner_args["log_filename"] != "":
-        auto_cleaner_obj = auto_cleaner.AutoCleaner(cleaner_args["log_filename"])
-    else:
-        auto_cleaner_obj = auto_cleaner.AutoCleaner()
+    auto_cleaner_obj = auto_cleaner.AutoCleaner()
 
     # Perform auto cleaning
     result = auto_cleaner_obj.clean_csv_file(
         cleaner_args["input_filename"],
         cleaner_args["json_filename"],
-        cleaner_args["output_filename"],
+        cleaner_args["output_filename"]
     )
     if result:
         sys.exit(0)
