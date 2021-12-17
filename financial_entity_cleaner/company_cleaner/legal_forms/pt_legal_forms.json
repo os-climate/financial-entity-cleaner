@@ -6,6 +6,36 @@
     "updated": "2021-09-20",
     "legal_forms": {
         "pt": {
+            "cooperativa de responsabilidade limitada": [
+                "c.r.l.",
+                "c.r.l",
+                "crl.",
+                "crl"
+            ],
+            "sociedade gestora de participações sociais": [
+                "s.g.p.s.",
+                "s.g.p.s",
+                "sgps.",
+                "sgps"
+            ],
+            "sociedade de investimento coletivo)": [
+                "s.i.c.",
+                "s.i.c",
+                "sic.",
+                "sic"
+            ],
+            "sociedade gestora de organismos de investimento coletivo": [
+                "s.g.o.i.c.",
+                "s.g.o.i.c",
+                "sgoic.",
+                "sgoic"
+            ],
+            "sociedade unipessoal anónima": [
+                "s.u.a.",
+                "s.u.a",
+                "sua,",
+                "sua"
+            ],
             "sociedade limitada": [
                 "lda.",
                 "lda",
@@ -14,10 +44,17 @@
             ],
             "sociedade anônima": [
                 "s.a.",
+                "s. a.",
                 "s.a",
                 "s/a",
-                "sa",
-                "sa."
+                "sa.",
+                "sa"
+            ],
+            "fundo de capital de risco": [
+                "f.c.r.",
+                "f.c.r",
+                "fcr.",
+                "fcr"
             ]
         }
     }
