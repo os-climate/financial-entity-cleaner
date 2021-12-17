@@ -3,6 +3,7 @@
 # Import python libraries
 import re
 import os
+import enum
 
 # Import third-party libraries
 import numpy as np
@@ -15,6 +16,11 @@ from financial_entity_cleaner.company_cleaner import cleaning_rules
 from financial_entity_cleaner.company_cleaner import (
     exceptions_company as custom_exception,
 )
+
+
+class LegalTermLocation(enum.Enum):
+    AT_THE_END = 1
+    ANYWHERE = 2
 
 
 class CompanyNameCleaner:
@@ -102,6 +108,9 @@ class CompanyNameCleaner:
         self._country_legal_terms = self.__DEFAULT_COUNTRY
         self.set_current_legal_term_dict(self.__DEFAULT_COUNTRY, self.__DEFAULT_LANG)
         self._default_dict_legal_terms = self._current_dict_legal_terms
+
+        # By default, set the search of legal terms at the end of the company's name
+        self._legal_term_location = LegalTermLocation.AT_THE_END
 
         # Define the letter case of the cleaning output
         self._output_lettercase = utils.LOWER_LETTER_CASE
@@ -291,7 +300,7 @@ class CompanyNameCleaner:
         return self._current_dict_legal_terms
 
     def set_current_legal_term_dict(
-        self, country, language="", merge_legal_terms=False
+            self, country, language="", merge_legal_terms=False
     ):
         """
         This method loads/change the current dictionary to be used during cleaning.
@@ -370,6 +379,19 @@ class CompanyNameCleaner:
         # Remove space in the beginning and in the end and convert it to lower case
         clean_company_name = clean_company_name.strip().lower()
 
+        # APPLY THE CLEANING RULES FIRST
+        # Get the custom dictionary of regex rules to be applied in the cleaning
+        cleaning_dict = {}
+        for rule_name in self._default_cleaning_rules:
+            cleaning_dict[rule_name] = self._dict_cleaning_rules[rule_name]
+
+        # Apply all the cleaning rules
+        clean_company_name = utils.apply_regex_rules(clean_company_name, cleaning_dict)
+
+        # Make sure to remove extra spaces
+        clean_company_name = clean_company_name.strip()
+
+        # NOW, APPLY THE NORMALIZATION OF LEGAL TERMS
         # Apply normalization for legal terms
         if self.normalize_legal_terms:
             # Iterate through the dictionary of legal terms
@@ -379,21 +401,22 @@ class CompanyNameCleaner:
                 for legal_term in legal_terms:
                     # Make sure to use raw string
                     legal_term = legal_term.lower()
-                    # Make sure the legal term is a complete word and it's a raw string
-                    legal_term = "\\b" + legal_term + "\\b"
+                    # If the legal term has . (dots), then apply regex directly on the legal term
+                    # Otherwise, if it's a legal term with only letters in sequence, make sure
+                    # that regex find the legal term as a word (\\bLEGAL_TERM\\b)
+                    if legal_term.find('.') > -1:
+                        legal_term = legal_term.replace(".", "\\.")
+                    else:
+                        legal_term = "\\b" + legal_term + "\\b"
+                    # Check if the legal term should be found only at the end of the string
+                    if self._legal_term_location == LegalTermLocation.AT_THE_END:
+                        legal_term = legal_term + '$'
+                    # ...and it's a raw string
                     regex_rule = r"{}".format(legal_term)
                     # Apply the replacement
                     clean_company_name = re.sub(
                         regex_rule, replacement, clean_company_name
                     )
-
-        # Get the custom dictionary of regex rules to be applied in the cleaning
-        cleaning_dict = {}
-        for rule_name in self._default_cleaning_rules:
-            cleaning_dict[rule_name] = self._dict_cleaning_rules[rule_name]
-
-        # Apply all the cleaning rules
-        clean_company_name = utils.apply_regex_rules(clean_company_name, cleaning_dict)
 
         # Apply the letter case, if different from 'lower'
         if self._output_lettercase == "upper":
@@ -408,12 +431,12 @@ class CompanyNameCleaner:
         return clean_company_name
 
     def apply_cleaner_to_df(
-        self,
-        df,
-        in_company_name_attribute,
-        out_company_name_attribute,
-        in_country_attribute="",
-        merge_legal_terms=True,
+            self,
+            df,
+            in_company_name_attribute,
+            out_company_name_attribute,
+            in_country_attribute="",
+            merge_legal_terms=True,
     ):
         """
         This method cleans up all company's names in a dataframe by selecting the correspondent dictionary of
