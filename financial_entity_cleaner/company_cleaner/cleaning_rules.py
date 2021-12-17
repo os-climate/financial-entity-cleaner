@@ -1,6 +1,8 @@
 cleaning_rules_dict = {
     "remove_email": [" ", "\S*@\S*\s?"],
     "remove_url": [" ", "https*\S+"],
+    "remove_word_the_from_the_end": [" ", "the$"],
+    "place_word_the_at_the_beginning": [" ", "the$"],
     "remove_www_address": [" ", "https?://[.\w]{3,}|www.[.\w]{3,}"],
     "enforce_single_space_between_words": [" ", "\s+"],
     "replace_amperstand_by_AND": [" and ", "&"],
@@ -23,6 +25,7 @@ cleaning_rules_dict = {
     "remove_curly_brackets": ["", "\{|\}"],
     "remove_single_quote_next_character": [" ", "'\w+"],
     "remove_words_in_parentheses": [" ", "\([^()]*\)"],
+    "repeat_remove_words_in_parentheses": [" ", "remove_words_in_parentheses"]
 }
 
 default_company_cleaning_rules = [

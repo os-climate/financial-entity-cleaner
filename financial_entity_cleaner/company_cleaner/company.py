@@ -352,6 +352,47 @@ class CompanyNameCleaner:
         self._lang_legal_terms = language
         self._country_legal_terms = country
 
+    def _apply_cleaning_rules(self, company_name):
+        # APPLY THE CLEANING RULES FIRST
+        # Get the custom dictionary of regex rules to be applied in the cleaning
+        cleaning_dict = {}
+        for rule_name in self._default_cleaning_rules:
+            cleaning_dict[rule_name] = self._dict_cleaning_rules[rule_name]
+
+        # Apply all the cleaning rules
+        clean_company_name = utils.apply_regex_rules(company_name, cleaning_dict)
+        return clean_company_name
+
+    def _apply_normalization_of_legal_terms(self, company_name):
+        # Make sure to remove extra spaces, so legal terms can be found in the end (if requested)
+        clean_company_name = company_name.strip()
+
+        # Apply normalization for legal terms
+        # Iterate through the dictionary of legal terms
+        for replacement, legal_terms in self._current_dict_legal_terms.items():
+            # Each replacement has a list of possible terms to be searched for
+            replacement = " " + replacement.lower() + " "
+            for legal_term in legal_terms:
+                # Make sure to use raw string
+                legal_term = legal_term.lower()
+                # If the legal term has . (dots), then apply regex directly on the legal term
+                # Otherwise, if it's a legal term with only letters in sequence, make sure
+                # that regex find the legal term as a word (\\bLEGAL_TERM\\b)
+                if legal_term.find('.') > -1:
+                    legal_term = legal_term.replace(".", "\\.")
+                else:
+                    legal_term = "\\b" + legal_term + "\\b"
+                # Check if the legal term should be found only at the end of the string
+                if self._legal_term_location == LegalTermLocation.AT_THE_END:
+                    legal_term = legal_term + '$'
+                # ...and it's a raw string
+                regex_rule = r"{}".format(legal_term)
+                # Apply the replacement
+                clean_company_name = re.sub(
+                    regex_rule, replacement, clean_company_name
+                )
+        return clean_company_name
+
     def get_clean_name(self, company_name):
         """
         This method cleans up a company's name.
@@ -379,44 +420,12 @@ class CompanyNameCleaner:
         # Remove space in the beginning and in the end and convert it to lower case
         clean_company_name = clean_company_name.strip().lower()
 
-        # APPLY THE CLEANING RULES FIRST
-        # Get the custom dictionary of regex rules to be applied in the cleaning
-        cleaning_dict = {}
-        for rule_name in self._default_cleaning_rules:
-            cleaning_dict[rule_name] = self._dict_cleaning_rules[rule_name]
-
         # Apply all the cleaning rules
-        clean_company_name = utils.apply_regex_rules(clean_company_name, cleaning_dict)
+        clean_company_name = self._apply_cleaning_rules(clean_company_name)
 
-        # Make sure to remove extra spaces
-        clean_company_name = clean_company_name.strip()
-
-        # NOW, APPLY THE NORMALIZATION OF LEGAL TERMS
         # Apply normalization for legal terms
         if self.normalize_legal_terms:
-            # Iterate through the dictionary of legal terms
-            for replacement, legal_terms in self._current_dict_legal_terms.items():
-                # Each replacement has a list of possible terms to be searched for
-                replacement = " " + replacement.lower() + " "
-                for legal_term in legal_terms:
-                    # Make sure to use raw string
-                    legal_term = legal_term.lower()
-                    # If the legal term has . (dots), then apply regex directly on the legal term
-                    # Otherwise, if it's a legal term with only letters in sequence, make sure
-                    # that regex find the legal term as a word (\\bLEGAL_TERM\\b)
-                    if legal_term.find('.') > -1:
-                        legal_term = legal_term.replace(".", "\\.")
-                    else:
-                        legal_term = "\\b" + legal_term + "\\b"
-                    # Check if the legal term should be found only at the end of the string
-                    if self._legal_term_location == LegalTermLocation.AT_THE_END:
-                        legal_term = legal_term + '$'
-                    # ...and it's a raw string
-                    regex_rule = r"{}".format(legal_term)
-                    # Apply the replacement
-                    clean_company_name = re.sub(
-                        regex_rule, replacement, clean_company_name
-                    )
+            clean_company_name = self._apply_normalization_of_legal_terms(clean_company_name)
 
         # Apply the letter case, if different from 'lower'
         if self._output_lettercase == "upper":

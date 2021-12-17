@@ -78,10 +78,29 @@ def apply_regex_rules(str_value, dict_regex_rules):
         replacement = cleaning_rule[0]
         # Second element is the regex rule
         regex_rule = cleaning_rule[1]
+
+        # Check if the regex rule is actually a reference to another regex rule.
+        # By adding a name of another regex rule in the place of the rule itself allows the execution
+        # of a regex rule twice
+        if regex_rule in dict_regex_rules.keys():
+            replacement = dict_regex_rules[cleaning_rule[1]][0]
+            regex_rule = dict_regex_rules[cleaning_rule[1]][1]
+
         # Make sure to use raw string
         regex_rule = r"{}".format(regex_rule)
+
+        # Threat the case of the word THE at the end of a company's name
+        found_the_word = False
+        if name_rule == 'place_word_the_at_the_beginning':
+            found_the_word = re.search(regex_rule, clean_value)
+
         # Apply the regex rule
         clean_value = re.sub(regex_rule, replacement, clean_value)
+
+        # Adjust the name for the case of rule <place_word_the_at_the_beginning>
+        if found_the_word:
+            clean_value = 'the ' + clean_value
+
     return clean_value
 
 
