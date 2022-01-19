@@ -20,7 +20,6 @@ class AutoCleaner:
     # Directory to store the logs by default
     __CURRENT_DIR = os.path.dirname(__file__) or "."
     __CURRENT_MODULE_DIR = os.path.abspath(__CURRENT_DIR)
-    __DEFAULT_LOGS_FOLDER = os.path.join(__CURRENT_MODULE_DIR, "logs")
 
     # Keys in the json file
     __SETUP_KEY_FILE_PROCESSING = "file_processing"
