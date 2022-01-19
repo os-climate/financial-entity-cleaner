@@ -9,13 +9,23 @@ TITLE_LETTER_CASE = "title"
 
 
 def perform_basic_cleaning(value):
+    """
+    The basic cleaning consists of removing unicode characters and extra spaces.
+
+    Parameters:
+        value (string): any string to be cleaned
+    Returns:
+        clean_value (string): the string cleaned up
+    Raises:
+        No exception is raised.
+    """
     # Remove all unicode characters if any
-    value = remove_unicode(value)
+    clean_value = remove_unicode(value)
 
     # Remove spaces in the beginning and in the end and convert it to lower case
-    value = remove_extra_spaces(value)
+    clean_value = remove_extra_spaces(clean_value)
 
-    return value
+    return clean_value
 
 
 def remove_unicode(value):
@@ -89,16 +99,16 @@ def apply_regex_rules(str_value, dict_regex_rules):
         # Make sure to use raw string
         regex_rule = r"{}".format(regex_rule)
 
-        # Threat the case of the word THE at the end of a company's name
-        found_the_word = False
+        # Threat the special case of the word THE at the end of a company's name
+        found_the_word_the = False
         if name_rule == 'place_word_the_at_the_beginning':
-            found_the_word = re.search(regex_rule, clean_value)
+            found_the_word_the = re.search(regex_rule, clean_value)
 
         # Apply the regex rule
         clean_value = re.sub(regex_rule, replacement, clean_value)
 
         # Adjust the name for the case of rule <place_word_the_at_the_beginning>
-        if found_the_word:
+        if found_the_word_the:
             clean_value = 'the ' + clean_value
 
     return clean_value
