@@ -1,0 +1,149 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2021-12-17",
+    "updated": "2021-12-17",
+    "legal_forms": {
+        "de": {
+            "partnerschaftsgesellschaft mit beschränkter berufshaftung": [
+                "partg. mbb.",
+                "partg mbb",
+                "p.m.b.b.",
+                "p.m.b.b",
+                "pmbb.",
+                "pmbb"
+            ],
+            "europäische wirtschaftliche interessenvereinigung": [
+                "e.w.i.v.",
+                "e.w.i.v",
+                "ewiv.",
+                "ewiv"
+            ],
+            "gesellschaft mit beschränkter haftung & compagnie kommanditgesellschaft": [
+                "gmbh. & co. kg.",
+                "gmbh & co kg"
+            ],
+            "gemeinnützige gesellschaft mit beschränkter haftung": [
+                "g.g.m.b.h.",
+                "g.g.m.b.h",
+                "ggmbh.",
+                "ggmbh"
+            ],
+            "compagnie kommanditgesellschaft": [
+                "co. kg.",
+                "co. kg",
+                "co kg.",
+                "co kg",
+                "cokg.",
+                "cokg"
+            ],
+            "wirtschaftliche interessenvereinigung": [
+                "w.i.v.",
+                "w.i.v",
+                "wiv.",
+                "wiv"
+            ],
+            "gesellschaft mit beschränkter haftung": [
+                "g.m.b.h.",
+                "g.m.b.h",
+                "gmbh.",
+                "gmbh"
+            ],
+            "mit beschränkter haftung": [
+                "m.b.h.",
+                "m.b.h",
+                "mbh.",
+                "mbh"
+            ],
+            "kommanditgesellschaft auf aktien": [
+                "k.g.a.a.",
+                "k.g.a.a",
+                "kgaa.",
+                "kgaa"
+            ],
+            "versicherungsverein auf gegenseitigkeit": [
+                "v.v.a.g.",
+                "v.v.a.g",
+                "vvag"
+            ],
+            "offene handelsgesellschaft": [
+                "o.h.g.",
+                "o.h.g",
+                "ohg"
+            ],
+            "genossenschaft": [
+                "e.g.",
+                "e.g",
+                "eg.",
+                "eg"
+            ],
+            "eingetragener verein": [
+                "e.v.",
+                "e.v",
+                "ev.",
+                "ev"
+            ],
+            "eingetragener kaufmann": [
+                "e.k.",
+                "e.k",
+                "ek.",
+                "ek"
+            ],
+            "gemeinnützige aktiengesellschaft": [
+                "g.a.g.",
+                "g.a.g",
+                "gag.",
+                "gag"
+            ],
+            "gesellschaft bürgerlichen rechts": [
+                "g.b.r.",
+                "g.b.r",
+                "gbr.",
+                "gbr"
+            ],
+            "europäische gesellschaft": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "europäische genossenschaft": [
+                "s.c.e.",
+                "s.c.e",
+                "sce.",
+                "sce"
+            ],
+            "unternehmergesellschaft": [
+                "u.g.",
+                "u.g",
+                "ug.",
+                "ug"
+            ],
+            "aktiengesellschaft": [
+                "a.g.",
+                "a.g",
+                "ag.",
+                "ag"
+            ],
+            "partnerschaftsgesellschaft": [
+                "partg.",
+                "partg"
+            ],
+            "reit-aktiengesellschaft": [
+                "reit-ag.",
+                "reit-ag"
+            ],
+            "investmentaktiengesellschaft": [
+                "invag.",
+                "invag"
+            ],
+            "kommanditgesellschaft": [
+                "k.g.",
+                "k.g",
+                "kg.",
+                "kg"
+            ]
+        }
+    }
+}
