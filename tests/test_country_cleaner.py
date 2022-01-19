@@ -1,6 +1,8 @@
 import unittest
+import math
 
 from financial_entity_cleaner.country_cleaner import country
+from financial_entity_cleaner.utils import utils
 from tests import test_data_reader
 
 # Test data from csv excel files
@@ -8,7 +10,7 @@ from tests import test_data_reader
 # - column_1: expected alpha2 code
 # - column_2: expected alpha3 code
 # - column_3: expected country name
-test_data_filename = "tests/data/test_cleaner_country.csv"
+test_data_filename = "./data/test_cleaner_country.csv"
 
 # Data for processing as lists
 test_country_rows = []
@@ -34,29 +36,56 @@ class TestCountryCleaner(unittest.TestCase):
         load_test_data()
 
     # Validate country's info
-    def test_validate_country(self):
+    def test_validate_countries(self):
         total_rows = len(test_country_rows)
         print("Total cases to tests {}".format(total_rows))
+
+        # Set up the cleaner and its properties
+        country_cleaner = country.CountryCleaner()
+        country_cleaner.mode = country_cleaner.mode.SILENT_MODE
+        country_cleaner.lettercase_output = utils.LOWER_LETTER_CASE
+        country_cleaner.country_name_output = "country_name"
+        country_cleaner.country_alpha2_output = "country_alpha2"
+        country_cleaner.country_alpha3_output = "country_alpha3"
         for data in test_country_rows:
             # The first column is the input data
             country_to_validate = data[0].strip().lower()
             # Remainder columns are the expected values
             expected_alpha2 = data[1].strip().lower()
+            if expected_alpha2 == 'None':
+                expected_alpha2 = math.nan
             expected_alpha3 = data[2].strip().lower()
+            if expected_alpha3 == 'None':
+                expected_alpha3 = math.nan
             expected_name = data[3].strip().lower()
-            country_info = country.get_country_info(country_to_validate)
-            if expected_alpha2 == "none":
-                self.assertIsNone(country_info, "Country was not found")
+            if expected_name == 'None':
+                expected_name = math.nan
+
+            # Validate country info
+            country_info = country_cleaner.get_country_info(country_to_validate)
+
+            # Assert the cleaning process
+            print('Testing {}'.format(data))
+            if expected_alpha2 == 'none':
+                self.assertTrue(math.isnan(country_info["country_alpha2"]))
             else:
                 self.assertEqual(country_info["country_alpha2"], expected_alpha2)
+
+            if expected_alpha3 == 'none':
+                self.assertTrue(math.isnan(country_info["country_alpha3"]))
+            else:
                 self.assertEqual(country_info["country_alpha3"], expected_alpha3)
+
+            if expected_name == 'none':
+                self.assertTrue(math.isnan(country_info["country_name"]))
+            else:
                 self.assertEqual(country_info["country_name"], expected_name)
 
 
 def build_test_suite():
     # Create a pool of tests
     test_suite = unittest.TestSuite()
-    test_suite.addTest(TestCountryCleaner("test_validate_country"))
+    test_suite.addTest(TestCountryCleaner("test_validate_countries"))
     return test_suite
 
 

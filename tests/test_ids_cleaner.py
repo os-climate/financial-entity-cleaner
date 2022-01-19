@@ -1,13 +1,14 @@
 import unittest
 
-from financial_entity_cleaner import banking_ids
+from financial_entity_cleaner.id_cleaner import banking_id
+from financial_entity_cleaner.utils import utils
 from tests import test_data_reader
 
 # Test data from csv excel files
 # - column_0: official id to be validated
 # - column_1: type official id ('isin', 'lei', 'sedol', 'other')
 # - column_2: expected result from validation (True, False, NotImplemented)
-test_data_filename = "tests/data/test_cleaner_ids.csv"
+test_data_filename = "./data/test_cleaner_ids.csv"
 
 # Data for processing as lists
 test_ids_rows = []
@@ -37,22 +38,26 @@ class TestOfficialIdCleaner(unittest.TestCase):
     def test_validate_ids(self):
         total_rows = len(test_ids_rows)
         print("Total cases to tests {}".format(total_rows))
+        # Setup the banking id cleaner and its properties
+        banking_id_cleaner = banking_id.BankingIdCleaner()
+        banking_id_cleaner.mode = banking_id_cleaner.mode.SILENT_MODE
+        banking_id_cleaner.lettercase_output = utils.LOWER_LETTER_CASE
         for data in test_ids_rows:
             # The first column is the input data
             id_to_validate = data[0].strip().lower()
 
             # The second column is the type of the identifier to be validate
-            id_type = data[1].strip().lower()
-
-            # Validate the identifier
-            result_validation = banking_ids.validate_id(id_to_validate, id_type)
+            id_type_to_validate = data[1].strip().lower()
 
             # The third column is the expected result
-            expected_result = data[2].strip().lower()
-            print(id_to_validate, id_type)
-            if expected_result == "true" or expected_result == "false":
-                expected_result = bool(expected_result)
-                self.assertEqual(result_validation, expected_result)
+            expected_result = eval(data[2].strip())
+
+            print('Testing {}-{}-{}'.format(id_to_validate, id_type_to_validate, expected_result))
+
+            # Validate the ids
+            banking_id_cleaner.id_type = id_type_to_validate
+            result_validation = banking_id_cleaner.is_valid_id(id_to_validate)
+            self.assertEqual(result_validation, expected_result)
 
 
 def build_test_suite():
