@@ -6,7 +6,8 @@ from tests import test_data_reader
 # Test data from csv excel files
 # - column_0: company´s name to clean
 # - column_1: expected result
-test_data_filename = "tests/data/test_cleaner_company.csv"
+# test_data_filename = "tests/data/test_cleaner_company.csv"
+test_data_filename = "./data/test_cleaner_company.csv"
 
 # Data for processing as lists
 test_company_rows = []
@@ -36,6 +37,9 @@ class TestCompanyCleaner(TestCase):
         total_rows = len(test_company_rows)
         print("Total cases to tests {}".format(total_rows))
         print("{:<30} - {:<30} - {:<30}".format("INPUT", "EXPECTED", "OUTPUT"))
+        company_cleaner = company.CompanyNameCleaner()
+        company_cleaner.mode = company_cleaner.mode.SILENT_MODE
+
         for data in test_company_rows:
             # The first column is the input data
             company_name_to_clean = data[0]
