@@ -10,6 +10,7 @@ import numpy as np
 
 # Import internal libraries
 from financial_entity_cleaner.utils import lib
+from financial_entity_cleaner.utils import simple_cleaner
 
 from financial_entity_cleaner.company import cleaning_rules
 from financial_entity_cleaner.company import (
@@ -359,7 +360,7 @@ class CompanyNameCleaner:
             cleaning_dict[rule_name] = self._dict_cleaning_rules[rule_name]
 
         # Apply all the cleaning rules
-        clean_company_name = lib.apply_regex_rules(company_name, cleaning_dict)
+        clean_company_name = simple_cleaner.apply_regex_rules(company_name, cleaning_dict)
         return clean_company_name
 
     def _apply_normalization_of_legal_terms(self, company_name):
@@ -412,7 +413,7 @@ class CompanyNameCleaner:
 
         # Remove all unicode characters in the company's name, if requested
         if self._remove_unicode:
-            clean_company_name = lib.remove_unicode(company_name)
+            clean_company_name = simple_cleaner.remove_unicode(company_name)
         else:
             clean_company_name = company_name
 
