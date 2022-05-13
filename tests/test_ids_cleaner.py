@@ -1,7 +1,7 @@
 import unittest
 
-from financial_entity_cleaner.id_cleaner import banking_id
-from financial_entity_cleaner.utils import utils
+from financial_entity_cleaner.id import banking
+from financial_entity_cleaner.utils import lib
 from tests import test_data_reader
 
 # Test data from csv excel files
@@ -39,9 +39,9 @@ class TestOfficialIdCleaner(unittest.TestCase):
         total_rows = len(test_ids_rows)
         print("Total cases to tests {}".format(total_rows))
         # Setup the banking id cleaner and its properties
-        banking_id_cleaner = banking_id.BankingIdCleaner()
+        banking_id_cleaner = banking.BankingIdCleaner()
         banking_id_cleaner.mode = banking_id_cleaner.mode.SILENT_MODE
-        banking_id_cleaner.lettercase_output = utils.LOWER_LETTER_CASE
+        banking_id_cleaner.lettercase_output = lib.LOWER_LETTER_CASE
         for data in test_ids_rows:
             # The first column is the input data
             id_to_validate = data[0].strip().lower()
