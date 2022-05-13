@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "financial-entity-cleaner"
-version = "0.7.0"
+version = "0.8.0"
 description = "Normalization of data for entity matching"
 authors = ["Os-Climate Foundation <test_os-climate@gmail.com>"]
 license = "Apache 2"
