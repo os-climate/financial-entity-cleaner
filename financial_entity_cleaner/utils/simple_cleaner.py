@@ -1,11 +1,11 @@
-# Import python libraries
-import re
-import json
+""" The **financial_entity_cleaner.utils.simple_cleaner** module provides easy-to-use functions to apply simple
+cleaning rules to string-type values, such as: remove unicode characters, remove extra spaces or to apply a set of
+customized regex rules defined in a python dictionary.
 
-# Constants that define the letter case for return strings
-LOWER_LETTER_CASE = "lower"
-UPPER_LETTER_CASE = "upper"
-TITLE_LETTER_CASE = "title"
+"""
+
+# Import python libs
+import re
 
 
 def perform_basic_cleaning(value):
@@ -13,11 +13,11 @@ def perform_basic_cleaning(value):
     The basic cleaning consists of removing unicode characters and extra spaces.
 
     Parameters:
-        value (string): any string to be cleaned
+        value (str): any string in need of having unicode characters and extra spaces removed from it.
+
     Returns:
-        clean_value (string): the string cleaned up
-    Raises:
-        No exception is raised.
+        (str): the modified/cleaned value.
+
     """
     # Remove all unicode characters if any
     clean_value = remove_unicode(value)
@@ -33,11 +33,11 @@ def remove_unicode(value):
     Removes unicode character that is unreadable when converted to ASCII format.
 
     Parameters:
-        value (string): any string containing unicode characters
+        value (str): any string containing unicode characters.
+
     Returns:
-        clean_value (string): a string without unicode characters
-    Raises:
-        No exception is raised.
+        (str): the corresponding input string without unicode characters.
+
     """
     # Remove all unicode characters if any
     clean_value = value.encode("ascii", "ignore").decode()
@@ -49,11 +49,11 @@ def remove_extra_spaces(value):
     Removes extra spaces in the beggining, the end and between words.
 
     Parameters:
-        value (string): any string to clean
+        value (str): any string with extra spaces.
+
     Returns:
-        clean_value (string): a string without extra spaces
-    Raises:
-        No exception is raised.
+        (str): the corresponding input string in which extra spaces are transformed to single spaces.
+
     """
     # Remove spaces in the beginning and in the end and convert it to lower case
     clean_value = value.strip().lower()
@@ -65,20 +65,24 @@ def remove_extra_spaces(value):
 
 def apply_regex_rules(str_value, dict_regex_rules):
     """
-    Applies several cleaning rules based on a custom dictionary sent by parameter.
-    The dictionary contains the cleaning rules written in regex.
-    See the file cleaning_rules.py in company_cleaner module for an example of a custom cleaning rule dictionary.
+    Applies several cleaning rules based on a custom dictionary sent by parameter. The dictionary must contain
+    cleaning rules written in regex format.
 
     Parameters:
-        str_value (str): any name (string) to be cleaned up
-        dict_regex_rules (dict): a dictionary of cleaning rules writen in regex
-            [rule name] : [two-element list: 'replacement', 'regex rule']
-            {'remove_email': ['', '[.\w]@[.\w]'],
-             'remove_www_address': ['', 'https?://[.\w]{3,}|www.[.\w]{3,}']}
+        str_value (str): any value as string to be cleaned up.
+        dict_regex_rules (dict): a dictionary of cleaning rules writen in regex as shown below:\n
+            [rule name] : ['replacement', 'regex rule']\n
+            Example of a regex rule dictionary: \n
+            .. code-block:: text
+
+               {
+                    "remove_email": ["", "[.\w]@[.\w]"],
+                    "remove_www_address": ["", "https?://[.\w]{3,}|www.[.\w]{3,}"]
+               }
+
     Returns:
-        clean_value (string): the modified name (string)
-    Raises:
-        No exception is raised.
+        (str): the modified/cleaned value.
+
     """
 
     clean_value = str_value
@@ -112,20 +116,3 @@ def apply_regex_rules(str_value, dict_regex_rules):
             clean_value = 'the ' + clean_value
 
     return clean_value
-
-
-def load_json_file(file_to_read):
-    """
-    Reads a json file and returns its content as a python dictionary.
-
-    Parameters:
-        file_to_read (str): complete path and name of a json file
-    Returns:
-        dict_content (dict): the content of a json file as a python dictionary
-    Raises:
-        No exception is raised.
-    """
-    # Reads a json file
-    with open(file_to_read, encoding="utf-8") as json_file:
-        dict_content = json.load(json_file)
-    return dict_content

@@ -9,11 +9,10 @@ import enum
 import numpy as np
 
 # Import internal libraries
-from financial_entity_cleaner.utils import utils
-from financial_entity_cleaner.exceptions.exception_handler import ModeOfUse
+from financial_entity_cleaner.utils import lib
 
-from financial_entity_cleaner.company_cleaner import cleaning_rules
-from financial_entity_cleaner.company_cleaner import (
+from financial_entity_cleaner.company import cleaning_rules
+from financial_entity_cleaner.company import (
     exceptions_company as custom_exception,
 )
 
@@ -78,7 +77,7 @@ class CompanyNameCleaner:
         # The mode property defines if exceptions must be thrown in case of errors
         # EXCEPTION_MODE is useful when debugging or building new applications
         # SILENT_MODE is prefered in production environments
-        self._mode = ModeOfUse.SILENT_MODE
+        self._mode = lib.ModeOfUse.SILENT_MODE
 
         # The dictionary of cleaning rules define which regex functions to apply to the data
         # A default set of regex rules is defined, but it can be changed by the user.
@@ -113,7 +112,7 @@ class CompanyNameCleaner:
         self._legal_term_location = LegalTermLocation.AT_THE_END
 
         # Define the letter case of the cleaning output
-        self._output_lettercase = utils.LOWER_LETTER_CASE
+        self._output_lettercase = lib.LOWER_LETTER_CASE
 
         # Define if unicode characters should be removed from company's name
         # This cleaning rule is treated separated from the regex rules because it depends on the
@@ -189,7 +188,7 @@ class CompanyNameCleaner:
             raise custom_exception.ListOfLegalTermsAvailableDoesNotExist
 
         # Load the legal term dictionary
-        dict_json = utils.load_json_file(path_file_available_legal_terms)
+        dict_json = lib.load_json_file(path_file_available_legal_terms)
         self._legal_terms_available = dict_json[self.__NAME_JSON_ENTRY_LEGAL_TERMS]
 
     def __load_legal_terms_dict(self, country):
@@ -215,7 +214,7 @@ class CompanyNameCleaner:
             raise custom_exception.LegalTermsDictionaryDoesNotExist
 
         # Load the legal term dictionary
-        dict_json = utils.load_json_file(path_file_legal_terms)
+        dict_json = lib.load_json_file(path_file_legal_terms)
 
         # Check if there is a json key for the legal terms and load the entire dictionary
         if self.__NAME_JSON_ENTRY_LEGAL_TERMS not in dict_json:
@@ -360,7 +359,7 @@ class CompanyNameCleaner:
             cleaning_dict[rule_name] = self._dict_cleaning_rules[rule_name]
 
         # Apply all the cleaning rules
-        clean_company_name = utils.apply_regex_rules(company_name, cleaning_dict)
+        clean_company_name = lib.apply_regex_rules(company_name, cleaning_dict)
         return clean_company_name
 
     def _apply_normalization_of_legal_terms(self, company_name):
@@ -406,14 +405,14 @@ class CompanyNameCleaner:
         """
 
         if not isinstance(company_name, str):
-            if self._mode == ModeOfUse.EXCEPTION_MODE:
+            if self._mode == lib.ModeOfUse.EXCEPTION_MODE:
                 raise custom_exception.CompanyNameIsNotAString
             else:
                 return np.nan
 
         # Remove all unicode characters in the company's name, if requested
         if self._remove_unicode:
-            clean_company_name = utils.remove_unicode(company_name)
+            clean_company_name = lib.remove_unicode(company_name)
         else:
             clean_company_name = company_name
 
@@ -518,3 +517,9 @@ class CompanyNameCleaner:
         # Return the current dictionary as the one setup before the function call
         self._current_dict_legal_terms = initial_dict_legal_terms
         return new_df
+
+    def __apply_cleaner_to_df_by_country(self):
+        pass
+
+    def __apply_cleaner_to_df_without_country(self):
+        pass
