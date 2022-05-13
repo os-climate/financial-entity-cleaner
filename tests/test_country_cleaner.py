@@ -1,8 +1,8 @@
 import unittest
 import math
 
-from financial_entity_cleaner.country_cleaner import country
-from financial_entity_cleaner.utils import utils
+from financial_entity_cleaner.country import iso3166
+from financial_entity_cleaner.utils import lib
 from tests import test_data_reader
 
 # Test data from csv excel files
@@ -41,9 +41,9 @@ class TestCountryCleaner(unittest.TestCase):
         print("Total cases to tests {}".format(total_rows))
 
         # Set up the cleaner and its properties
-        country_cleaner = country.CountryCleaner()
+        country_cleaner = iso3166.CountryCleaner()
         country_cleaner.mode = country_cleaner.mode.SILENT_MODE
-        country_cleaner.lettercase_output = utils.LOWER_LETTER_CASE
+        country_cleaner.lettercase_output = lib.LOWER_LETTER_CASE
         country_cleaner.country_name_output = "country_name"
         country_cleaner.country_alpha2_output = "country_alpha2"
         country_cleaner.country_alpha3_output = "country_alpha3"
