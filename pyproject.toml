@@ -5,8 +5,7 @@ description = "Normalization of data for entity matching"
 authors = ["Os-Climate Foundation <test_os-climate@gmail.com>"]
 license = "Apache 2"
 readme = "README.md"
-homepage = "https://github.com/os-c/financial-entity-cleaner"
-repository = "https://github.com/os-c/financial-entity-cleaner"
+homepage = "https://github.com/os-climate/financial-entity-cleaner"
 keywords = ["lei", "isin", "sedol", "cleaner", "validator"]
 
 classifiers = [
