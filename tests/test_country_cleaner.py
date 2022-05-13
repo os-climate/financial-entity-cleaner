@@ -59,27 +59,27 @@ class TestCountryCleaner(unittest.TestCase):
                 expected_alpha3 = math.nan
             expected_name = data[3].strip().lower()
             if expected_name == 'None':
-                expected_name = math.nan
+                expected_name = None
 
             # Validate country info
-            country_info = country_cleaner.get_country_info(country_to_validate)
+            country_info = country_cleaner.get_info(country_to_validate)
 
             # Assert the cleaning process
             print('Testing {}'.format(data))
             if expected_alpha2 == 'none':
-                self.assertTrue(math.isnan(country_info["country_alpha2"]))
+                self.assertTrue(country_info is None)
             else:
-                self.assertEqual(country_info["country_alpha2"], expected_alpha2)
+                self.assertEqual(country_info["iso_alpha2"], expected_alpha2)
 
             if expected_alpha3 == 'none':
-                self.assertTrue(math.isnan(country_info["country_alpha3"]))
+                self.assertTrue(country_info is None)
             else:
-                self.assertEqual(country_info["country_alpha3"], expected_alpha3)
+                self.assertEqual(country_info["iso_alpha3"], expected_alpha3)
 
             if expected_name == 'none':
-                self.assertTrue(math.isnan(country_info["country_name"]))
+                self.assertTrue(country_info is None)
             else:
-                self.assertEqual(country_info["country_name"], expected_name)
+                self.assertEqual(country_info["iso_name"], expected_name)
 
 
 def build_test_suite():
