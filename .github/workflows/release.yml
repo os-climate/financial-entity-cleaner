@@ -62,5 +62,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish in PyPi
         run: |
-          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry config pypi-token.pypi $OSC_PYPI_TOKEN
           poetry publish --build
