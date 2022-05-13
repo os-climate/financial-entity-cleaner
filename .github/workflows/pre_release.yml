@@ -1,15 +1,11 @@
 on:
-  push:
-# Sequence of patterns matched against refs/tags
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  workflow_dispatch:
 
 name: Create Pre-Release
 
 jobs:
-  autorelease:
-    name: Create Pre-Release
-    runs-on: 'ubuntu-latest'
+  publish:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2.3.4
@@ -35,12 +31,6 @@ jobs:
         run: |
           PROJECT_VERSION=$(poetry version --short)
           echo "PROJECT_VERSION=$PROJECT_VERSION" >> $GITHUB_ENV
-      - name: Check if tag version matches project version
-        run: |
-          TAG=$(git describe HEAD --tags --abbrev=0)
-          echo $TAG
-          echo $PROJECT_VERSION
-          if [[ "$TAG" != "v$PROJECT_VERSION" ]]; then exit 1; fi
       - name: Cache dependencies
         id: cache-deps
         uses: actions/cache@v2.1.6
