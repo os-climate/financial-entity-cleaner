@@ -2,7 +2,7 @@
     The methods available in the library must raise one of the exceptions below if the code fails.
 """
 
-from financial_entity_cleaner.exceptions.exception_handler import FinancialCleanerError
+from financial_entity_cleaner.utils.error_handler import FinancialCleanerError
 
 
 class CompanyNameIsNotAString(FinancialCleanerError):

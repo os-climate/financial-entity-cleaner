@@ -3,10 +3,10 @@ import os
 import pandas as pd
 import traceback
 
-from financial_entity_cleaner.utils import utils
-from financial_entity_cleaner.company_cleaner import company
-from financial_entity_cleaner.country_cleaner import country
-from financial_entity_cleaner.id_cleaner import banking_id
+from financial_entity_cleaner.utils import lib
+from financial_entity_cleaner.company import name
+from financial_entity_cleaner.country import iso3166
+from financial_entity_cleaner.id import banking
 
 
 class AutoCleaner:
@@ -24,9 +24,9 @@ class AutoCleaner:
     # Keys in the json file
     __SETUP_KEY_FILE_PROCESSING = "file_processing"
     __SETUP_KEY_ATTRIBUTE_PROCESSING = "attribute_processing"
-    __SETUP_KEY_COMPANY_CLEANER = "company_cleaner"
-    __SETUP_KEY_COUNTRY_CLEANER = "country_cleaner"
-    __SETUP_KEY_IDS_CLEANER = "id_cleaner"
+    __SETUP_KEY_COMPANY_CLEANER = "company"
+    __SETUP_KEY_COUNTRY_CLEANER = "country"
+    __SETUP_KEY_IDS_CLEANER = "id"
 
     def __init__(self):
         """
@@ -67,7 +67,7 @@ class AutoCleaner:
         print("Reading cleaning settings from " + setup_cleaning_filename, file=sys.stdout)
 
         # Read the json file that contains the parameters for automatic cleaning
-        dict_json = utils.load_json_file(setup_cleaning_filename)
+        dict_json = lib.load_json_file(setup_cleaning_filename)
 
         # Check if there is a json key to setup the file processing
         if self.__SETUP_KEY_FILE_PROCESSING in dict_json.keys():
@@ -111,7 +111,7 @@ class AutoCleaner:
         # Print info
         print("Executing automatic cleaning by country", file=sys.stdout)
 
-        country_cleaner_obj = country.CountryCleaner()
+        country_cleaner_obj = iso3166.CountryCleaner()
         country_cleaner_obj.lettercase_output = self._setup_dict_country_cleaner[
             "output_letter_case"
         ]
@@ -140,7 +140,7 @@ class AutoCleaner:
             country_cleaner_obj.country_alpha3_output = output_name
 
             # Perform the cleaning
-            df = country_cleaner_obj.apply_cleaner_to_df(df, country_attribute)
+            df = country_cleaner_obj.get_clean_df(df, country_attribute)
         return df
 
     def __execute_cleaning_by_id(self, df):
@@ -158,7 +158,7 @@ class AutoCleaner:
         # Print info
         print("Executing automatic cleaning by id", file=sys.stdout)
 
-        id_cleaner_obj = banking_id.BankingIdCleaner()
+        id_cleaner_obj = banking.BankingIdCleaner()
         id_cleaner_obj.lettercase_output = self._setup_dict_ids_cleaner[
             "output_letter_case"
         ]
@@ -191,7 +191,7 @@ class AutoCleaner:
         # Print info
         print("Executing automatic cleaning by company name", file=sys.stdout)
 
-        company_cleaner_obj = company.CompanyNameCleaner()
+        company_cleaner_obj = name.CompanyNameCleaner()
         company_cleaner_obj.normalize_legal_terms = eval(
             self._setup_dict_company_cleaner["normalize_legal_terms"]
         )
