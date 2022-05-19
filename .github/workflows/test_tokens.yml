@@ -10,7 +10,5 @@ jobs:
       - name: Publish in PyPi Test
         run: |
           export POETRY_REPOSITORIES_TESTPYPI_URL=https://test.pypi.org/legacy/
-          export POETRY_HTTP_BASIC_TESTPYPI_USERNAME=${{secrets.PYPI_TEST_USER }}
-          export POETRY_HTTP_BASIC_TESTPYPI_PASSWORD=${{secrets.PYPI_TEST_TOKEN }}
           env | grep POETRY
           poetry config --list
