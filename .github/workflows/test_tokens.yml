@@ -7,11 +7,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Publish in PyPi Test
-        env:
-          TESTPYPI_URL: https://test.pypi.org/legacy/
-          TESTPYPI_USERNAME: ${{ secrets.OSC_PYPI_TEST_USER }}
-          TESTPYPI_PASSWORD: ${{ secrets.OSC_PYPI_TEST_TOKEN }}
+      - name: Test secrets
         run: |
-          poetry config repositories.testpypi $TESTPYPI_URL
-          poetry publish -r testpypi --username $TESTPYPI_USERNAME --password $TESTPYPI_PASSWORD --dry-run
+          echo 'The GitHub Action Secret will be masked:  '
+          echo ${{ secrets.OSC_PYPI_TEST_TOKEN }}
+          echo ${{ secrets.OSC_PYPI_TEST_USER }}
+          echo ${{ secrets.OSC_PYPI_TOKEN }}
+          echo ${{ secrets.OSC_PYPI_USER }}
