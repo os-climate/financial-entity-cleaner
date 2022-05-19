@@ -12,10 +12,5 @@ jobs:
           export POETRY_REPOSITORIES_TESTPYPI_URL=https://test.pypi.org/legacy/
           export POETRY_HTTP_BASIC_TESTPYPI_USERNAME=${{secrets.OSC_PYPI_TEST_USER }}
           export POETRY_HTTP_BASIC_TESTPYPI_PASSWORD=${{secrets.OSC_PYPI_TEST_TOKEN }}
-          env | grep POETRY
-          with: # Set the secret as an input
-            test_pypi_secret: ${{ secrets.OSC_PYPI_TEST_TOKEN }}
-            test_pypi_user_secret: ${{ secrets.OSC_PYPI_TEST_USER }}
-          echo $test_pypi_secret
           poetry config repositories.testpypi https://test.pypi.org/legacy/
           poetry config --list
