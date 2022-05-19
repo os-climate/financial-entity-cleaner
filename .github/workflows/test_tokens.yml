@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Publish in PyPi Test
+        env:
+          TESTPYPI_URL: https://test.pypi.org/legacy/
+          TESTPYPI_USERNAME: ${{ secrets.OSC_PYPI_TEST_USER }}
+          TESTPYPI_PASSWORD: ${{ secrets.OSC_PYPI_TEST_TOKEN }}
         run: |
-          export POETRY_REPOSITORIES_TESTPYPI_URL=https://test.pypi.org/legacy/
-          export POETRY_HTTP_BASIC_TESTPYPI_USERNAME=${{secrets.OSC_PYPI_TEST_USER }}
-          export POETRY_HTTP_BASIC_TESTPYPI_PASSWORD=${{secrets.OSC_PYPI_TEST_TOKEN }}
-          poetry config repositories.testpypi https://test.pypi.org/legacy/
-          poetry config --list
+          poetry config repositories.testpypi $TESTPYPI_URL
+          poetry publish -r testpypi --username $TESTPYPI_USERNAME --password $TESTPYPI_PASSWORD --dry-run
