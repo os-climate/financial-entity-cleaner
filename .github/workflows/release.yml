@@ -51,6 +51,8 @@ jobs:
       - name: Build
         run: poetry build
       - name: Publish in PyPi
+        env:
+          PYPI_USERNAME: ${{ secrets.OSC_PYPI_USER }}
+          PYPI_PASSWORD: ${{ secrets.OSC_PYPI_TOKEN }}
         run: |
-          poetry config pypi-token.pypi ${{ secrets.OSC_PYPI_TOKEN }}
-          poetry publish --build
+          poetry publish --username $PYPI_USERNAME --password $PYPI_PASSWORD --dry-run
