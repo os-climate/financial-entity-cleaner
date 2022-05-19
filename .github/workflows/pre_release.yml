@@ -51,10 +51,10 @@ jobs:
       - name: Build
         run: poetry build
       - name: Publish in PyPi Test
+        env:
+          TESTPYPI_URL: https://test.pypi.org/legacy/
+          TESTPYPI_USERNAME: ${{ secrets.OSC_PYPI_TEST_USER }}
+          TESTPYPI_PASSWORD: ${{ secrets.OSC_PYPI_TEST_TOKEN }}
         run: |
-          export POETRY_REPOSITORIES_TESTPYPI_URL=https://test.pypi.org/legacy/
-          export POETRY_HTTP_BASIC_TESTPYPI_USERNAME=${{secrets.PYPI_TEST_USER }}
-          export POETRY_HTTP_BASIC_TESTPYPI_PASSWORD=${{secrets.PYPI_TEST_TOKEN }}
-          env | grep POETRY
-          poetry config --list
-          poetry publish -r testpypi
+          poetry config repositories.testpypi $TESTPYPI_URL
+          poetry publish -r testpypi --username $TESTPYPI_USERNAME --password $TESTPYPI_PASSWORD
