@@ -6,11 +6,13 @@ name: Test OS-C Tokens
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: production_environment
     steps:
       - name: Test secrets
+        env:
+          PYPI_TEST_TOKEN: ${{ secrets.OSC_PYPI_TEST_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.OSC_PYPI_TOKEN }}
         run: |
-          echo 'The GitHub Action Secret will be masked:  '
-          echo ${{ secrets.OSC_PYPI_TEST_TOKEN }}
-          echo ${{ secrets.OSC_PYPI_TEST_USER }}
-          echo ${{ secrets.OSC_PYPI_TOKEN }}
-          echo ${{ secrets.OSC_PYPI_USER }}
+          echo 'The GitHub Action Secret will be masked: '
+          echo ${#PYPI_TEST_TOKEN}
+          echo ${#PYPI_TOKEN}
