@@ -14,5 +14,5 @@ jobs:
           PYPI_TOKEN: ${{ secrets.OSC_PYPI_TOKEN }}
         run: |
           echo 'The GitHub Action Secret will be masked: '
-          echo ${#PYPI_TEST_TOKEN}
-          echo ${#PYPI_TOKEN}
+          echo $PYPI_TEST_TOKEN
+          echo $PYPI_TOKEN
