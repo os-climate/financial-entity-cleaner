@@ -16,5 +16,5 @@ jobs:
           echo 'The GitHub Action Secret will be masked: '
           echo $PYPI_TEST_TOKEN
           echo $PYPI_TOKEN
-          echo "__token__"
-          echo "${PYPI_TEST_TOKEN}"
+          echo __token__
+          echo ${PYPI_TEST_TOKEN}
