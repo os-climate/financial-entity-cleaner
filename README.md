@@ -1,10 +1,16 @@
 # financial-entity-cleaner
-The financial-cleaner is a library that is part of the Entity-Matching project developed by OS-Climate Foundation. The main purpose of the financial-cleaner is to provide methods for validation and standardization of data used in the banking industry as to solve the problem of determining if two entities in a data set refer to the same real-world object (entity matching).
+The financial-entity-cleaner is a library that is part of the Entity-Matching project developed by OS-Climate Foundation. The main purpose of the financial-cleaner is to provide methods for validation and standardization of data used in the banking industry as to solve the problem of determining if two entities in a data set refer to the same real-world object (entity matching).
 
 Currently, the library provides three main components:
 - a validator for banking identifiers (Sedol,Isin and Lei),
 - a validator for country information, and 
 - a cleaner for company's name.
+
+## Install from PyPi
+
+```
+pip install financial-entity-cleaner
+```
 
 ## How to use the library
 
