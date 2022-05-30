@@ -11,10 +11,12 @@ jobs:
       - name: Test secrets
         env:
           PYPI_TEST_TOKEN: ${{ secrets.OSC_PYPI_TEST_TOKEN }}
+          PYPI_TEST_USER: ${{ secrets.OSC_PYPI_TEST_USER }}
           PYPI_TOKEN: ${{ secrets.OSC_PYPI_TOKEN }}
+          PYPI_USER: ${{ secrets.OSC_PYPI_USER }}
         run: |
           echo 'The GitHub Action Secret will be masked: '
-          echo $PYPI_TEST_TOKEN
-          echo $PYPI_TOKEN
-          echo __token__
-          echo ${PYPI_TEST_TOKEN}
+          echo "$PYPI_TEST_TOKEN"
+          echo "$PYPI_TEST_USER"
+          echo "$PYPI_TOKEN"
+          echo "$PYPI_USER"
