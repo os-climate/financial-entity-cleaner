@@ -58,4 +58,4 @@ jobs:
         run: |
           poetry config repositories.testpypi "$POETRY_REPOSITORIES_TESTPYPI_URL"
           poetry config http-basic.testpypi "$POETRY_HTTP_BASIC_TESTPYPI_USERNAME" "$POETRY_HTTP_BASIC_TESTPYPI_PASSWORD"
-          poetry publish -r testpypi --dry-run
+          poetry publish -r testpypi
