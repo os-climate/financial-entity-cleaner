@@ -3,15 +3,18 @@
     "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
     "reference_version": "1.3",
     "created": "2021-09-20",
-    "updated": "2021-09-20",
+    "updated": "2022-06-09",
     "legal_forms": {
-        "us": ["en"],
+        "ar": ["es"],
+        "at": ["de"],
+        "au": ["en"],
         "br": ["pt"],
-        "pt": ["pt"],
-        "fr": ["fr"],
-        "it": ["it"],
-        "id": ["id"],
         "de": ["de"],
-        "es": ["es"]
+        "es": ["es"],
+        "fr": ["fr"],
+        "id": ["id"],
+        "it": ["it"],
+        "pt": ["pt"],
+        "us": ["en"]
     }
 }

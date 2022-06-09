@@ -3,7 +3,7 @@
     "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
     "reference_version": "1.3",
     "created": "2021-12-17",
-    "updated": "2021-12-17",
+    "updated": "2022-06-09",
     "legal_forms": {
         "de": {
             "partnerschaftsgesellschaft mit beschränkter berufshaftung": [
@@ -22,13 +22,42 @@
             ],
             "gesellschaft mit beschränkter haftung & compagnie kommanditgesellschaft": [
                 "gmbh. & co. kg.",
-                "gmbh & co kg"
+                "gmbh & co kg",
+                "gmbh & co kg.",
+                "gmbh & co. kg.",
+                "gmbh. & co kg",
+                "gmbh. & co kg.",
+                "gmbh. & co. kg."
+            ],
+            "gesellschaft mit beschränkter haftung": [
+                "g.m.b.h.",
+                "g.m.b.h",
+                "gmbh.",
+                "gmbh",
+                "ges.m.b.h.",
+                "ges.m.b.h",
+                "ges m.b.h.",
+                "ges m.b.h",
+                "ges mbh.",
+                "ges mbh"
             ],
             "gemeinnützige gesellschaft mit beschränkter haftung": [
                 "g.g.m.b.h.",
                 "g.g.m.b.h",
                 "ggmbh.",
                 "ggmbh"
+            ],
+            "mit beschränkter haftung": [
+                "m.b.h.",
+                "m.b.h",
+                "mbh.",
+                "mbh",
+                "m.b.h.",
+                "m.b.h",
+                "m.b.h.",
+                "m.b.h",
+                "mbh.",
+                "mbh"
             ],
             "compagnie kommanditgesellschaft": [
                 "co. kg.",
@@ -43,18 +72,6 @@
                 "w.i.v",
                 "wiv.",
                 "wiv"
-            ],
-            "gesellschaft mit beschränkter haftung": [
-                "g.m.b.h.",
-                "g.m.b.h",
-                "gmbh.",
-                "gmbh"
-            ],
-            "mit beschränkter haftung": [
-                "m.b.h.",
-                "m.b.h",
-                "mbh.",
-                "mbh"
             ],
             "kommanditgesellschaft auf aktien": [
                 "k.g.a.a.",

@@ -3,7 +3,7 @@
     "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
     "reference_version": "1.3",
     "created": "2022-05-02",
-    "updated": "2022-05-02",
+    "updated": "2022-06-09",
     "legal_forms": {
         "at": {
             "de": {
@@ -19,6 +19,15 @@
                     "keg.",
                     "keg"
                 ],
+                "gesellschaft mit beschränkter haftung & compagnie kommanditgesellschaft": [
+                    "gmbh. & co. kg.",
+                    "gmbh & co kg",
+                    "gmbh & co kg.",
+                    "gmbh & co. kg.",
+                    "gmbh. & co kg",
+                    "gmbh. & co kg.",
+                    "gmbh. & co. kg."
+                ],
                 "gesellschaft mit beschränkter haftung": [
                     "g.m.b.h.",
                     "g.m.b.h",
@@ -30,6 +39,18 @@
                     "ges m.b.h",
                     "ges mbh.",
                     "ges mbh"
+                ],
+                "mit beschränkter haftung": [
+                    "m.b.h.",
+                    "m.b.h",
+                    "mbh.",
+                    "mbh",
+                    "m.b.h.",
+                    "m.b.h",
+                    "m.b.h.",
+                    "m.b.h",
+                    "mbh.",
+                    "mbh"
                 ],
                 "versicherungsverein auf gegenseitigkeit": [
                     "v.v.a.g.",
