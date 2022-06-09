@@ -12,9 +12,9 @@ import numpy as np
 from financial_entity_cleaner.utils import lib
 from financial_entity_cleaner.utils import simple_cleaner
 
-from financial_entity_cleaner.company import cleaning_rules
-from financial_entity_cleaner.company import (
-    exceptions_company as custom_exception,
+from financial_entity_cleaner.text import cleaning_rules
+from financial_entity_cleaner.text import (
+    exceptions as custom_exception,
 )
 
 
@@ -25,7 +25,7 @@ class LegalTermLocation(enum.Enum):
 
 class CompanyNameCleaner:
     """
-    Class to normalize/clean up company´s names.
+    Class to normalize/clean up text´s names.
 
     Attributes:
         _mode (int): defines if the cleaning task should be performed in silent or exception mode.
@@ -39,7 +39,7 @@ class CompanyNameCleaner:
                     read from a json file and can be easily updated by changing the file or setting up the
                     correspondent class property.
         _normalize_legal_terms (bool): a flag to indicate if the cleaning process must normalize
-        company's legal terms. e.g. LTD => LIMITED.
+        text's legal terms. e.g. LTD => LIMITED.
         _current_dict_legal_terms (dict): a subset of the legal terms dictionary filtered by language and country.
                     This will be the legal term dictionary to be applied during cleaning. The user can call the
                     set_current_legal_term_dict() method to change the dictionary to another language/country.
@@ -48,7 +48,7 @@ class CompanyNameCleaner:
         _output_lettercase (str): indicates the letter case (lower, by default) as the result of the cleaning
                     Other options are: 'upper' and 'title'.
         _remove_unicode (bool): indicates if the unicode character should be removed or not, which may depend
-                    on the language of the company's name.
+                    on the language of the text's name.
     """
 
     # Constants used interally by the class
@@ -85,7 +85,7 @@ class CompanyNameCleaner:
         self._dict_cleaning_rules = cleaning_rules.cleaning_rules_dict
         self._default_cleaning_rules = cleaning_rules.default_company_cleaning_rules
 
-        # The dictionary of legal terms define how to normalize the company's legal form abreviations
+        # The dictionary of legal terms define how to normalize the text's legal form abreviations
         # By default, the library is set to normalize the legal terms and to use the us/english dictionary.
         # But, the user can change these settings by changing the current dictionary (see set_current_legal_term_dict)
         # or by requesting not to use the normalization at all.
@@ -109,15 +109,15 @@ class CompanyNameCleaner:
         self.set_current_legal_term_dict(self.__DEFAULT_COUNTRY, self.__DEFAULT_LANG)
         self._default_dict_legal_terms = self._current_dict_legal_terms
 
-        # By default, set the search of legal terms at the end of the company's name
+        # By default, set the search of legal terms at the end of the text's name
         self._legal_term_location = LegalTermLocation.AT_THE_END
 
         # Define the letter case of the cleaning output
         self._output_lettercase = lib.LOWER_LETTER_CASE
 
-        # Define if unicode characters should be removed from company's name
+        # Define if unicode characters should be removed from text's name
         # This cleaning rule is treated separated from the regex rules because it depends on the
-        # language of the company's name. For instance, russian or japanese company's may contain
+        # language of the text's name. For instance, russian or japanese text's may contain
         # unicode characters, while portuguese and french companies may not.
         self._remove_unicode = False
 
@@ -393,14 +393,14 @@ class CompanyNameCleaner:
                 )
         return clean_company_name
 
-    def get_clean_name(self, company_name):
+    def get_clean_data(self, company_name):
         """
-        This method cleans up a company's name.
+        This method cleans up a text's name.
 
         Parameters:
-            company_name (str): the original company's name
+            company_name (str): the original text's name
         Returns:
-            clean_company_name (str): the clean version of the company's name
+            clean_company_name (str): the clean version of the text's name
         Raises:
             CompanyNameIsNotAString: when [company_name] is not of a string type
         """
@@ -411,7 +411,7 @@ class CompanyNameCleaner:
             else:
                 return np.nan
 
-        # Remove all unicode characters in the company's name, if requested
+        # Remove all unicode characters in the text's name, if requested
         if self._remove_unicode:
             clean_company_name = simple_cleaner.remove_unicode(company_name)
         else:
@@ -439,7 +439,7 @@ class CompanyNameCleaner:
 
         return clean_company_name
 
-    def apply_cleaner_to_df(
+    def get_clean_df(
             self,
             df,
             in_company_name_attribute,
@@ -448,13 +448,13 @@ class CompanyNameCleaner:
             merge_legal_terms=True,
     ):
         """
-        This method cleans up all company's names in a dataframe by selecting the correspondent dictionary of
+        This method cleans up all text's names in a dataframe by selecting the correspondent dictionary of
         legal terms according to a country attribute in that dataframe.
 
         Parameters:
-            df (dataframe): the input dataframe that contains the company's name to be cleaned
-            in_company_name_attribute (str): the attribute in the dataframe for company's name
-            out_company_name_attribute (str): the attribute to be created for the clean version of the company's name
+            df (dataframe): the input dataframe that contains the text's name to be cleaned
+            in_company_name_attribute (str): the attribute in the dataframe for text's name
+            out_company_name_attribute (str): the attribute to be created for the clean version of the text's name
             in_country_attribute (str): the attribute in the dataframe that indicates the country, which will serve as a
                 filter to select the appropriated legal terms dictionary.
             merge_legal_terms(bool): this flag indicates if the default dictionary
@@ -481,7 +481,7 @@ class CompanyNameCleaner:
         # Make a copy so not to change the original dataframe
         new_df = df.copy()
 
-        # Creates the new output attribute that will have the clean version of the company's name
+        # Creates the new output attribute that will have the clean version of the text's name
         new_df[out_company_name_attribute] = np.nan
         # If the country attribute is provided, iterate over all the countries available in the dataframe
         # as to select the related legal term dictionary

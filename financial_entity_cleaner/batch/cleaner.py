@@ -4,7 +4,7 @@ import pandas as pd
 import traceback
 
 from financial_entity_cleaner.utils import lib
-from financial_entity_cleaner.company import name
+from financial_entity_cleaner.text import name
 from financial_entity_cleaner.country import iso3166
 from financial_entity_cleaner.id import banking
 
@@ -24,7 +24,7 @@ class AutoCleaner:
     # Keys in the json file
     __SETUP_KEY_FILE_PROCESSING = "file_processing"
     __SETUP_KEY_ATTRIBUTE_PROCESSING = "attribute_processing"
-    __SETUP_KEY_COMPANY_CLEANER = "company"
+    __SETUP_KEY_COMPANY_CLEANER = "text"
     __SETUP_KEY_COUNTRY_CLEANER = "country"
     __SETUP_KEY_IDS_CLEANER = "id"
 
@@ -39,7 +39,7 @@ class AutoCleaner:
         Raises:
             No exception is raised.
         """
-        # Internal dictionaries to store required settings for the cleaners by company's name, country and id
+        # Internal dictionaries to store required settings for the cleaners by text's name, country and id
         self._setup_dict_company_cleaner = None
         self._setup_dict_country_cleaner = None
         self._setup_dict_ids_cleaner = None
@@ -81,7 +81,7 @@ class AutoCleaner:
                 self.__SETUP_KEY_ATTRIBUTE_PROCESSING
             ]
 
-        # Check if there is a json key to setup the cleaning by company's name
+        # Check if there is a json key to setup the cleaning by text's name
         if self.__SETUP_KEY_COMPANY_CLEANER in dict_json.keys():
             self._setup_dict_company_cleaner = dict_json[
                 self.__SETUP_KEY_COMPANY_CLEANER
@@ -178,10 +178,10 @@ class AutoCleaner:
 
     def __execute_cleaning_by_name(self, df):
         """
-        Applies the automatic cleaning for company's name
+        Applies the automatic cleaning for text's name
 
         Parameters:
-            df (pandas dataframe): dataframe to be cleaned that contains a company's name
+            df (pandas dataframe): dataframe to be cleaned that contains a text's name
         Returns:
             (pandas dataframe) a new dataframe with cleaned comapny's name
         Raises:
@@ -189,7 +189,7 @@ class AutoCleaner:
         """
 
         # Print info
-        print("Executing automatic cleaning by company name", file=sys.stdout)
+        print("Executing automatic cleaning by text name", file=sys.stdout)
 
         company_cleaner_obj = name.CompanyNameCleaner()
         company_cleaner_obj.normalize_legal_terms = eval(
@@ -238,7 +238,7 @@ class AutoCleaner:
 
     def __execute_auto_cleaning(self, df):
         """
-        Execute the automatic cleaning for country, ids and company's name
+        Execute the automatic cleaning for country, ids and text's name
 
         Parameters:
             df (pandas dataframe): dataframe to be cleaned
@@ -271,7 +271,7 @@ class AutoCleaner:
         if self._setup_dict_ids_cleaner:
             df = self.__execute_cleaning_by_id(df)
 
-        # If the settings for cleaning company´s name were provided, then perform the cleaning by name
+        # If the settings for cleaning text´s name were provided, then perform the cleaning by name
         if self._setup_dict_company_cleaner:
             df = self.__execute_cleaning_by_name(df)
 

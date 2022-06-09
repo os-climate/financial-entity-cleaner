@@ -13,6 +13,6 @@ class FinancialCleanerError(Exception):
     def __str__(self):
         """Return the exception message."""
         if self.message:
-            return 'FinancialCleanerError - ' + self.message
+            return 'Financial-Entity-Cleaner (Error) - ' + self.message
         else:
-            return 'FinancialCleanerError has being raised - no details available.'
+            return 'Financial-Entity-Cleaner error has being raised - no details available.'

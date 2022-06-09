@@ -19,7 +19,7 @@ class CountryCleaner:
     in its internal ISO 3166 dictionary of countries for a match. If the match is positive, it returns a dictionary
     with the following information about that country: official name, alpha2 and alpha3 codes.
 
-    The examples below show how to apply CountryCleaner() to normalize single string values or a specific attribute in
+    The code below shows how to apply CountryCleaner() to normalize single string values or a specific attribute in
     a pandas dataframe structure.
 
     Examples:
@@ -30,7 +30,7 @@ class CountryCleaner:
             country_cleaner = CountryCleaner()
 
             # Normalizes a string value that contains country data:
-            country_cleaner.get_info('us')
+            print(country_cleaner.get_clean_data('us'))
 
             # Normalizes a pandas dataframe that contains a country column named as 'COUNTRY_NAME':
             clean_df = country_cleaner.get_clean_df(df=not_clean_df, column_name='COUNTRY_NAME')
@@ -56,6 +56,9 @@ class CountryCleaner:
         self._output_alpha2 = self.__ATTRIBUTE_ALPHA2
         self._output_alpha3 = self.__ATTRIBUTE_ALPHA3
 
+        # Set the return information as all
+        self._return_info = 'all'
+
     # Setters and Getters for the properties, so to allow user to setup the library according to his/her needs.
     @property
     def mode(self):
@@ -73,7 +76,7 @@ class CountryCleaner:
                 country_cleaner.mode = ModeOfUse.EXCEPTION_MODE
 
                 # An exception is thrown for this case
-                country_cleaner.get_info('inexistent_country')
+                country_cleaner.get_clean_data('inexistent_country')
 
         - **ModeOfUse.EXCEPTION_MODE**: the library *throws an exception* in case of an error during cleaning.
           The error message can be sent to the standard output or recorded in a logging file. When
@@ -91,6 +94,30 @@ class CountryCleaner:
         self._mode = new_mode
 
     @property
+    def return_info(self):
+        """
+        Defines the type of information to return for country's normalization. The options available are:
+
+        - 'all': (default) return the official name, alpha2 and alpha3 codes
+        - 'name': return only the official name
+        - 'codes': return the alpha2 and alpha3 codes
+        - 'alpha2': return only the alpha2 code
+        - 'alpha3': return only the alpha3 code
+
+        Examples:
+            .. code-block:: python
+
+                country_cleaner.return_info = 'alpha2'   # define the return info as alpha2 code only
+                country_cleaner.get_clean_data('us')     # alpha2 code is shown
+
+        """
+        return self._return_info
+
+    @return_info.setter
+    def return_info(self, new_value):
+        self._return_info = new_value
+
+    @property
     def letter_case(self):
         """
         Defines the letter case applied as the result of the country's normalization. The options available are:
@@ -103,7 +130,7 @@ class CountryCleaner:
             .. code-block:: python
 
                 country_cleaner.letter_case = 'upper'   # define the output in upper case
-                country_cleaner.get_info('us')          # country's information is shown in upper case
+                country_cleaner.get_clean_data('us')          # country's information is shown in upper case
 
         """
         return self._letter_case
@@ -124,7 +151,7 @@ class CountryCleaner:
                 country_cleaner.output_name = 'NEW_COUNTRY_NAME'
 
                 # The output key for the official name is shown as 'NEW_COUNTRY_NAME'
-                country_cleaner.get_info('us')
+                country_cleaner.get_clean_data('us')
 
         """
         return self._output_name
@@ -146,7 +173,7 @@ class CountryCleaner:
                 country_cleaner.output_alpha2 = 'NEW_ALPHA2_CODE'
 
                 # The output key for alpha2 code is shown as 'NEW_ALPHA2_CODE'
-                country_cleaner.get_info('us')
+                country_cleaner.get_clean_data('us')
         """
         return self._output_alpha2
 
@@ -167,7 +194,7 @@ class CountryCleaner:
                 country_cleaner.output_alpha3 = 'NEW_ALPHA3_CODE'
 
                 # The output key for alpha3 code is shown as 'NEW_ALPHA3_CODE'
-                country_cleaner.get_info('us')
+                country_cleaner.get_clean_data('us')
 
         """
         return self._output_alpha3
@@ -220,14 +247,14 @@ class CountryCleaner:
                 country_cleaner.reset_output_names()
 
                 # Shows the resultant dictionary with the default key names
-                country_cleaner.get_info('us')
+                country_cleaner.get_clean_data('us')
 
         """
         self._output_name = self.__ATTRIBUTE_COUNTRY_NAME
         self._output_alpha2 = self.__ATTRIBUTE_ALPHA2
         self._output_alpha3 = self.__ATTRIBUTE_ALPHA3
 
-    def get_info(self, country):
+    def get_clean_data(self, country):
         """
         This method searches for country information and if the match is positive, it returns the following information
         about the country: name, alpha2 and alpha3 codes. The user can pass any country data as input, even incomplete
@@ -246,19 +273,19 @@ class CountryCleaner:
             Now, see below an example on how to test for a failed search: \n
             .. code-block:: python
 
-                country_info = country_cleaner.get_info('test')
+                country_info = country_cleaner.get_clean_data('test')
                 if country_info is None:
                    print('Country was not found')
 
         Raises:
-            CountryNotFound: this pre-defined exception is raised only when [ModeOfUse.EXCEPTION_MODE] is set and
-            the search for the given country has failed.
+            CountryNotFound: this pre-defined exception is raised only in [ModeOfUse.EXCEPTION_MODE] and if the search
+              for the given country has failed.
 
         Examples:
             .. code-block:: python
 
                 # Looks for a country associated to 'pt' (Portugal)
-                country_cleaner.get_info('pt')
+                print(country_cleaner.get_clean_data('pt'))
 
         """
 
@@ -320,11 +347,11 @@ class CountryCleaner:
             else:
                 return None
 
-    def __get_info_for_df(self, country):
+    def __get_clean_data_for_df(self, country):
         """
-        This is an internal method that supports get_clean_df() method as a mean to treat the case where get_info()
-        method returns None (country was not found). In this case, a dictionary of NaN objects is returned to fill
-        out the row in the dataframe.
+        This is an internal method that supports get_clean_df() method as a mean to treat the case in which
+        get_clean_data() method returns None (country was not found). In this case, a dictionary of NaN objects is
+        returned to fill out a row in the dataframe.
 
         Parameters:
             country (str): the value of the country attribute to be normalized
@@ -333,7 +360,7 @@ class CountryCleaner:
             (dict): return the dictionary of country info or full of NaN objects
 
         """
-        dict_country_info = self.get_info(country)
+        dict_country_info = self.get_clean_data(country)
         if dict_country_info is None:
             dict_country_info = {self._output_name: np.nan,
                                  self._output_alpha2: np.nan,
@@ -342,11 +369,11 @@ class CountryCleaner:
 
     def get_clean_df(self, df, column_name):
         """
-        This method performs the same country search as described in get_info() method. However, the country
+        This method performs the same country search described in *get_clean_data()* method. However, the country
         normalization is applied to a specific column of a dataframe sent by input. The output dataframe is the
-        same dataframe sent by parameter, but with three new additional attributes for the normalized name, alpha2
-        and alpha3 codes. You can use the methods output_name, output_alpha2 and output_alpha3 to give meaningfull
-        names to the output fields.
+        same dataframe sent by parameter, but with three new additional attributes for normalized name, alpha2
+        and alpha3 codes. The properties *output_name*, *output_alpha2* and *output_alpha3* define the names of the
+        new columns added to the input dataframe.
 
         Parameters:
             df (dataframe): the input dataframe that contains the country attribute to be normalized
@@ -357,7 +384,7 @@ class CountryCleaner:
             (pandas dataframe): the normalized version of the input dataframe
 
         Raises:
-            CountryNotFoundInDataFrame: when [column_name] is not a dataframe's column.
+            CountryAttributeNotInDataFrame: when [column_name] is not a dataframe's column.
             CountryNotFound: when [ModeOfUse.EXCEPTION_MODE] and the country was not found.
 
         Examples:
@@ -365,6 +392,7 @@ class CountryCleaner:
 
                 # Normalizes the column named "COUNTRY" in the dataframe passed as parameter
                 clean_df = country_cleaner.get_clean_df(my_df, "COUNTRY")
+                clean_df.head()
         """
 
         # Check if the country attribute exists in the dataframe
@@ -373,6 +401,15 @@ class CountryCleaner:
 
         # Make a copy so not to change the original dataframe
         new_df = df.copy()
+
+        # Check if the column name is the same of the output columns
+        new_col_name = ''
+        if column_name == self._output_name \
+                or column_name == self._output_alpha2 \
+                or column_name == self._output_alpha3:
+            new_col_name = column_name + "_to_remove"
+            new_df.rename(columns={column_name: new_col_name}, inplace=True)
+            column_name = new_col_name
 
         # Creates the new output attribute that will have the normalized version of the country info
         new_df[self._output_name] = np.nan
@@ -383,8 +420,14 @@ class CountryCleaner:
         for index, row in get_progress_bar(it_range=new_df.iterrows(),
                                            total_rows=new_df.shape[0],
                                            desc='Normalizing countries...'):
-            country_info = self.__get_info_for_df(row[column_name])
+            country_info = self.__get_clean_data_for_df(row[column_name])
             new_df.loc[index, self._output_name] = country_info[self._output_name]
             new_df.loc[index, self._output_alpha2] = country_info[self._output_alpha2]
             new_df.loc[index, self._output_alpha3] = country_info[self._output_alpha3]
+
+        # Check if the original input column must be removed (only happens if the user asked to reused the
+        # same column as ouput)
+        if new_col_name != '':
+            new_df.drop(new_col_name, inplace=True, axis=1)
+
         return new_df
