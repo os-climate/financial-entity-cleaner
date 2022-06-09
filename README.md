@@ -16,6 +16,6 @@ pip install financial-entity-cleaner
 
 The following jupyter notebooks teaches how to use the library:
 
-- [How to clean a company's name](notebooks/how-to/Clean%20a%20company's%20name.ipynb)
-- [How to normalize country information](notebooks/how-to/Normalize%20country%20information.ipynb)
-- [How to validate banking ids, such as: LEI, ISIN and SEDOL](notebooks/how-to/Validate%20banking%20IDs.ipynb)
+- [How to clean a company's name](https://github.com/os-climate/financial-entity-cleaner/blob/main/notebooks/how-to/Clean%20a%20company's%20name.ipynb)
+- [How to normalize country information](https://github.com/os-climate/financial-entity-cleaner/blob/main/notebooks/how-to/Normalize%20country%20information.ipynb)
+- [How to validate banking ids, such as: LEI, ISIN and SEDOL](https://github.com/os-climate/financial-entity-cleaner/blob/main/notebooks/how-to/Validate%20banking%20IDs.ipynb)

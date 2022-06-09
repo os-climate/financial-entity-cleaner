@@ -6,7 +6,7 @@ authors = ["Os-Climate Foundation <test_os-climate@gmail.com>"]
 license = "Apache 2"
 readme = "README.md"
 homepage = "https://github.com/os-climate/financial-entity-cleaner"
-keywords = ["lei", "isin", "sedol", "cleaner", "validator"]
+keywords = ["cleaner", "validator", "data normalizer"]
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
