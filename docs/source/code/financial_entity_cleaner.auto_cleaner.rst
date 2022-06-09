@@ -1,4 +1,4 @@
-Automatic/Batch Cleaning
+Automatic Cleaning
 ==================================
 
 **Package path: financial\_entity\_cleaner.batch**
