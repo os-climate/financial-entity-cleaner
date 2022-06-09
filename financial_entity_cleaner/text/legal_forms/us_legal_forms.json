@@ -75,6 +75,8 @@
                         "pub. lc",
                         "pub lc.",
                         "pub lc",
+                        "p.l.c.",
+                        "p.l.c",
                         "plc.",
                         "plc"
                 ],
@@ -186,6 +188,8 @@
                         "basin irr dist"
                 ],
                 "limited": [
+                        "limited.",
+                        "limit",
                         "ltd.",
                         "ltd",
                         "l.t.d.",
