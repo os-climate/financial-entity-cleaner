@@ -1,10 +1,10 @@
 from unittest import TestCase, TestSuite, TextTestRunner
 
-from financial_entity_cleaner.company import name
+from financial_entity_cleaner.text import name
 from tests import test_data_reader
 
 # Test data from csv excel files
-# - column_0: company´s name to clean
+# - column_0: text´s name to clean
 # - column_1: expected result
 # test_data_filename = "tests/data/test_cleaner_company.csv"
 test_data_filename = "./data/test_cleaner_company.csv"
@@ -24,7 +24,7 @@ def load_test_data():
 
 class TestCompanyCleaner(TestCase):
     """
-    This is the TestCase class for cleaning company's name.
+    This is the TestCase class for cleaning text's name.
     """
 
     # Class level setup function, executed once and before any tests function
@@ -32,7 +32,7 @@ class TestCompanyCleaner(TestCase):
     def setUpClass(cls):
         load_test_data()
 
-    # Clean company's name
+    # Clean text's name
     def test_clean_company_name(self):
         total_rows = len(test_company_rows)
         print("Total cases to tests {}".format(total_rows))
