@@ -1,0 +1,65 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-06-09",
+    "updated": "2022-06-09",
+    "legal_forms": {
+        "en": {
+            "private limited company": [
+                "pte. l.",
+                "pte. l",
+                "pte l.",
+                "pte l",
+                "pte.. ltd..",
+                "pte..ltd..",
+                "pte. ltd.",
+                "pte. ltd",
+                "pte ltd.",
+                "pte ltd",
+                "pte.ltd.",
+                "pte.ltd",
+                "pteltd",
+                "private limit",
+                "private ltd.",
+                "private ltd",
+                "private l.t.d.",
+                "private l.t.d",
+                "pte. limited",
+                "pte limited",
+                "p.t.e. limited",
+                "p.t.e limited"
+            ],
+            "limited liability partnership": [
+                "l.l.p.",
+                "l.l.p",
+                "llp.",
+                "llp"
+            ],
+            "sendirian berhad": [
+                "sdn. bhd.",
+                "sdn. bhd",
+                "sdn bhd.",
+                "sdn bhd",
+                "sdnbhd.",
+                "sdnbhd."
+            ],
+            "berhad": [
+                "b.h.d.",
+                "b.h.d",
+                "bhd.",
+                "bhd"
+            ],
+            "limited": [
+                "limited.",
+                "limit",
+                "ltd.",
+                "ltd",
+                "l.t.d.",
+                "l.t.d",
+                "lt.",
+                "lt"
+            ]
+        }
+    }
+}
