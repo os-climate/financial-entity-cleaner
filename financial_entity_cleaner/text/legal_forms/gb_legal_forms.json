@@ -1,0 +1,110 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-06-09",
+    "updated": "2022-06-09",
+    "legal_forms": {
+        "en": {
+            "public limited company": [
+                "public lc.",
+                "public lc",
+                "pub. lc.",
+                "pub. lc",
+                "pub lc.",
+                "pub lc",
+                "p.l.c.",
+                "p.l.c",
+                "plc.",
+                "plc"
+            ],
+            "community interest company": [
+                "c.i.c.",
+                "c.i.c",
+                "cic.",
+                "cic"
+            ],
+            "charitable incorporated organisation": [
+                "c.i.o.",
+                "c.i.o",
+                "cio.",
+                "cio"
+            ],
+            "scottish limited partnership": [
+                "s.l.p.",
+                "s.l.p",
+                "slp.",
+                "slp"
+            ],
+            "co-operative society": [
+                "co-op.",
+                "co-op",
+                "coop.",
+                "coop"
+            ],
+            "limited liability partnership": [
+                "l.l.p.",
+                "l.l.p",
+                "llp.",
+                "llp"
+            ],
+            "limited partnership": [
+                "l.p.",
+                "l.p",
+                "lp.",
+                "lp"
+            ],
+            "limited": [
+                "limited.",
+                "limit",
+                "ltd.",
+                "ltd",
+                "l.t.d.",
+                "l.t.d",
+                "lt.",
+                "lt"
+            ],
+            "company": [
+                "c.o.",
+                "co.",
+                "co..",
+                "c.o",
+                "co"
+            ],
+            "association": [
+                "assoc.",
+                "assoc",
+                "assn.",
+                "assn"
+            ],
+            "community benefit society (northern ireland)": [
+                "bencom.",
+                "bencom",
+                "ben. com.",
+                "ben. com",
+                "ben com.",
+                "ben com"
+            ]
+        },
+        "cy": {
+            "cwmni cyfyngedig cyhoeddus": [
+                "c.c.c.",
+                "c.c.c",
+                "ccc.",
+                "ccc"
+            ],
+            "cyfyngedig": [
+                "c.y.f.",
+                "c.y.f",
+                "cyf.",
+                "cyf"
+            ],
+            "partneriaeth atebolrwydd cyfyngedig": [
+                "p.a.c.",
+                "p.a.c",
+                "pac.",
+                "pac"
+            ]
+        }
+    }
+}
