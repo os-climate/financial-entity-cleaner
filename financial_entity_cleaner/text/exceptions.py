@@ -1,4 +1,4 @@
-""" Custom exceptions for the company's name cleaner module.
+""" Custom exceptions for the text's name cleaner module.
     The methods available in the library must raise one of the exceptions below if the code fails.
 """
 
@@ -6,9 +6,9 @@ from financial_entity_cleaner.utils.error_handler import FinancialCleanerError
 
 
 class CompanyNameIsNotAString(FinancialCleanerError):
-    """The company name is not a string."""
+    """The text name is not a string."""
 
-    message = "The company name is not a string."
+    message = "The text name is not a string."
 
 
 class LegalTermsDictionaryDoesNotExist(FinancialCleanerError):

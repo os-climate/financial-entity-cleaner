@@ -63,6 +63,22 @@ def remove_extra_spaces(value):
     return clean_value
 
 
+def remove_all_spaces(value):
+    """
+    Removes all spaces in the value.
+
+    Parameters:
+        value (str): any string with extra spaces.
+
+    Returns:
+        (str): the corresponding input string without spaces.
+
+    """
+    # Remove excessive spaces in between words
+    clean_value = re.sub(r"\s", "", value)
+    return clean_value
+
+
 def apply_regex_rules(str_value, dict_regex_rules):
     """
     Applies several cleaning rules based on a custom dictionary sent by parameter. The dictionary must contain
@@ -103,7 +119,7 @@ def apply_regex_rules(str_value, dict_regex_rules):
         # Make sure to use raw string
         regex_rule = r"{}".format(regex_rule)
 
-        # Threat the special case of the word THE at the end of a company's name
+        # Threat the special case of the word THE at the end of a text's name
         found_the_word_the = False
         if name_rule == 'place_word_the_at_the_beginning':
             found_the_word_the = re.search(regex_rule, clean_value)

@@ -24,7 +24,7 @@ class BankingIdCleaner:
     The cleaning process is very simple and only removes extra spaces, strange characters and standardize the
     ID's letter case.
 
-    The examples below show how to apply BankingIdCleaner() to standardize single string values or a specific attribute
+    The code below shows how to apply BankingIdCleaner() to standardize single string values or a specific attribute
     in a pandas dataframe structure.
 
     Examples:
@@ -35,9 +35,10 @@ class BankingIdCleaner:
             id_cleaner = BankingIdCleaner()
 
             # Cleans up and validates a LEI ID:
-            id_cleaner.get_clean_id('GB00B1YW4409')
+            id_cleaner.id_type = 'lei'
+            print(id_cleaner.get_clean_data('GB00B1YW4409'))
 
-            # Validate a pandas dataframe that contains an ID column named as 'LEI':
+            # Validates a pandas dataframe that contains an ID column named as 'LEI':
             clean_df = id_cleaner.get_clean_df(df=not_clean_df, column_name='LEI')
 
     """
@@ -51,8 +52,8 @@ class BankingIdCleaner:
     __VALIDATIONS_SUPPORTED = [__LEI_NAME, __ISIN_NAME, __SEDOL_NAME]
 
     # Suffix used to name the attributes for cleaned and validated id
-    __ATTRIBUTE_CLEANED_ID = "id_cleaned"
-    __ATTRIBUTE_VALIDATED_ID = "id_validated"
+    __ATTRIBUTE_CLEANED_ID = "cleaned_id"
+    __ATTRIBUTE_VALIDATED_ID = "isvalid_id"
 
     def __init__(self):
 
@@ -63,14 +64,14 @@ class BankingIdCleaner:
         self._id_type = self.__ISIN_NAME
 
         # Flag that indicates if the cleaned id should be set to null in case of being invalid
-        self._set_null_for_invalid_ids = False
+        self._is_invalid_ids_nan = False
 
         # Define the name of the output attributes for cleaned and validated id
-        self._cleaned_id_output = self.__ATTRIBUTE_CLEANED_ID
-        self._validated_id_output = self.__ATTRIBUTE_VALIDATED_ID
+        self._output_cleaned_id = self.__ATTRIBUTE_CLEANED_ID
+        self._output_validated_id = self.__ATTRIBUTE_VALIDATED_ID
 
         # Define the letter case of the cleaning output
-        self._lettercase_output = UPPER_LETTER_CASE
+        self._letter_case = UPPER_LETTER_CASE
 
     @property
     def mode(self):
@@ -88,7 +89,7 @@ class BankingIdCleaner:
                 id_cleaner.mode = ModeOfUse.EXCEPTION_MODE
 
                 # An exception is thrown for this case
-                id_cleaner.get_clean_id('xftrsss')
+                id_cleaner.get_clean_data('xftrsss')
 
         - **ModeOfUse.EXCEPTION_MODE**: the library *throws an exception* in case of an error during cleaning.
           The error message can be sent to the standard output or recorded in a logging file. When
@@ -108,13 +109,19 @@ class BankingIdCleaner:
     @property
     def id_type(self):
         """
-        Defines the ID type to be validate. Currently, the library supports: 'isin' (default), 'lei' and 'sedol'.
+        Sets the ID type to be validated. The current version supports:
+
+        - 'isin' : (default) validation of *Securities Identification Numbers*.
+        - 'lei': validation of *Legal Entity Identifiers*.
+        - 'sedol': validation of *Stock Exchange Daily Official List*
+
 
         Examples:
+
             .. code-block:: python
 
-                id_cleaner.id_type = 'lei'          # define the ID type as LEI
-                id_cleaner.get_info('GB00B1YW4409') # performs the validation of the ID as LEI
+                id_cleaner.id_type = 'lei'                  # define the ID type as LEI
+                id_cleaner.get_clean_data('GB00B1YW4409')   # performs the validation of the ID as LEI
 
         """
         return self._id_type
@@ -122,43 +129,141 @@ class BankingIdCleaner:
     @id_type.setter
     def id_type(self, new_id_type):
         if not (new_id_type in self.__VALIDATIONS_SUPPORTED):
-            raise custom_exception.TypeOfBankingIdNotSupported
+            raise custom_exception.TypeOfBankingIdNotSupported(new_id_type)
         self._id_type = new_id_type
 
     @property
-    def set_null_for_invalid_ids(self):
-        """Sets the return value equal to null value if the id is invalid."""
-        return self._set_null_for_invalid_ids
+    def invalid_ids_as_nan(self):
+        """
+        If *True*, sets the return value of the cleaned ID equal to NaN if the ID is invalid, as shown below:
 
-    @set_null_for_invalid_ids.setter
-    def set_null_for_invalid_ids(self, new_value):
-        self._set_null_for_invalid_ids = new_value
+        .. code-block:: python
+
+            # Result of get_info() method for an invalid ID when set_null_for_invalid_ids=True
+            {'id_cleaned': nan, 'id_validated': False}
+
+        If *False*, the return value of the cleaned ID is the cleaned version of the input ID, as shown below:
+
+        .. code-block:: python
+
+            # Result of get_info() method for an invalid ID when set_null_for_invalid_ids=False
+            {'id_cleaned': '96XX00DPKGC9JE9F0820', 'id_validated': False}
+
+        Examples:
+            .. code-block:: python
+
+                id_cleaner.id_type = 'lei'             # define the ID type as LEI
+                id_cleaner.invalid_ids_as_nan = True   # set NaN for invalid ID
+                id_cleaner.get_clean_data('XXX')       # receives NaN as result
+
+        """
+        return self._is_invalid_ids_nan
+
+    @invalid_ids_as_nan.setter
+    def invalid_ids_as_nan(self, new_value):
+        self._is_invalid_ids_nan = new_value
 
     @property
-    def cleaned_id_output(self):
-        """The name of the output attribute that indicates the cleaned id."""
-        return self._cleaned_id_output
+    def output_cleaned_id(self):
+        """
+        The output dictionary key that identifies a cleaned ID. By default, it is defined as 'cleaned_id'.
 
-    @cleaned_id_output.setter
-    def cleaned_id_output(self, new_value):
-        self._cleaned_id_output = new_value
+        Examples:
+
+            .. code-block:: python
+
+                # Defines the output key for cleaned ID as 'NORMALIZED_ID'
+                id_cleaner.output_cleaned_id = 'NORMALIZED_ID'
+
+                 # The output key for cleaned ID is shown as 'NORMALIZED_ID'
+                id_cleaner.get_clean_data('GB00B1YW4409')
+
+        """
+        return self._output_cleaned_id
+
+    @output_cleaned_id.setter
+    def output_cleaned_id(self, new_value):
+        self._output_cleaned_id = new_value
 
     @property
-    def validated_id_output(self):
-        """The name of the output attribute that indicates if the id is valid or not."""
-        return self._validated_id_output
+    def output_validated_id(self):
+        """
+        The output dictionary key that identifies if the ID is valid or not. By default, it is defined as 'isvalid_id'.
 
-    @validated_id_output.setter
-    def validated_id_output(self, new_value):
-        self._validated_id_output = new_value
+        Examples:
+
+            .. code-block:: python
+
+                # Defines the output key for cleaned ID as 'ID_VALID'
+                id_cleaner.output_validated_id = 'ID_VALID'
+
+                 # The output key for ID validation is shown as 'ID_VALID'
+                id_cleaner.get_clean_data('GB00B1YW4409')
+
+        """
+        return self._output_validated_id
+
+    @output_validated_id.setter
+    def output_validated_id(self, new_value):
+        self._output_validated_id = new_value
 
     @property
-    def lettercase_output(self):
-        return self._lettercase_output
+    def letter_case(self):
+        """
+        Defines the letter case applied when cleaning up an ID. The options available are:
 
-    @lettercase_output.setter
-    def lettercase_output(self, new_value):
-        self._lettercase_output = new_value
+        - 'lower': (default) for an output with all characters in lower case,
+        - 'upper': for an output with all characters in upper case, and
+        - 'title': for an output with the first letter in upper case and the remaining ones in lowe case.
+
+        Examples:
+            .. code-block:: python
+
+                id_cleaner.letter_case = 'upper'            # define the output in upper case
+                id_cleaner.get_clean_data('GB00B1YW4409')   # cleaned ID is shown in upper case
+
+        """
+        return self._letter_case
+
+    @letter_case.setter
+    def letter_case(self, new_value):
+        self._letter_case = new_value
+
+    def __is_id_param_valid(self, id_value):
+        """
+        Private method that validates an official identifier.
+
+        Parameters:
+            id_value (str): the identifier to be validated.
+
+        Returns:
+            (bool): True if is valid or False otherwise.
+
+        Raises:
+            BankingIdIsNotAString: If the id is not a string and ModeOfUse.EXCEPTION_MODE.
+            BankingIdIsEmptyAfterCleaning: If the id is empty after cleaning and ModeOfUse.EXCEPTION_MODE.
+        """
+
+        if isinstance(id_value, float):
+            if np.isnan(id_value):
+                return False
+
+        if not isinstance(id_value, str):
+            if self._mode == ModeOfUse.EXCEPTION_MODE:
+                raise custom_exception.BankingIdIsNotAString(id_value)
+            else:
+                return False
+
+        clean_id = simple_cleaner.perform_basic_cleaning(id_value)
+
+        if len(str(clean_id).strip()) == 0:
+            if self._mode == ModeOfUse.EXCEPTION_MODE:
+                raise custom_exception.BankingIdIsEmptyAfterCleaning(id_value)
+            else:
+                return False
+
+        # Passed all checks
+        return True
 
     def __validate_id(self, id_value):
         """
@@ -166,27 +271,16 @@ class BankingIdCleaner:
 
         Parameters:
             id_value (str): the identifier to be validated.
+
         Returns:
             (list): returns a list indicating if the id is valid and the cleaning string for that identifier.
-        Raises:
-            BankingIdIsNotAString: If the id is not a string and ModeOfUse.EXCEPTION_MODE.
-            BankingIdIsEmptyAfterCleaning: If the id is empty after cleaning and ModeOfUse.EXCEPTION_MODE.
+
         """
-        if not isinstance(id_value, str):
-            if self._mode == ModeOfUse.EXCEPTION_MODE:
-                raise custom_exception.BankingIdIsNotAString
-            else:
-                return None
 
-        clean_id = simple_cleaner.perform_basic_cleaning(id_value)
-
-        if len(str(clean_id).strip()) == 0:
-            if self._mode == ModeOfUse.EXCEPTION_MODE:
-                raise custom_exception.BankingIdIsEmptyAfterCleaning
-            else:
-                return None
-
+        clean_id = simple_cleaner.remove_unicode(id_value)
+        clean_id = simple_cleaner.remove_all_spaces(clean_id)
         is_valid_id = False
+
         if self._id_type == self.__LEI_NAME:
             is_valid_id = lei.is_valid(clean_id)
         elif self._id_type == self.__ISIN_NAME:
@@ -194,130 +288,174 @@ class BankingIdCleaner:
         elif self._id_type == self.__SEDOL_NAME:
             is_valid_id = sedol.is_valid(clean_id)
 
-        if self._lettercase_output == UPPER_LETTER_CASE:
+        if self._letter_case == UPPER_LETTER_CASE:
             clean_id = clean_id.upper()
-        elif self._lettercase_output == LOWER_LETTER_CASE:
+        elif self._letter_case == LOWER_LETTER_CASE:
             clean_id = clean_id.lower()
-        elif self._lettercase_output == TITLE_LETTER_CASE:
+        elif self._letter_case == TITLE_LETTER_CASE:
             clean_id = clean_id.title()
 
         return [is_valid_id, clean_id]
 
-    def get_clean_id(self, id_value):
+    def reset_output_names(self):
         """
-        Returns a clean identifier and if that identifier is valid or not.
+        Resets the dictionary key that identifies the cleaned ID and if it is valid, as the result of get_clean_data()
+        method. When this method runs, the keys are set back to its default names: "cleaned_id" and "isvalid_id".
+
+        Examples:
+            .. code-block:: python
+
+                # Resets the output names
+                id_cleaner.reset_output_names()
+
+                # Shows the resultant dictionary with the default key names
+                id_cleaner.get_clean_data('GB00B1YW4409')
+
+        """
+        self._output_cleaned_id = self.__ATTRIBUTE_CLEANED_ID
+        self._output_validated_id = self.__ATTRIBUTE_VALIDATED_ID
+
+    def get_clean_data(self, id_value):
+        """
+        Returns a clean ID and if that identifier is valid or not.
 
         Parameters:
-            id_value (str): the id to be validated.
+            id_value (str): any string that represents an id to be validated.
+
         Returns:
-            (dict): returns a dictionary with two attributes to indicate the cleaned id and if it is valid or not.
-            If the property [self._set_null_for_invalid_ids] is set to [True] this function returns np.nan if the
-            id is invalid.
+            (dict): a dictionary with two keys that indicates the cleaned ID and if it is valid or not.
+             If the property *self._is_invalid_ids_nan=True*, this method returns NaN if the id is invalid.
+
+        Examples:
+
+            .. code-block:: python
+
+                # Cleans up and validates a LEI ID:
+                id_cleaner.id_type = 'lei'
+                print(id_cleaner.get_clean_data('GB00B1YW4409'))
+
+                # The *print()* statement above, returns the following:
+                {'cleaned_id': 'GB00B1YW4409', 'isvalid_id': 'True'}
 
         """
+
+        if not self.__is_id_param_valid(id_value):
+            return None
+
         # Cleans up and Validates the id
         validation_return = self.__validate_id(id_value)
-
-        # Creates an empty dict that will hold the return values for cleaned and validated id
-        dict_clean_id = {
-            self._cleaned_id_output: np.nan,
-            self._validated_id_output: np.nan,
-        }
-
-        # Check if the validation was performed an in case of null values, return a null dict result
-        if not validation_return:
-            return dict_clean_id
 
         # If the validation was performed, get the return values
         is_valid_id = validation_return[0]
         clean_id = validation_return[1]
 
         # Check if the the cleaned return value should be set to null if invalid
-        if self._set_null_for_invalid_ids and not is_valid_id:
-            dict_clean_id[self._validated_id_output] = is_valid_id
+        dict_clean_id = {}
+        if self._is_invalid_ids_nan and not is_valid_id:
+            dict_clean_id[self._output_cleaned_id] = np.nan
+            dict_clean_id[self._output_validated_id] = is_valid_id
         else:
-            dict_clean_id[self._cleaned_id_output] = clean_id
-            dict_clean_id[self._validated_id_output] = is_valid_id
+            dict_clean_id[self._output_cleaned_id] = clean_id
+            dict_clean_id[self._output_validated_id] = is_valid_id
         return dict_clean_id
 
-    def is_valid_id(self, id_value):
+    def is_valid(self, id_value):
         """
-        Returns True if the identifier is valid or False otherwise. If the id is empty, returns np.nan.
+        Performs only the validation of an ID (no cleaning up).
 
         Parameters:
-            id_value (str): the identifier to be validated.
+            id_value (str): any string that represents an id to be validated.
+
         Returns:
-            (bool): True if the identifier is valid or False otherwise
+            (bool): *True* if the identifier is valid or *False* otherwise. If the ID is empty, returns NaN.
+
+        Examples:
+
+            .. code-block:: python
+
+                # Only performs the validation of a LEI ID:
+                id_cleaner.id_type = 'lei'
+
+                # Returns 'True' because the ID is a valid LEI
+                print(id_cleaner.is_valid('GB00B1YW4409'))
 
         """
-        validation_return = self.__validate_id(id_value)
-        is_valid_id = validation_return[0]
-        if not validation_return:
-            return np.nan
-        return is_valid_id
 
-    def get_id_types(self):
+        if not self.__is_id_param_valid(id_value):
+            return None
+
+        validation_return = self.__validate_id(id_value)
+        return validation_return[0]
+
+    def get_types(self):
         """
         Returns the types of identifiers that can be validated by the library.
 
         Returns:
-            (list): returns the list of id types supported by the library.
+            (list): returns the list of ID types supported by the library.
 
         """
+
         return self.__VALIDATIONS_SUPPORTED
 
-    def __get_cleaned_validated_id_for_df(self, in_id):
+    def get_clean_df(self, df, column_name):
         """
-        This is a private method that supports the apply_clean_to_df() method as a mean to unpack the dictionary
-        returned by the search method get_clean_id().
-
-        Parameters:
-            in_id (str): The attribute in the dataframe that indicates the id to be cleaned up and validated.
-        Returns:
-            (str): returns the cleaned version of the identifier.
-            (bool): True if the id is valid and False otherwise
-
-        """
-        dict_cleaned_validated_id = self.get_clean_id(in_id)
-        cleaned_id = dict_cleaned_validated_id[self._cleaned_id_output]
-        validated_id = dict_cleaned_validated_id[self._validated_id_output]
-        return cleaned_id, validated_id
-
-    def get_clean_df(
-        self, df, in_id_attribute, out_id_suffix_clean, out_id_suffix_valid
-    ):
-        """
-        This method cleans up and validates identifiers (isin, sedol or lei) in a pandas dataframe
+        This method performs the same process described in **get_clean_data()** method. However, the ID verification
+        and cleaning are applied to a specific column of a dataframe sent by input. The output dataframe is the
+        same dataframe sent by parameter, but with two new additional attributes named according to the values of
+        the following properties: *output_cleaned_id*, *output_validated_id*. Therefore, you must change the values of
+        these properties if you want a different column name as the result of the cleaning/validation process.
 
         Parameters:
             df (dataframe): the input dataframe that contains the identifier to be clean up and validated.
-            in_id_attribute (str): the attributes in the dataframe that contains the ID to be cleaned and validated.
-            out_id_suffix_clean (str): suffix added to the name of the ID attribute in order to create a new atrribute
-                in the dataframe that keeps the cleaned ID.
-            out_id_suffix_valid (str): suffix added to the name of the ID attribute in order to create a new atrribute
-                in the dataframe that informs if the ID is valid or not.
+            column_name (str): the attribute name in the dataframe that contains the ID to be clean up and validated.
+
         Returns:
             (dataframe): a cleaned and validated version of the input dataframe.
 
+        Raises:
+            IdAttributeNotInDataFrame: when [column_name] is not a dataframe's column.
+
+        Examples:
+            .. code-block:: python
+
+                # Normalizes the column named "COUNTRY" in the dataframe passed as parameter
+                id_cleaner.id_type = 'isin'
+                clean_df = id_cleaner.get_clean_df(my_df, "ID_ISIN")
+                clean_df.head()
+
         """
         # Check if the country attribute exists in the dataframe
-        if in_id_attribute not in df.columns:
-            raise custom_exception.IdAttributeNotInDataFrame
+        if column_name not in df.columns:
+            raise custom_exception.IdAttributeNotInDataFrame(column_name)
 
         # Make a copy so not to change the original dataframe
         new_df = df.copy()
 
-        # Defines the name of the output attributes
-        new_attribute_id_cleaned = in_id_attribute + "_" + out_id_suffix_clean
-        new_attribute_id_validated = in_id_attribute + "_" + out_id_suffix_valid
+        # Check if the column name is the same of the output columns
+        new_col_name = ''
+        if column_name == self._output_cleaned_id:
+            new_col_name = column_name + "_to_remove"
+            new_df.rename(columns={column_name: new_col_name}, inplace=True)
+            column_name = new_col_name
 
         # Creates the new output attribute that will have the cleaned and validated version of the input dataframe
-        new_df[new_attribute_id_cleaned] = np.nan
-        new_df[new_attribute_id_validated] = np.nan
+        new_df[self._output_cleaned_id] = np.nan
+        new_df[self._output_validated_id] = np.nan
 
         # Clean up and validate the id
-        new_df.loc[:, [new_attribute_id_cleaned, new_attribute_id_validated]] = [
-            self.__get_cleaned_validated_id_for_df(id_to_clean_validate)
-            for id_to_clean_validate in new_df[in_id_attribute]
-        ]
+        for index, row in get_progress_bar(it_range=new_df.iterrows(),
+                                           total_rows=new_df.shape[0],
+                                           desc='Normalizing IDs...'):
+            id_info = self.get_clean_data(row[column_name])
+            if not id_info:
+                id_info = {self._output_cleaned_id: np.nan, self._output_validated_id: np.nan}
+            new_df.loc[index, self._output_cleaned_id] = id_info[self._output_cleaned_id]
+            new_df.loc[index, self._output_validated_id] = id_info[self._output_validated_id]
+
+        # Check if the original input column must be removed (only happens if the user asked to reused the
+        # same column as ouput)
+        if new_col_name != '':
+            new_df.drop(new_col_name, inplace=True, axis=1)
+
         return new_df
