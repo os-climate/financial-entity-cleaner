@@ -62,7 +62,7 @@ class TestCountryCleaner(unittest.TestCase):
                 expected_name = None
 
             # Validate country info
-            country_info = country_cleaner.get_info(country_to_validate)
+            country_info = country_cleaner.get_clean_data(country_to_validate)
 
             # Assert the cleaning process
             print('Testing {}'.format(data))
