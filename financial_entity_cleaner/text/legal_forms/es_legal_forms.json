@@ -3,7 +3,7 @@
     "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
     "reference_version": "1.3",
     "created": "2021-12-17",
-    "updated": "2021-12-17",
+    "updated": "2022-06-09",
     "legal_forms": {
         "es": {
             "agrupacion europea de interes economico": [
@@ -24,6 +24,18 @@
                 "sicav.",
                 "sicav"
             ],
+            "sociedad de inversión colectiva de tipo cerrado": [
+                "s.i.c.c.",
+                "s.i.c.c",
+                "sicc.",
+                "sicc"
+            ],
+            "sociedad gestora de entidad de inversión colectiva de tipo cerrado": [
+                "s.g.e.i.c.",
+                "s.g.e.i.c",
+                "sgeic.",
+                "sgeic"
+            ],
             "sociedad limitada de nueva empresa": [
                 "s.l.n.e.",
                 "s.l.n.e",
@@ -40,11 +52,7 @@
                 "s.r.l.",
                 "s.r.l",
                 "srl.",
-                "srl",
-                "s.l.",
-                "s.l",
-                "sl.",
-                "sl"
+                "srl"
             ],
             "sociedad limitada laboral": [
                 "s.l.l.",
@@ -80,23 +88,13 @@
                 "scp.",
                 "scp"
             ],
-            "sociedad colectiva": [
-                "s.c.",
-                "s.c",
-                "sc.",
-                "sc",
-                "s.r.c.",
-                "s.r.c",
-                "src.",
-                "src"
-            ],
             "sociedad agraría de trasformación": [
                 "s.a.t.",
                 "s.a.t",
                 "sat.",
                 "sat"
             ],
-            "sociedades de inversion inmobiliaria": [
+            "sociedades de inversión inmobiliaria": [
                 "s.i.i.",
                 "s.i.i",
                 "sii.",
@@ -128,6 +126,8 @@
                 "s.com. p.a.p.",
                 "s.com.p.a.p.",
                 "s.com.p.a.p",
+                "s.com p.a.p",
+                "s.com p.a.p.",
                 "s.c.p.a.p.",
                 "s.c.p.a.p",
                 "scpap.",
@@ -143,6 +143,8 @@
                 "s.com. p. a.",
                 "s.com. p.a.",
                 "s.com.p.a.",
+                "s.com p.a.",
+                "s.com p.a",
                 "s.c.p.a.",
                 "s.c.p.a",
                 "scpa.",
@@ -159,6 +161,17 @@
                 "s.com",
                 "scom.",
                 "scom"
+            ],
+            "sociedad comanditaria": [
+                "s.c.r.a.",
+                "s.c.r.a",
+                "scra",
+                "scra.",
+                "s. cra.",
+                "s cra.",
+                "s cra",
+                "s.cra.",
+                "s.cra"
             ],
             "sociedad cooperativa europea": [
                 "s. coop. e.",
@@ -179,29 +192,23 @@
                 "scoop.",
                 "scoop"
             ],
-            "sociedad anonima europea": [
+            "sociedad anónima europea": [
                 "s.e.",
                 "s.e",
                 "se.",
                 "se"
             ],
-            "sociedad anonima profesional": [
+            "sociedad anónima profesional": [
                 "s.a.p.",
                 "s.a.p",
                 "sap.",
                 "sap"
             ],
-            "sociedad anonima laboral": [
+            "sociedad anónima laboral": [
                 "s.a.l.",
                 "s.a.l",
                 "sal.",
                 "sal"
-            ],
-            "sociedad anonima": [
-                "s.a.",
-                "s.a",
-                "sa.",
-                "sa"
             ],
             "mutualidad de prevision social": [
                 "m.p.s.",
@@ -209,25 +216,25 @@
                 "mps.",
                 "mps"
             ],
-            "fondo de inversion en activos del mercado monetario": [
+            "fondo de inversión en activos del mercado monetario": [
                 "f.i.a.m.m.",
                 "f.i.a.m.m",
                 "fiamm.",
                 "fiamm"
             ],
-            "fondo de inversion mobiliaria": [
+            "fondo de inversión mobiliaria": [
                 "f.i.m.",
                 "f.i.m",
                 "fim.",
                 "fim"
             ],
-            "fondo de inversion inmobiliaria": [
+            "fondo de inversión inmobiliaria": [
                 "f.i.i.",
                 "f.i.i",
                 "fii.",
                 "fii"
             ],
-            "fondo de inversion": [
+            "fondo de inversión": [
                 "f.i.",
                 "f.i",
                 "fi.",
@@ -253,7 +260,7 @@
                 "fcrpyme.",
                 "fcrpyme"
             ],
-            "institucion de inversion colectiva": [
+            "institucion de inversión colectiva": [
                 "i.i.c.",
                 "i.i.c",
                 "iic.",
@@ -264,6 +271,42 @@
                 "e.r.l",
                 "erl.",
                 "erl"
+            ],
+            "sociedad limitada nueva empresa": [
+                "s.l.n.e.",
+                "s.l.n.e",
+                "slne.",
+                "slne"
+            ],
+            "sociedad anónima deportiva": [
+                "s.a.d.",
+                "s.a.d",
+                "sad.",
+                "sad"
+            ],
+            "sociedad colectiva": [
+                "s.c.",
+                "s.c",
+                "sc.",
+                "sc",
+                "s.r.c.",
+                "s.r.c",
+                "src.",
+                "src"
+            ],
+            "sociedad limitada": [
+                "s.l.",
+                "s.l",
+                "sl.",
+                "sl"
+            ],
+            "sociedad anónima": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa",
+                "s/a",
+                "s/a."
             ]
         }
     }

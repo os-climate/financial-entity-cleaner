@@ -3,9 +3,18 @@
     "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
     "reference_version": "1.3",
     "created": "2021-12-17",
-    "updated": "2021-12-17",
+    "updated": "2022-06-09",
     "legal_forms": {
         "id": {
+            "perseroan terbatas terbuka": [
+                "p.t. tbk.",
+                "p.t. tbk",
+                "p.t tbk",
+                "p.t tbk.",
+                "pt tbk",
+                "pt tbk.",
+                "pt. tbk"
+            ],
             "penanaman modal asing": [
                 "p.m.a.",
                 "p.m.a",
@@ -15,6 +24,12 @@
                 "p.t.",
                 "p.t",
                 "pt"
+            ],
+            "perseroan terbuka": [
+                "t.b.k.",
+                "t.b.k",
+                "tbk.",
+                "tbk"
             ]
         }
     }

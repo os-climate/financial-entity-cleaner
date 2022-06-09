@@ -3,53 +3,27 @@
     "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
     "reference_version": "1.3",
     "created": "2022-05-02",
-    "updated": "2022-05-02",
+    "updated": "2022-06-09",
     "legal_forms": {
         "au": {
             "en": {
-                "co-operative": [
-                    "co-operative limited",
-                    "cooperative limited",
-                    "co-op limited",
-                    "coop limited",
-                    "co-operative ltd.",
-                    "co-operative ltd",
-                    "cooperative ltd.",
-                    "cooperative ltd",
-                    "co-opltd.",
-                    "co-opltd",
-                    "co opltd",
-                    "coop ltd.",
-                    "coop ltd",
-                    "co-operative",
-                    "cooperative",
-                    "co-op",
-                    "co-op.",
-                    "coop.",
-                    "coop"
+                "limited liability partnership": [
+                    "llp.",
+                    "llp",
+                    "l.l.p.",
+                    "l.l.p",
+                    "l l p",
+                    "l l p."
                 ],
-                "incorporated association": [
-                    "inc.",
-                    "inc",
-                    "incorp.",
-                    "incorp"
-                ],
-                "limited partnership": [
-                    "a limited partnership",
-                    "an incorporated limited partnership",
-                    "l.p.",
-                    "l.p",
-                    "lp.",
-                    "lp",
+                "incorporated limited partnership": [
                     "i.l.p.",
                     "i.l.p",
                     "ilp.",
-                    "ilp"
+                    "ilp",
+                    "i l p",
+                    "i l p."
                 ],
                 "limited proprietary company": [
-                    "proprietary limited",
-                    "proprietary ltd.",
-                    "proprietary ltd",
                     "pty limited",
                     "pty. limited",
                     "pty. ltd.",
@@ -85,6 +59,16 @@
                     "pty unltd.",
                     "pty unltd"
                 ],
+                "limited partnership": [
+                    "l.p.",
+                    "l.p",
+                    "lp.",
+                    "lp",
+                    "i.l.p.",
+                    "i.l.p",
+                    "ilp.",
+                    "ilp"
+                ],
                 "limited": [
                     "l.t.d.",
                     "l.t.d",
@@ -98,13 +82,28 @@
                     "nl.",
                     "nl"
                 ],
-                "indigenous corporation": [
-                    "indigenous corp.",
-                    "indigenous corp",
+                "registered native title body corporate": [
                     "r.n.t.b.c.",
                     "r.n.t.b.c",
                     "rntbc.",
                     "rntbc"
+                ],
+                "co-operative": [
+                    "co-opltd.",
+                    "co-opltd",
+                    "co opltd",
+                    "coop ltd.",
+                    "coop ltd",
+                    "co-op",
+                    "co-op.",
+                    "coop.",
+                    "coop"
+                ],
+                "incorporated": [
+                    "inc.",
+                    "inc",
+                    "incorp.",
+                    "incorp"
                 ]
             }
         }

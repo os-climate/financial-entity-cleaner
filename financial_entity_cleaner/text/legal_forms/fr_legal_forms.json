@@ -3,9 +3,21 @@
     "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
     "reference_version": "1.3",
     "created": "2021-09-20",
-    "updated": "2021-09-20",
+    "updated": "2022-06-09",
     "legal_forms": {
         "fr": {
+            "société d'investissement à capital fixe": [
+                "s.i.c.f.",
+                "s.i.c.f",
+                "sicf.",
+                "sicf"
+            ],
+            "société d'investissement à capital variable": [
+                "s.i.c.v.",
+                "s.i.c.v",
+                "sicv.",
+                "sicv"
+            ],
             "société par actions simplifiée": [
                 "sas.",
                 "s.a.s.",
@@ -40,8 +52,13 @@
                 "sarl.",
                 "sarl",
                 "s.a.r.l.",
-                "s.a.r.l",
-                "sarl"
+                "s.a.r.l"
+            ],
+            "entreprise unipersonnelle à responsabilité limitée": [
+                "eurl.",
+                "eurl",
+                "e.u.r.l.",
+                "e.u.r.l"
             ],
             "société de gestion de portefeuille": [
                 "sgp.",
@@ -83,11 +100,29 @@
                 "sem.",
                 "sem"
             ],
+            "fonds commun de placement": [
+                "f.c.p.",
+                "f.c.p",
+                "fcp.",
+                "fcp"
+            ],
+            "groupement d'intérêt économique": [
+                "g.i.e.",
+                "g.i.e",
+                "gie.",
+                "gie"
+            ],
             "société anonyme": [
                 "sa.",
                 "s.a.",
                 "s.a",
                 "sa"
+            ],
+            "entreprise individuelle": [
+                "ei.",
+                "e.i.",
+                "ei.",
+                "ei"
             ]
         }
     }

@@ -3,7 +3,7 @@
     "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
     "reference_version": "1.3",
     "created": "2021-09-20",
-    "updated": "2021-09-20",
+    "updated": "2022-06-09",
     "legal_forms": {
         "pt": {
             "empresa pública": [
@@ -20,6 +20,7 @@
             ],
             "sociedade simples": [
                 "s/s",
+                "s/s.",
                 "s.s",
                 "ss."
             ],
@@ -81,17 +82,20 @@
                 "s.a.",
                 "s.a",
                 "s/a",
+                "s/a.",
                 "sa",
                 "sa."
             ],
             "companhia": [
                 "c.o.",
                 "c/o",
+                "c/o.",
                 "co",
                 "co."
             ],
             "sociedade em comandita por ações": [
                 "c/a",
+                "c/a.",
                 "c.a.",
                 "ca.",
                 "c.a",
