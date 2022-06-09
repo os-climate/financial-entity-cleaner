@@ -5,167 +5,165 @@
     "created": "2022-05-02",
     "updated": "2022-06-09",
     "legal_forms": {
-        "ar": {
-            "es": {
-                "sociedad anónima unipersonal": [
-                    "s.a.u.",
-                    "s.a.u",
-                    "sau.",
-                    "sau"
-                ],
-                "sociedad en commandita simple": [
-                    "s.c.s.",
-                    "s.c.s",
-                    "scs.",
-                    "scs"
-                ],
-                "sociedad en commandita por acciones": [
-                    "s.c.p.a.",
-                    "s.c.p.a",
-                    "scpa.",
-                    "scpa"
-                ],
-                "sociedad anónima comercial inmobiliaria": [
-                    "s.a.i.c.",
-                    "s.a.i.c",
-                    "saic.",
-                    "saic",
-                    "s a i c",
-                    "s a i c."
-                ],
-                "sociedad anónima cerrada": [
-                    "s.a.c.",
-                    "s.a.c",
-                    "sac.",
-                    "sac",
-                    "s a c",
-                    "s a c."
-                ],
-                "sociedad anónima abierta": [
-                    "s.a.a.",
-                    "s.a.a",
-                    "saa.",
-                    "saa",
-                    "s a a",
-                    "s a a."
-                ],
-                "sociedad anónima": [
-                    "s.a.",
-                    "s.a",
-                    "sa.",
-                    "sa",
-                    "s a",
-                    "s a."
-                ],
-                "sociedad de responsabilidad limitada": [
-                    "s.r.l",
-                    "s.r.l.",
-                    "srl.",
-                    "srl",
-                    "s r l.",
-                    "s r l"
-                ],
-                "sociedad comerciale": [
-                    "l.s.c",
-                    "l.s.c.",
-                    "lsc.",
-                    "lsc",
-                    "l s c.",
-                    "l s c"
-                ],
-                "sociedad de capital y industria": [
-                    "s.c.i.",
-                    "s.c.i",
-                    "sci.",
-                    "sci",
-                    "s c i.",
-                    "s c i"
-                ],
-                "sociedad de acciones simplificadas": [
-                    "s.a.s",
-                    "s.a.s.",
-                    "sas.",
-                    "s a s"
-                ],
-                "sociedad cooperativa": [
-                    "s. coop.",
-                    "s. coop",
-                    "s coop.",
-                    "s coop"
-                ],
-                "limitada": [
-                    "l.t.d.a.",
-                    "l.t.d.a",
-                    "ltda.",
-                    "ltda"
-                ],
-                "empresario individual de responsabilidad limitada": [
-                    "e.i.r.l.",
-                    "e.i.r.l",
-                    "eirl.",
-                    "eirl"
-                ],
-                "sociedad anónima comercial, inmobiliaria y financiera": [
-                    "s.a.c.i.f.",
-                    "s.a.c.i.f",
-                    "sacif.",
-                    "sacif",
-                    "s a c i f",
-                    "s a c i y f",
-                    "s a c i y f.",
-                    "s.a.c.i y f",
-                    "s.a.c.i y f.",
-                    "s.a.c.i. y f",
-                    "saci y f",
-                    "saci y f.",
-                    "saci. y f"
-                ],
-                "sociedad anónima comercial, industrial, financiera y agropecuaria": [
-                    "s.a.c.i.f.a",
-                    "s.a.c.i.f.a.",
-                    "sacifa.",
-                    "sacifa",
-                    "s a c i f a",
-                    "s a c i f y a",
-                    "s a c i f y a.",
-                    "s.a.c.i.f. y a",
-                    "s.a.c.i.f. y a.",
-                    "s.a.c.i.f y a.",
-                    "sacif. y a",
-                    "sacif. y a.",
-                    "sacif y a."
-                ],
-                "sociedad anónima comercial, industrial, financiera, y inmobiliaria": [
-                    "s.a.c.i.f.i.",
-                    "s.a.c.i.f.i",
-                    "sacifi.",
-                    "sacifi",
-                    "s a c i f i",
-                    "s a c i f y i",
-                    "s a c i f y i.",
-                    "s.a.c.i.f. y i",
-                    "s.a.c.i.f. y i.",
-                    "s.a.c.i.f y i.",
-                    "sacif. y i",
-                    "sacif. y i.",
-                    "sacif y i."
-                ],
-                "sociedad anónima comercial, industrial, financiera, inmobiliaria y automotriz": [
-                    "s.a.c.i.f.i.a",
-                    "s.a.c.i.f.i.a",
-                    "sacifia.",
-                    "sacifia",
-                    "s a c i f i a",
-                    "s a c i f i y a",
-                    "s a c i f i y a.",
-                    "s.a.c.i.f.i. y a",
-                    "s.a.c.i.f.i. y a.",
-                    "s.a.c.i.f.i y a.",
-                    "sacifi. y a",
-                    "sacifi. y a.",
-                    "sacifi y a."
-                ]
-            }
+        "es": {
+            "sociedad anónima unipersonal": [
+                "s.a.u.",
+                "s.a.u",
+                "sau.",
+                "sau"
+            ],
+            "sociedad en commandita simple": [
+                "s.c.s.",
+                "s.c.s",
+                "scs.",
+                "scs"
+            ],
+            "sociedad en commandita por acciones": [
+                "s.c.p.a.",
+                "s.c.p.a",
+                "scpa.",
+                "scpa"
+            ],
+            "sociedad anónima comercial inmobiliaria": [
+                "s.a.i.c.",
+                "s.a.i.c",
+                "saic.",
+                "saic",
+                "s a i c",
+                "s a i c."
+            ],
+            "sociedad anónima cerrada": [
+                "s.a.c.",
+                "s.a.c",
+                "sac.",
+                "sac",
+                "s a c",
+                "s a c."
+            ],
+            "sociedad anónima abierta": [
+                "s.a.a.",
+                "s.a.a",
+                "saa.",
+                "saa",
+                "s a a",
+                "s a a."
+            ],
+            "sociedad anónima": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa",
+                "s a",
+                "s a."
+            ],
+            "sociedad de responsabilidad limitada": [
+                "s.r.l",
+                "s.r.l.",
+                "srl.",
+                "srl",
+                "s r l.",
+                "s r l"
+            ],
+            "sociedad comerciale": [
+                "l.s.c",
+                "l.s.c.",
+                "lsc.",
+                "lsc",
+                "l s c.",
+                "l s c"
+            ],
+            "sociedad de capital y industria": [
+                "s.c.i.",
+                "s.c.i",
+                "sci.",
+                "sci",
+                "s c i.",
+                "s c i"
+            ],
+            "sociedad de acciones simplificadas": [
+                "s.a.s",
+                "s.a.s.",
+                "sas.",
+                "s a s"
+            ],
+            "sociedad cooperativa": [
+                "s. coop.",
+                "s. coop",
+                "s coop.",
+                "s coop"
+            ],
+            "limitada": [
+                "l.t.d.a.",
+                "l.t.d.a",
+                "ltda.",
+                "ltda"
+            ],
+            "empresario individual de responsabilidad limitada": [
+                "e.i.r.l.",
+                "e.i.r.l",
+                "eirl.",
+                "eirl"
+            ],
+            "sociedad anónima comercial, inmobiliaria y financiera": [
+                "s.a.c.i.f.",
+                "s.a.c.i.f",
+                "sacif.",
+                "sacif",
+                "s a c i f",
+                "s a c i y f",
+                "s a c i y f.",
+                "s.a.c.i y f",
+                "s.a.c.i y f.",
+                "s.a.c.i. y f",
+                "saci y f",
+                "saci y f.",
+                "saci. y f"
+            ],
+            "sociedad anónima comercial, industrial, financiera y agropecuaria": [
+                "s.a.c.i.f.a",
+                "s.a.c.i.f.a.",
+                "sacifa.",
+                "sacifa",
+                "s a c i f a",
+                "s a c i f y a",
+                "s a c i f y a.",
+                "s.a.c.i.f. y a",
+                "s.a.c.i.f. y a.",
+                "s.a.c.i.f y a.",
+                "sacif. y a",
+                "sacif. y a.",
+                "sacif y a."
+            ],
+            "sociedad anónima comercial, industrial, financiera, y inmobiliaria": [
+                "s.a.c.i.f.i.",
+                "s.a.c.i.f.i",
+                "sacifi.",
+                "sacifi",
+                "s a c i f i",
+                "s a c i f y i",
+                "s a c i f y i.",
+                "s.a.c.i.f. y i",
+                "s.a.c.i.f. y i.",
+                "s.a.c.i.f y i.",
+                "sacif. y i",
+                "sacif. y i.",
+                "sacif y i."
+            ],
+            "sociedad anónima comercial, industrial, financiera, inmobiliaria y automotriz": [
+                "s.a.c.i.f.i.a",
+                "s.a.c.i.f.i.a",
+                "sacifia.",
+                "sacifia",
+                "s a c i f i a",
+                "s a c i f i y a",
+                "s a c i f i y a.",
+                "s.a.c.i.f.i. y a",
+                "s.a.c.i.f.i. y a.",
+                "s.a.c.i.f.i y a.",
+                "sacifi. y a",
+                "sacifi. y a.",
+                "sacifi y a."
+            ]
         }
     }
 }
