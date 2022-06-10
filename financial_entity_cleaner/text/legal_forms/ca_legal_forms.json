@@ -1,0 +1,148 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-06-09",
+    "updated": "2022-06-09",
+    "legal_forms": {
+        "en": {
+            "trust company": [
+                "trust corp.",
+                "trust corp",
+                "trust co",
+                "trust co.",
+                "trustco"
+            ],
+            "loan company": [
+                "loan corp.",
+                "loan corp",
+                "loan co.",
+                "loan co."
+            ],
+            "limited liability partnership": [
+                "l.l.p.",
+                "l.l.p",
+                "llp.",
+                "llp"
+            ],
+            "limited partnership": [
+                "l.p.",
+                "l.p",
+                "lp.",
+                "lp"
+            ],
+            "general partnership": [
+                "g.p.",
+                "g.p",
+                "gp.",
+                "gp"
+            ],
+            "sole proprietorship": [
+                "s.p.",
+                "s.p",
+                "sp.",
+                "sp"
+            ],
+            "professional corporation": [
+                "p.c.",
+                "p.c",
+                "pc.",
+                "pc"
+            ],
+            "unlimited company": [
+                "u.l.c.",
+                "u.l.c",
+                "ulc.",
+                "ulc",
+                "ulc. co.",
+                "ulc. co",
+                "ulc co.",
+                "ulc co"
+            ],
+            "limited": [
+                "limited.",
+                "limit",
+                "ltd.",
+                "ltd",
+                "l.t.d.",
+                "l.t.d",
+                "lt.",
+                "lt"
+            ],
+            "cooperative": [
+                "co-op.",
+                "co-op",
+                "coop.",
+                "coop"
+            ],
+            "incorporated": [
+                "inc.",
+                "inc",
+                "incorp.",
+                "incorp"
+            ],
+            "corporation": [
+                "corp.",
+                "corp"
+            ]
+        },
+        "fr": {
+            "société d’intérêt communautaire": [
+                "sic.",
+                "sic",
+                "s.i.c.",
+                "s.i.c"
+            ],
+            "société par actions de régime fédéral": [
+                "sarf.",
+                "sarf",
+                "s.a.r.f.",
+                "s.a.r.f"
+            ],
+            "société en nom collectif à responsabilité limitée": [
+                "sencrl.",
+                "sencrl",
+                "s.e.n.c.r.l.",
+                "s.e.n.c.r.l"
+            ],
+            "société à responsabilité limitée": [
+                "srl.",
+                "srl",
+                "s.r.l.",
+                "s.r.l",
+                "sarl.",
+                "sarl",
+                "s.a.r.l.",
+                "s.a.r.l"
+            ],
+            "société en nom collectif": [
+                "s.e.n.c.",
+                "s.e.n.c",
+                "senc.",
+                "senc"
+            ],
+            "société en commandite": [
+                "s.e.c.",
+                "s.e.c",
+                "sec.",
+                "sec"
+            ],
+            "corporation professionnelle": [
+                "c.p.",
+                "c.p",
+                "cp.",
+                "cp"
+            ],
+            "limitée": [
+                "l.t.é.e.",
+                "l.t.é.e",
+                "ltée.",
+                "ltée",
+                "l.t.e.e.",
+                "l.t.e.e",
+                "ltee.",
+                "ltee"
+            ]
+        }
+    }
+}

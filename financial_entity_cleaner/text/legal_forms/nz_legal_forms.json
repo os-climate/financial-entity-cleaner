@@ -1,0 +1,41 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-06-09",
+    "updated": "2022-06-09",
+    "legal_forms": {
+        "en": {
+            "limited partnership": [
+                "l.p.",
+                "l.p",
+                "lp.",
+                "lp"
+            ],
+            "cooperative": [
+                "co-op.",
+                "co-op",
+                "coop.",
+                "coop"
+            ],
+            "limited": [
+                "limited.",
+                "limit",
+                "ltd.",
+                "ltd",
+                "l.t.d.",
+                "l.t.d",
+                "lt.",
+                "lt"
+            ],
+            "unlimited": [
+                "unlimited.",
+                "unlimit",
+                "unltd.",
+                "unltd",
+                "ultd.",
+                "ultd",
+            ]
+        }
+    }
+}
