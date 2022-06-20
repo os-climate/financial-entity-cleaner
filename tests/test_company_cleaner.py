@@ -48,7 +48,7 @@ class TestCompanyCleaner(TestCase):
             expected_name = data[1].strip().lower()
 
             # Perform the cleaning
-            clean_name = company_cleaner.get_clean_name(company_name_to_clean)
+            clean_name = company_cleaner.get_clean_data(company_name_to_clean)
             print(
                 "{:<30} - {:<30} - {:<30}".format(
                     company_name_to_clean, expected_name, clean_name
