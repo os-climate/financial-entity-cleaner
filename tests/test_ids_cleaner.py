@@ -56,7 +56,7 @@ class TestOfficialIdCleaner(unittest.TestCase):
 
             # Validate the ids
             banking_id_cleaner.id_type = id_type_to_validate
-            result_validation = banking_id_cleaner.is_valid_id(id_to_validate)
+            result_validation = banking_id_cleaner.is_valid(id_to_validate)
             self.assertEqual(result_validation, expected_result)
 
 
