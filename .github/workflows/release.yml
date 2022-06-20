@@ -25,8 +25,7 @@ jobs:
           key: poetry
       - name: Install latest version of Poetry
         if: steps.cache-poetry.outputs.cache-hit != 'true'
-        run: |
-          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+        uses: snok/install-poetry@v1
       - name: Add Poetry to $PATH
         run: |
           echo "$HOME/.poetry/bin" >> $GITHUB_PATH
@@ -52,7 +51,8 @@ jobs:
         run: poetry build
       - name: Publish in PyPi
         env:
-          PYPI_TOKEN: ${{ secrets.OSC_PYPI_TOKEN }}
+          POETRY_HTTP_BASIC_PYPI_USERNAME: ${{ secrets.OSC_PYPI_USER }}
+          POETRY_HTTP_BASIC_PYPI_PASSWORD: ${{ secrets.OSC_PYPI_TOKEN }}
         run: |
-          poetry config pypi-token.pypi $PYPI_TOKEN
-          poetry publish --dry-run
+          poetry config http-basic.pypi "$POETRY_HTTP_BASIC_PYPI_USERNAME" "$POETRY_HTTP_BASIC_PYPI_PASSWORD"
+          poetry publish
