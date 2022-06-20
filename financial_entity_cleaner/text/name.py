@@ -503,17 +503,17 @@ class CompanyNameCleaner:
                     # Case in which the country was provided
                     mask = new_df[in_country_attribute] == country
                 new_df.loc[mask, out_company_name_attribute] = new_df[mask].apply(
-                    lambda row: self.get_clean_name(row[in_company_name_attribute]),
+                    lambda row: self.get_clean_data(row[in_company_name_attribute]),
                     axis=1,
                 )
         # If the country is not informed, the library performs the cleaning by using the current legal term
         # dictionary in all entries of the dataframe
         else:
-            new_df.loc[:, out_company_name_attribute] = new_df.apply(
-                lambda row: self.get_clean_name(row[in_company_name_attribute]), axis=1
-            )
-            # new_df.loc[:, [out_company_name_attribute]] = [self.get_clean_name(name) for name
-            #                                                in new_df[in_company_name_attribute]]
+            # new_df.loc[:, out_company_name_attribute] = new_df.apply(
+            #    lambda row: self.get_clean_data(row[in_company_name_attribute]), axis=1
+            # )
+            new_df.loc[:, [out_company_name_attribute]] = [self.get_clean_data(name) for name
+                                                           in new_df[in_company_name_attribute]]
 
         # Return the current dictionary as the one setup before the function call
         self._current_dict_legal_terms = initial_dict_legal_terms
