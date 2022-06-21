@@ -22,8 +22,8 @@ copyright = '2022, OS-Climate'
 author = 'OS-Climate'
 
 # The full version, including alpha/beta/rc tags
-version = '1.0.0'
-release = '1.0.0'
+version = '0.2.0'
+release = '0.2.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -35,7 +35,6 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
-    'sphinx-prompt',
     'sphinx_licenseinfo'
 ]
 

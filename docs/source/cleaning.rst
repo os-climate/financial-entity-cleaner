@@ -83,7 +83,7 @@ be executed before or after the pre-defined ones.
      - Remove words that appears between two parentheses: ((text))
 
 2) Cleaner for Company's name
------------------------------
+--------------------------------
 
 The cleaning process for company's name is a special case of text cleasing and it is treated separated due to its
 importance in the OS-Climate context, specially for the purpose of matching corporations described by name in
@@ -130,7 +130,7 @@ and data analysis of companies profile.
      - Analytics Consulting Limitada
 
 3) Normalization of country
---------------------------
+------------------------------
 
 The Financial-Entity-Cleaning library provides normalization of country information according to ISO 3166.
 Given a set of country's name, alpha 2, alpha3 codes or a mix of these information, the library searches for the

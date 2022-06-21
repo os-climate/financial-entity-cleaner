@@ -1,18 +1,18 @@
 Company Name's Cleaner
 ==================================
 
-**Package path:** financial\_entity\_cleaner.company
+**Package path:** financial\_entity\_cleaner.text
 
-.. automodule:: financial_entity_cleaner.company
+.. automodule:: financial_entity_cleaner.text
 
 .. toctree::
     :maxdepth: 2
 
 
-company.name
+text.name
 ---------------------------------------------------
 
-.. automodule:: financial_entity_cleaner.company.name
+.. automodule:: financial_entity_cleaner.text.name
    :members:
    :undoc-members:
    :show-inheritance:
