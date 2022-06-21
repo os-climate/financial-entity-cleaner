@@ -1,8 +1,8 @@
 import unittest
 import math
 
-from financial_entity_cleaner.country_cleaner import country
-from financial_entity_cleaner.utils import utils
+from financial_entity_cleaner.country import iso3166
+from financial_entity_cleaner.utils import lib
 from tests import test_data_reader
 
 # Test data from csv excel files
@@ -41,9 +41,9 @@ class TestCountryCleaner(unittest.TestCase):
         print("Total cases to tests {}".format(total_rows))
 
         # Set up the cleaner and its properties
-        country_cleaner = country.CountryCleaner()
+        country_cleaner = iso3166.CountryCleaner()
         country_cleaner.mode = country_cleaner.mode.SILENT_MODE
-        country_cleaner.lettercase_output = utils.LOWER_LETTER_CASE
+        country_cleaner.lettercase_output = lib.LOWER_LETTER_CASE
         country_cleaner.country_name_output = "country_name"
         country_cleaner.country_alpha2_output = "country_alpha2"
         country_cleaner.country_alpha3_output = "country_alpha3"
@@ -59,27 +59,27 @@ class TestCountryCleaner(unittest.TestCase):
                 expected_alpha3 = math.nan
             expected_name = data[3].strip().lower()
             if expected_name == 'None':
-                expected_name = math.nan
+                expected_name = None
 
             # Validate country info
-            country_info = country_cleaner.get_country_info(country_to_validate)
+            country_info = country_cleaner.get_clean_data(country_to_validate)
 
             # Assert the cleaning process
             print('Testing {}'.format(data))
             if expected_alpha2 == 'none':
-                self.assertTrue(math.isnan(country_info["country_alpha2"]))
+                self.assertTrue(country_info is None)
             else:
-                self.assertEqual(country_info["country_alpha2"], expected_alpha2)
+                self.assertEqual(country_info["iso_alpha2"], expected_alpha2)
 
             if expected_alpha3 == 'none':
-                self.assertTrue(math.isnan(country_info["country_alpha3"]))
+                self.assertTrue(country_info is None)
             else:
-                self.assertEqual(country_info["country_alpha3"], expected_alpha3)
+                self.assertEqual(country_info["iso_alpha3"], expected_alpha3)
 
             if expected_name == 'none':
-                self.assertTrue(math.isnan(country_info["country_name"]))
+                self.assertTrue(country_info is None)
             else:
-                self.assertEqual(country_info["country_name"], expected_name)
+                self.assertEqual(country_info["iso_name"], expected_name)
 
 
 def build_test_suite():

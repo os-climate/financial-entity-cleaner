@@ -1,0 +1,139 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2021-09-20",
+    "updated": "2022-06-09",
+    "legal_forms": {
+        "fr": {
+            "société d'investissement à capital fixe": [
+                "s.i.c.f.",
+                "s.i.c.f",
+                "sicf.",
+                "sicf"
+            ],
+            "société d'investissement à capital variable": [
+                "s.i.c.v.",
+                "s.i.c.v",
+                "sicv.",
+                "sicv"
+            ],
+            "société par actions simplifiée": [
+                "sas.",
+                "s.a.s.",
+                "s.a.s",
+                "sas"
+            ],
+            "société en nom collectif": [
+                "s.n.c.",
+                "s.n.c",
+                "snc.",
+                "snc"
+            ],
+            "société en commandite simple": [
+                "s.c.s.",
+                "s.c.s",
+                "scs.",
+                "scs"
+            ],
+            "société en commandite par actions": [
+                "s.c.a.",
+                "s.c.a",
+                "sca.",
+                "sca"
+            ],
+            "société civile immobilière": [
+                "s.c.i.",
+                "s.c.i",
+                "sci.",
+                "sci"
+            ],
+            "société à responsabilité limitée": [
+                "sarl.",
+                "sarl",
+                "s.a.r.l.",
+                "s.a.r.l"
+            ],
+            "entreprise unipersonnelle à responsabilité limitée": [
+                "eurl.",
+                "eurl",
+                "e.u.r.l.",
+                "e.u.r.l"
+            ],
+            "société de gestion de portefeuille": [
+                "sgp.",
+                "s.g.p.",
+                "s.g.p",
+                "sgp"
+            ],
+            "fond commun de placement": [
+                "f.c.p.",
+                "f.c.p",
+                "fcp.",
+                "fcp"
+            ],
+            "société coopérative de production": [
+                "s.c.o.p.",
+                "s.c.o.p",
+                "scop.",
+                "scop",
+                "s.c.p.",
+                "s.c.p",
+                "scp.",
+                "scp"
+            ],
+            "société en participation de professions libérales": [
+                "s.p.p.l.",
+                "s.p.p.l",
+                "sppl.",
+                "sppl"
+            ],
+            "société en participation": [
+                "s.e.p.",
+                "s.e.p",
+                "sep.",
+                "sep"
+            ],
+            "société d'économie mixte": [
+                "s.e.m.",
+                "s.e.m",
+                "sem.",
+                "sem"
+            ],
+            "fonds commun de placement": [
+                "f.c.p.",
+                "f.c.p",
+                "fcp.",
+                "fcp"
+            ],
+            "groupement d'intérêt économique": [
+                "g.i.e.",
+                "g.i.e",
+                "gie.",
+                "gie"
+            ],
+            "société anonyme": [
+                "sa.",
+                "s.a.",
+                "s.a",
+                "sa"
+            ],
+            "entreprise individuelle": [
+                "ei.",
+                "e.i.",
+                "ei.",
+                "ei"
+            ],
+            "limitée": [
+                "l.t.é.e.",
+                "l.t.é.e",
+                "ltée.",
+                "ltée",
+                "l.t.e.e.",
+                "l.t.e.e",
+                "ltee.",
+                "ltee"
+            ]
+        }
+    }
+}

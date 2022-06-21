@@ -1,10 +1,10 @@
 from unittest import TestCase, TestSuite, TextTestRunner
 
-from financial_entity_cleaner.company_cleaner import company
+from financial_entity_cleaner.text import name
 from tests import test_data_reader
 
 # Test data from csv excel files
-# - column_0: company´s name to clean
+# - column_0: text´s name to clean
 # - column_1: expected result
 # test_data_filename = "tests/data/test_cleaner_company.csv"
 test_data_filename = "./data/test_cleaner_company.csv"
@@ -24,7 +24,7 @@ def load_test_data():
 
 class TestCompanyCleaner(TestCase):
     """
-    This is the TestCase class for cleaning company's name.
+    This is the TestCase class for cleaning text's name.
     """
 
     # Class level setup function, executed once and before any tests function
@@ -32,12 +32,12 @@ class TestCompanyCleaner(TestCase):
     def setUpClass(cls):
         load_test_data()
 
-    # Clean company's name
+    # Clean text's name
     def test_clean_company_name(self):
         total_rows = len(test_company_rows)
         print("Total cases to tests {}".format(total_rows))
         print("{:<30} - {:<30} - {:<30}".format("INPUT", "EXPECTED", "OUTPUT"))
-        company_cleaner = company.CompanyNameCleaner()
+        company_cleaner = name.CompanyNameCleaner()
         company_cleaner.mode = company_cleaner.mode.SILENT_MODE
 
         for data in test_company_rows:
@@ -48,7 +48,7 @@ class TestCompanyCleaner(TestCase):
             expected_name = data[1].strip().lower()
 
             # Perform the cleaning
-            clean_name = company.get_clean_name(company_name_to_clean)
+            clean_name = company_cleaner.get_clean_data(company_name_to_clean)
             print(
                 "{:<30} - {:<30} - {:<30}".format(
                     company_name_to_clean, expected_name, clean_name

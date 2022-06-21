@@ -1,0 +1,126 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-05-02",
+    "updated": "2022-06-09",
+    "legal_forms": {
+        "de": {
+            "europäische genossenschaft ": [
+                "s.c.e.",
+                "s.c.e",
+                "sce.",
+                "sce"
+            ],
+            "kommandit-erwerbsgesellschaft": [
+                "k.e.g.",
+                "k.e.g",
+                "keg.",
+                "keg"
+            ],
+            "gesellschaft mit beschränkter haftung & compagnie kommanditgesellschaft": [
+                "gmbh. & co. kg.",
+                "gmbh & co kg",
+                "gmbh & co kg.",
+                "gmbh & co. kg.",
+                "gmbh. & co kg",
+                "gmbh. & co kg.",
+                "gmbh. & co. kg."
+            ],
+            "gesellschaft mit beschränkter haftung": [
+                "g.m.b.h.",
+                "g.m.b.h",
+                "gmbh.",
+                "gmbh",
+                "ges.m.b.h.",
+                "ges.m.b.h",
+                "ges m.b.h.",
+                "ges m.b.h",
+                "ges mbh.",
+                "ges mbh"
+            ],
+            "mit beschränkter haftung": [
+                "m.b.h.",
+                "m.b.h",
+                "mbh.",
+                "mbh",
+                "m.b.h.",
+                "m.b.h",
+                "m.b.h.",
+                "m.b.h",
+                "mbh.",
+                "mbh"
+            ],
+            "versicherungsverein auf gegenseitigkeit": [
+                "v.v.a.g.",
+                "v.v.a.g",
+                "vvag.",
+                "vvag."
+            ],
+            "europäische wirtschaftliche interessenvereinigung": [
+                "e.w.i.v.",
+                "e.w.i.v",
+                "ewiv.",
+                "ewiv"
+            ],
+            "einzelunternehmer": [
+                "e.u.",
+                "e.u",
+                "eu.",
+                "eu"
+            ],
+            "aktiengesellschaft": [
+                "a.g.",
+                "a.g",
+                "ag.",
+                "ag"
+            ],
+            "offene handelsgesellschaft": [
+                "o.h.g.",
+                "o.h.g",
+                "ohg.",
+                "ohg"
+            ],
+            "offene gesellschaft": [
+                "o.g.",
+                "o.g",
+                "og.",
+                "og"
+            ],
+            "offene erwerbsgesellschaft": [
+                "o.e.g.",
+                "o.e.g",
+                "oeg.",
+                "oeg"
+            ],
+            "stille gesellschaft": [
+                "s.t.g.",
+                "s.t.g",
+                "stg.",
+                "stg"
+            ],
+            "europäische gesellschaft ": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "kommanditgesellschaft": [
+                "k.g.",
+                "k.g",
+                "kg.",
+                "kg"
+            ],
+            "gesellschaft des bürgerlichen rechts": [
+                "g.e.s.b.r.",
+                "g.e.s.b.r",
+                "gesbr.",
+                "gesbr",
+                "ges.b.r.",
+                "ges.b.r",
+                "ges b.r.",
+                "ges b.r"
+            ]
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from financial_entity_cleaner.auto_cleaner import auto_cleaner
+from financial_entity_cleaner.batch import cleaner
 
 
 def read_command_args():
@@ -43,7 +43,7 @@ def main():
     cleaner_args = read_command_args()
 
     # Create cleaner object with log directory specified by user or using the default directory
-    auto_cleaner_obj = auto_cleaner.AutoCleaner()
+    auto_cleaner_obj = cleaner.AutoCleaner()
 
     # Perform auto cleaning
     result = auto_cleaner_obj.clean_csv_file(
