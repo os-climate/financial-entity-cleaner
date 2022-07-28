@@ -1,0 +1,140 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "no": {
+            "ansvarlig selskap": [
+                "a.n.s.",
+                "a.n.s",
+                "ans.",
+                "ans"
+            ],
+            "kommunalt foretak": [
+                "k.f.",
+                "k.f",
+                "kf.",
+                "kf"
+            ],
+            "norskregistrert utenlandsk foretak": [
+                "n.u.f.",
+                "n.u.f",
+                "nuf.",
+                "nuf"
+            ],
+            "statsforetak": [
+                "s.f.",
+                "s.f",
+                "sf.",
+                "sf"
+            ],
+            "fylkeskommunalt foretak": [
+                "f.k.f.",
+                "f.k.f",
+                "fkf.",
+                "fkf"
+            ],
+            "boligbyggelag": [
+                "b.b.l.",
+                "b.b.l",
+                "bbl.",
+                "bbl"
+            ],
+            "europeisk økonomisk foretaksgruppe": [
+                "e.ø.f.g.",
+                "e.ø.f.g",
+                "eøfg.",
+                "eøfg"
+            ],
+            "enkeltpersonforetak": [
+                "e.n.k.",
+                "e.n.k",
+                "enk.",
+                "enk"
+            ],
+            "borettslag": [
+                "b.r.l.",
+                "b.r.l",
+                "brl.",
+                "brl",
+                "b.l.",
+                "bl.",
+                "bl"
+            ],
+            "europeisk samvirkeforetak": [
+                "s.c.e.",
+                "s.c.e",
+                "sce.",
+                "sce"
+            ],
+            "regionalt helseforetak": [
+                "r.h.f.",
+                "r.h.f",
+                "rhf.",
+                "rhf"
+            ],
+            "interkommunalt selskap": [
+                "i.k.s.",
+                "i.k.s",
+                "iks.",
+                "iks"
+            ],
+            "allmennaksjeselskap": [
+                "a.s.a.",
+                "a.s.a",
+                "asa.",
+                "asa"
+            ],
+            "selskap med delt ansvar": [
+                "d.a.",
+                "d.a",
+                "da.",
+                "da"
+            ],
+            "samvirkeforetak": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa"
+            ],
+            "selskap med begrenset ansvar": [
+                "b.a.",
+                "b.a",
+                "ba.",
+                "ba"
+            ],
+            "aksjeselskap": [
+                "a.s.",
+                "a.s",
+                "as.",
+                "as"
+            ],
+            "kommandittselskap": [
+                "k.s.",
+                "k.s",
+                "ks.",
+                "ks"
+            ],
+            "europeisk selskap": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "helseforetak": [
+                "h.f.",
+                "h.f",
+                "hf.",
+                "hf"
+            ],
+            "ungdomsbedrift": [
+                "u.b.",
+                "u.b",
+                "ub.",
+                "ub"
+            ]
+        }
+    }
+}

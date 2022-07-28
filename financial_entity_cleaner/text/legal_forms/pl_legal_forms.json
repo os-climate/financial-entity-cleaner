@@ -1,0 +1,105 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "pl": {
+            "spółka partnerska": [
+                "s.p.p.",
+                "s.p.p",
+                "spp.",
+                "spp",
+                "sp.p.",
+                "sp.p",
+                "sp p.",
+                "sp p",
+                "spp"
+            ],
+            "spółka jawna": [
+                "s.p.j.",
+                "s.p.j",
+                "spj.",
+                "spj",
+                "sp.j.",
+                "sp.j",
+                "sp j.",
+                "sp j",
+                "spj"
+            ],
+            "prosta spółka akcyjna": [
+                "p.s.a.",
+                "p.s.a",
+                "psa.",
+                "psa"
+            ],
+            "spółka komandytowa": [
+                "s.p.k.",
+                "s.p.k",
+                "spk.",
+                "spk",
+                "sp.k.",
+                "sp.k",
+                "sp k.",
+                "spk"
+            ],
+            "spółka z ograniczoną odpowiedzialnością": [
+                "s.p.z.o.o.",
+                "s.p.z.o.o",
+                "spzoo.",
+                "spzoo",
+                "sp.z.o.o.",
+                "sp.z.o.o",
+                "sp. z.o.o.",
+                "sp. z.o.o",
+                "sp z.o.o.",
+                "sp z.o.o",
+                "sp. z o.o.",
+                "sp zoo"
+            ],
+            "spółka komandytowo-akcyjna": [
+                "s.k.a.",
+                "s.k.a",
+                "ska.",
+                "ska"
+            ],
+            "otwarty fundusz emerytalny": [
+                "o.f.e.",
+                "o.f.e",
+                "ofe.",
+                "ofe"
+            ],
+            "towarzystwo ubezpieczeń wzajemnych": [
+                "t.u.w.",
+                "t.u.w",
+                "tuw.",
+                "tuw"
+            ],
+            "spółka cywilna": [
+                "s.c.",
+                "s.c",
+                "sc.",
+                "sc"
+            ],
+            "spółka akcyjna": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa"
+            ],
+            "spółka europejska": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "przedsiębiorstwo państwowe": [
+                "p.p.",
+                "p.p",
+                "pp.",
+                "pp"
+            ]
+        }
+    }
+}

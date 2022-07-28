@@ -1,0 +1,176 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "fr": {
+            "association sans but lucratif": [
+                "a.s.b.l.",
+                "a.s.b.l",
+                "asbl.",
+                "asbl"
+            ],
+            "association d'épargne pension": [
+                "a.s.s.e.p.",
+                "a.s.s.e.p",
+                "assep.",
+                "assep",
+                "ass.ep.",
+                "ass.ep",
+                "ass. ep.",
+                "ass. ep",
+                "ass ep"
+            ],
+            "société en commandite simple": [
+                "s.e.c.s.",
+                "s.e.c.s",
+                "secs.",
+                "secs",
+                "s.c.s.",
+                "s.c.s",
+                "scs.",
+                "scs"
+            ],
+            "association agricole": [
+                "a.a.",
+                "a.a",
+                "aa.",
+                "aa"
+            ],
+            "société en commandite par actions": [
+                "s.e.c.a.",
+                "s.e.c.a",
+                "seca.",
+                "seca",
+                "s.c.a.",
+                "s.c.a",
+                "sca.",
+                "sca"
+            ],
+            "société d’épargne-pension à capital variable": [
+                "s.e.p.c.a.v.",
+                "s.e.p.c.a.v",
+                "sepcav.",
+                "sepcav"
+            ],
+            "société en nom collectif": [
+                "s.e.n.c.",
+                "s.e.n.c",
+                "senc.",
+                "senc"
+            ],
+            "société d'investissement à capital fixe": [
+                "s.i.c.a.f.",
+                "s.i.c.a.f",
+                "sicaf.",
+                "sicaf"
+            ],
+            "association d'assurances mutuelles": [
+                "a.a.m.",
+                "a.a.m",
+                "aam.",
+                "aam"
+            ],
+            "société à responsabilité limitée simplifiée": [
+                "s.a.r.l.s.",
+                "s.a.r.l.s",
+                "sarls.",
+                "sarls",
+                "sarl-s"
+            ],
+            "société à responsabilité limitée": [
+                "s.a.r.l.",
+                "s.a.r.l",
+                "sarl.",
+                "sarl"
+            ],
+            "societas cooperativa europaea": [
+                "s.c.e.",
+                "s.c.e",
+                "sce.",
+                "sce"
+            ],
+            "société par actions simplifiée": [
+                "s.a.s.",
+                "s.a.s",
+                "sas.",
+                "sas"
+            ],
+            "autres personnes morales": [
+                "o.t.h.",
+                "o.t.h",
+                "oth.",
+                "oth"
+            ],
+            "groupement d'intérêt économique": [
+                "g.i.e.",
+                "g.i.e",
+                "gie.",
+                "gie"
+            ],
+            "société civile": [
+                "s.c.i.",
+                "s.c.i",
+                "sci.",
+                "sci"
+            ],
+            "société en commandite spéciale": [
+                "s.e.c.s.p.",
+                "s.e.c.s.p",
+                "secsp.",
+                "secsp",
+                "s.c.s.p.",
+                "s.c.s.p",
+                "scsp.",
+                "scsp"
+            ],
+            "société d'investissement à capital variable": [
+                "s.i.c.a.v.",
+                "s.i.c.a.v",
+                "sicav.",
+                "sicav"
+            ],
+            "fondation": [
+                "fon"
+            ],
+            "société coopérative": [
+                "s.c.",
+                "s.c",
+                "sc.",
+                "sc"
+            ],
+            "entreprise individuelle": [
+                "e.i.",
+                "e.i",
+                "ei.",
+                "ei"
+            ],
+            "association momentanée": [
+                "a.m.",
+                "a.m",
+                "am.",
+                "am"
+            ],
+            "société anonyme": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa"
+            ],
+            "société européenne": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "etablissement ": [
+                "e.p.",
+                "e.p",
+                "ep.",
+                "ep"
+            ]
+        }
+    }
+}

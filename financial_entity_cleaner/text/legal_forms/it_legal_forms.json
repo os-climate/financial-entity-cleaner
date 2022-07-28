@@ -49,6 +49,12 @@
                 "spa",
                 "spa."
             ],
+            "società a garanzia limitata ": [
+                "s.a.g.l.",
+                "s.a.g.l",
+                "sagl.",
+                "sagl"
+            ],
             "società in accomandita per azioni": [
                 "s.a.p.a.",
                 "s.a.p.a",
@@ -75,6 +81,12 @@
                 "s.s",
                 "ss",
                 "ss."
+            ],
+            "società anonima": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa"
             ]
         }
     }

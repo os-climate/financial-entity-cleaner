@@ -1,0 +1,63 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "nl": {
+            "vennootschap onder firma": [
+                "vof.",
+                "vof",
+                "v.o.f.",
+                "v.o.f"
+            ],
+            "commanditaire vennootschap": [
+                "cv.",
+                "cv",
+                "c.v.",
+                "c.v"
+            ],
+            "naamloze vennootschap": [
+                "nv.",
+                "nv",
+                "n.v.",
+                "n.v"
+            ],
+            "besloten vennootschap": [
+                "bv.",
+                "bv",
+                "b.v",
+                "b.v."
+            ],
+            "aruba vrijgestelde vennootschap": [
+                "a.v.v.",
+                "a.v.v",
+                "avv.",
+                "avv"
+            ],
+            "vennootschap buitenlands recht": [
+                "v.b.r.",
+                "v.b.r",
+                "vbr.",
+                "vbr"
+            ],
+            "vennootschap met beperkte aansprakelijkheid": [
+                "v.b.a.",
+                "v.b.a",
+                "vba.",
+                "vba"
+            ],
+            "coöperatie": [
+                "coöp",
+                "coöp."
+            ],
+            "maatschap": [
+                "ms.",
+                "ms",
+                "m.s.",
+                "m.s"
+            ]
+        }
+    }
+}

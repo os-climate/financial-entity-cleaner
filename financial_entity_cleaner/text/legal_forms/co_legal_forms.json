@@ -1,0 +1,74 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "es": {
+            "sociedad por acciones simplificada": [
+                "s.a.s.",
+                "s.a.s",
+                "sas.",
+                "sas"
+            ],
+            "sociedades agrarias de transformación": [
+                "s.a.t.",
+                "s.a.t",
+                "sat.",
+                "sat"
+            ],
+            "sociedad de responsabilidad limitada": [
+                "l.t.d.a.",
+                "l.t.d.a",
+                "ltda.",
+                "ltda"
+            ],
+            "sociedad en comandita por acciones": [
+                "s.com. p. a.",
+                "s.com. p.a.",
+                "s.com.p.a.",
+                "s.com p.a.",
+                "s.com p.a",
+                "s.c.p.a.",
+                "s.c.p.a",
+                "scpa.",
+                "scpa"
+            ],
+            "sociedad en comandita simple": [
+                "s. en c.",
+                "s. en c",
+                "s.en.c.",
+                "s.en.c",
+                "s. com.",
+                "s. com",
+                "s.com.",
+                "s.com",
+                "scom.",
+                "scom"
+            ],
+            "empresa unipersonal": [
+                "e.u.",
+                "e.u",
+                "eu.",
+                "eu"
+            ],
+            "sociedad anónima": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa",
+                "s/a",
+                "s/a."
+            ],
+            "sociedad colectiva": [
+                "s.c.",
+                "s.c",
+                "sc.",
+                "sc",
+                "s/c",
+                "s/c."
+            ]
+        }
+    }
+}

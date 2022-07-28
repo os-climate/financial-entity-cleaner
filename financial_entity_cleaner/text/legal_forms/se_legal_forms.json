@@ -1,0 +1,127 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "sv": {
+          "ideell förening ": [
+            "i.f.",
+            "i.f",
+            "if.",
+            "if"
+          ],
+          "trossamfund ": [
+            "t.s.f.",
+            "t.s.f",
+            "tsf.",
+            "tsf"
+          ],
+          "medlemsbank": [
+            "m.b.",
+            "m.b",
+            "mb.",
+            "mb"
+          ],
+          "europabolag": [
+            "s.e.",
+            "s.e",
+            "se.",
+            "se"
+          ],
+          "europakooperativ": [
+            "s.c.e.",
+            "s.c.e",
+            "sce.",
+            "sce"
+          ],
+          "sambruksförening": [
+            "s.f.",
+            "s.f",
+            "sf.",
+            "sf"
+          ],
+          "handelsbolag": [
+            "h.b.",
+            "h.b",
+            "hb.",
+            "hb"
+          ],
+          "bankaktiebolag": [
+            "b.a.b.",
+            "b.a.b",
+            "bab.",
+            "bab"
+          ],
+          "ekonomisk förening": [
+            "ek.för.",
+            "ek.för",
+            "ek för.",
+            "ek för",
+            "ek. för.",
+            "ek för"
+          ],
+          "kommanditbolag": [
+            "k.b.",
+            "k.b",
+            "kb.",
+            "kb"
+          ],
+          "sparbank": [
+            "s.b.",
+            "s.b",
+            "sb.",
+            "sb"
+          ],
+          "försäkringsförening": [
+            "f.o.f.",
+            "f.o.f",
+            "fof.",
+            "fof"
+          ],
+          "ömsesidigt försäkringsbolag": [
+            "o.f.b.",
+            "o.f.b",
+            "ofb.",
+            "ofb"
+          ],
+          "försäkringsaktiebolag": [
+            "f.a.b.",
+            "f.a.b",
+            "fab.",
+            "fab"
+          ],
+          "kooperativ hyresrättsförening": [
+            "k.h.f.",
+            "k.h.f",
+            "khf.",
+            "khf"
+          ],
+          "europeisk ekonomisk intressegruppering": [
+            "e.e.i.g.",
+            "e.e.i.g",
+            "eeig.",
+            "eeig"
+          ],
+          "europeisk gruppering för territoriellt samarbete": [
+            "e.g.t.s.",
+            "e.g.t.s",
+            "egts.",
+            "egts"
+          ],
+          "bostadsrättsförening": [
+            "b.r.f.",
+            "b.r.f",
+            "brf.",
+            "brf"
+          ],
+          "aktiebolag": [
+            "a.b.",
+            "a.b",
+            "ab.",
+            "ab"
+          ]
+        }
+    }
+}

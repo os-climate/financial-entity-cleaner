@@ -1,0 +1,49 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "es": {
+            "sociedad anónima mixta": [
+                "s.a.m.",
+                "s.a.m",
+                "sam.",
+                "sam"
+            ],
+            "sociedad de responsabilidad limitada": [
+                "s.r.l.",
+                "s.r.l",
+                "srl.",
+                "srl"
+            ],
+            "sociedad en comandita por acciones. ": [
+                "s.c.a.",
+                "s.c.a",
+                "sca.",
+                "sca"
+            ],
+            "sociedad en comandita simple.": [
+                "s.c.s.",
+                "s.c.s",
+                "scs.",
+                "scs"
+            ],
+            "sociedad colectiva": [
+                "s.c.",
+                "s.c",
+                "sc.",
+                "sc"
+            ],
+            "sociedad anónima": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa",
+                "s/a",
+                "s/a."
+            ]
+        }
+    }
+}

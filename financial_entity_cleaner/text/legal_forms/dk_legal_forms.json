@@ -1,0 +1,74 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "da": {
+            "andelsselskab med begrænset ansvar": [
+                "a.m.b.a.",
+                "a.m.b.a",
+                "amba.",
+                "amba"
+            ],
+            "forening med begrænset ansvar": [
+                "f.m.b.a.",
+                "f.m.b.a",
+                "fmba.",
+                "fmba"
+            ],
+            "selskab med begrænset ansvar": [
+                "s.m.b.a.",
+                "s.m.b.a",
+                "smba.",
+                "smba"
+            ],
+            "anpartsselskab": [
+                "a.p.s.",
+                "a.p.s",
+                "aps.",
+                "aps"
+            ],
+            "europæisk økonomisk firmagruppe": [
+                "e.ø.f.g.",
+                "e.ø.f.g",
+                "eøfg.",
+                "eøfg",
+                "e.o.f.g.",
+                "e.o.f.g",
+                "eofg.",
+                "eofg"
+            ],
+            "europæisk andelsselskab": [
+                "sce-selskab",
+                "sce selskab"
+            ],
+            "europæisk selskab": [
+                "se-selskab",
+                "se selskab"
+            ],
+            "iværksætterselskab": [
+                "i.v.s.",
+                "i.v.s",
+                "ivs.",
+                "ivs"
+            ],
+            "interessentskab": [
+                "i/s"
+            ],
+            "partnerselskab": [
+                "p/s"
+            ],
+            "aktieselskab": [
+                "a/s"
+            ],
+            "kommanditselskab": [
+                "k/s"
+            ],
+            "gensidigt selskab": [
+                "g/s"
+            ]
+        }
+    }
+}

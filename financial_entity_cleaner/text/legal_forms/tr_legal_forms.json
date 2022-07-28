@@ -1,0 +1,72 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "tr": {
+            "kollektif şirket": [
+                "koll.şti.",
+                "koll.şti",
+                "koll şti.",
+                "koll şti"
+            ],
+            "komandit şirket": [
+                "kom.şti.",
+                "kom.şti",
+                "kom şti.",
+                "kom şti"
+            ],
+            "limited şirket": [
+                "ltd. şti.",
+                "ltd. şti",
+                "ltd şti.",
+                "ltd şti",
+                "l.ş.",
+                "lş.",
+                "lş"
+            ],
+            "limited ortaklık": [
+                "l.o.",
+                "l.o",
+                "lo.",
+                "lo"
+            ],
+            "şahıs firması": [
+                "ş.f.",
+                "ş.f",
+                "şf.",
+                "şf"
+            ],
+            "şube": [
+                "ş.b.",
+                "ş.b",
+                "şb.",
+                "şb"
+            ],
+            "anonim şirket": [
+                "a.ş.",
+                "a.ş",
+                "aş.",
+                "aş"
+            ],
+            "anonim ortaklık": [
+                "a.o.",
+                "a.o",
+                "ao.",
+                "ao"
+            ],
+            "kooperatif şirket": [
+                "koop.",
+                "koop"
+            ],
+            "halka açık anonim ortaklık": [
+                "h.a.a.o.",
+                "h.a.a.o",
+                "haao.",
+                "haao"
+            ]
+        }
+    }
+}

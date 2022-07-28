@@ -1,0 +1,121 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "fi": {
+          "avoin yhtiö": [
+              "a.y.",
+              "a.y",
+              "ay.",
+              "ay"
+            ],
+          "julkinen osakeyhtiö": [
+              "o.y.j.",
+              "o.y.j",
+              "oyj.",
+              "oyj"
+            ],
+            "osakeyhtiö": [
+              "o.y.",
+              "o.y",
+              "oy.",
+              "oy"
+            ],
+          "osuuskunta": [
+            "o.s.k.",
+            "o.s.k",
+            "osk.",
+            "osk"
+          ],
+          "kommandiittiyhtiö": [
+            "k.y.",
+            "k.y",
+            "ky.",
+            "ky"
+          ],
+          "eurooppaosuuskunta": [
+            "s.c.e.",
+            "s.c.e",
+            "sce.",
+            "sce"
+          ],
+          "eurooppayhtiö": [
+            "s.e.",
+            "s.e",
+            "se.",
+            "se"
+          ],
+          "säätiö": [
+            "s.r.",
+            "s.r",
+            "sr.",
+            "sr"
+          ],
+          "rekisteröity yhdistys": [
+            "r.y.",
+            "r.y",
+            "ry.",
+            "ry"
+          ],
+          "rekisteröity puolue": [
+            "r.p.",
+            "r.p",
+            "rp.",
+            "rp"
+          ]
+        },
+        "sv": {
+          "publikt aktiebolag": [
+            "a.b.p.",
+            "a.b.p",
+            "abp.",
+            "abp"
+          ],
+          "aktiebolag": [
+            "a.b.",
+            "a.b",
+            "ab.",
+            "ab"
+          ],
+          "andelslag": [
+            "a.n.l.",
+            "a.n.l",
+            "anl.",
+            "anl"
+          ],
+          "kommanditbolag": [
+            "k.b.",
+            "k.b",
+            "kb.",
+            "kb"
+          ],
+          "europaandelslag": [
+            "s.c.e.",
+            "s.c.e",
+            "sce.",
+            "sce"
+          ],
+          "europabolag": [
+            "s.e.",
+            "s.e",
+            "se.",
+            "se"
+          ],
+          "stiftelse": [
+            "s.r.",
+            "s.r",
+            "sr.",
+            "sr"
+          ],
+          "förening": [
+            "r.f.",
+            "r.f",
+            "rf.",
+            "rf"
+          ]
+        }
+    }
+}

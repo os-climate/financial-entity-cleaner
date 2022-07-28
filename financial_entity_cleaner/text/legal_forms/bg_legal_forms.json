@@ -1,0 +1,150 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "bg": {
+            "ednolichen targovets": [
+                "е.т.",
+                "е.т",
+                "ет.",
+                "ет",
+                "e.t.",
+                "e.t",
+                "et.",
+                "et"
+            ],
+            "kooperatsia": [
+                "coop.",
+                "coop"
+            ],
+            "ednolichno aktsionerno druzhestvo": [
+                "е.а.д.",
+                "е.а.д",
+                "еад.",
+                "еад",
+                "e.a.d.",
+                "e.a.d",
+                "ead.",
+                "ead"
+            ],
+            "subiratelno druzhestvo": [
+                "с-ие",
+                "сд",
+                "с-ие",
+                "sd/s-ie",
+                "sd",
+                "s-ie",
+                "s.d.",
+                "s.d",
+                "sd."
+            ],
+            "komanditno druzhestvo s aktsii": [
+                "к.д.а.",
+                "к.д.а",
+                "кда.",
+                "кда",
+                "k.d.a.",
+                "k.d.a",
+                "kda.",
+                "kda"
+            ],
+            "aktsionerno druzhestvo sus spetsialna investitsionna tsel": [
+                "а.д.с.и.ц.",
+                "а.д.с.и.ц",
+                "адсиц.",
+                "адсиц",
+                "a.d.s.i.c.",
+                "a.d.s.i.c",
+                "adsic.",
+                "adsic",
+                "a.d.s.i.t.",
+                "a.d.s.i.t",
+                "adsit.",
+                "adsit"
+            ],
+            "evropeysko obedinenie po ikonomicheski interesi": [
+                "е.о.и.и.",
+                "е.о.и.и",
+                "еоии.",
+                "еоии",
+                "e.e.i.g.",
+                "e.e.i.g",
+                "eeig.",
+                "eeig"
+            ],
+            "komanditno druzhestvo": [
+                "к.д.",
+                "к.д",
+                "кд.",
+                "кд",
+                "k.d.",
+                "k.d",
+                "kd.",
+                "kd"
+            ],
+            "evropeysko druzhestvo": [
+                "е.д.",
+                "е.д",
+                "ед.",
+                "ед",
+                "e.d.",
+                "e.d",
+                "ed.",
+                "ed"
+            ],
+            "druzhestvo uchredeno po zakona za zadalzheniyata i dogovorite": [
+                "д.з.з.д.",
+                "д.з.з.д",
+                "дззд.",
+                "дззд",
+                "d.z.z.d.",
+                "d.z.z.d",
+                "dzzd.",
+                "dzzd"
+            ],
+            "evropeysko kooperativno druzhestvo": [
+                "е.к.д.",
+                "е.к.д",
+                "екд.",
+                "екд",
+                "e.k.d.",
+                "e.k.d",
+                "ekd.",
+                "ekd"
+            ],
+            "druzhestvo s ogranichena otgovornost": [
+                "о.о.д.",
+                "о.о.д",
+                "оод.",
+                "оод",
+                "o.o.d.",
+                "o.o.d",
+                "ood.",
+                "ood"
+            ],
+            "aktsionerno druzhestvo": [
+                "а.д.",
+                "а.д",
+                "ад.",
+                "ад",
+                "a.d.",
+                "a.d",
+                "ad.",
+                "ad"
+            ],
+            "ednolichno druzhestvo s ogranichena otgovornost": [
+                "е.о.о.д.",
+                "е.о.о.д",
+                "еоод.",
+                "еоод",
+                "e.o.o.d.",
+                "e.o.o.d",
+                "eood.",
+                "eood"
+            ]
+        }
+    }
+}

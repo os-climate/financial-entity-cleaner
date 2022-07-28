@@ -1,0 +1,872 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "nl": {
+            "besloten vennootschap met beperkte aansprakelijkheid met een sociaal oogmerk": [
+                "bvba. so",
+                "bvba so",
+                "b.v.b.a. so",
+                "b.v.b.a so",
+                "bvba. so.",
+                "bvba so.",
+                "b.v.b.a. so.",
+                "b.v.b.a so.",
+                "bvba so"
+            ],
+            "besloten vennootschap met beperkte aansprakelijkheid": [
+                "bvba.",
+                "bvba",
+                "b.v.b.a.",
+                "b.v.b.a"
+            ],
+            "besloten vennootschap van publiek recht": [
+                "bv. pr",
+                "bv pr",
+                "b.v pr",
+                "b.v. pr",
+                "bv. pr.",
+                "bv pr.",
+                "b.v pr.",
+                "b.v. pr.",
+                "bv pr",
+                "bvpr"
+            ],
+            "besloten vennootschap": [
+                "bv.",
+                "bv",
+                "b.v",
+                "b.v."
+            ],
+            "coöperatieve vennootschap met onbeperkte aansprakelijkheid, bij wijze van deelneming van publiek recht": [
+                "c.v.o.a. cd",
+                "c.v.o.a cd",
+                "cvoa. cd",
+                "cvoa cd",
+                "c.v.o.a. cd.",
+                "c.v.o.a cd.",
+                "cvoa. cd.",
+                "cvoa cd."
+            ],
+            "coöperatieve vennootschap met onbeperkte aansprakelijkheid met een sociaal oogmerk": [
+                "c.v.o.a. so",
+                "c.v.o.a so",
+                "cvoa. so",
+                "cvoa so",
+                "c.v.o.a. so.",
+                "c.v.o.a so.",
+                "cvoa. so.",
+                "cvoa so."
+            ],
+            "coöperatieve vennootschap met onbeperkte hoofdelijke aansprakelijkheid bij wijze van deelneming": [
+                "c.v.o.h.d.",
+                "c.v.o.h.d",
+                "cvohd.",
+                "cvohd"
+            ],
+            "coöperatieve vennootschap met onbeperkte hoofdelijke aansprakelijkheid": [
+                "c.v.o.h.",
+                "c.v.o.h",
+                "cvoh.",
+                "cvoh"
+            ],
+            "coöperatieve vennootschap met onbeperkte aansprakelijkheid": [
+                "c.v.o.a.",
+                "c.v.o.a",
+                "cvoa.",
+                "cvoa"
+            ],
+            "coöperatieve vennootschap met beperkte aansprakelijkheid van publiek recht": [
+                "c.v.b.a. pr",
+                "c.v.b.a pr",
+                "cvba. pr",
+                "cvba pr",
+                "c.v.b.a. pr.",
+                "c.v.b.a pr.",
+                "cvba. pr.",
+                "cvba pr."
+            ],
+            "coöperatieve vennootschap met beperkte aansprakelijkheid met een sociaal oogmerk": [
+                "c.v.b.a. so",
+                "c.v.b.a so",
+                "cvba. so",
+                "cvba so",
+                "c.v.b.a. so.",
+                "c.v.b.a so.",
+                "cvba. so.",
+                "cvba so."
+            ],
+            "coöperatieve vennootschap met beperkte aansprakelijkheid": [
+                "c.v.b.a.",
+                "c.v.b.a",
+                "cvba.",
+                "cvba"
+            ],
+            "commanditaire vennootschap op aandelen met een sociaal oogmerk": [
+                "c.v.a. so",
+                "c.v.a so",
+                "cva. so",
+                "cva so",
+                "comm. va so",
+                "comm. va. so",
+                "comm. v.a so",
+                "comm. v.a. so",
+                "com. va so",
+                "com. va. so",
+                "com. v.a so",
+                "com. v.a. so",
+                "c.v.a. so.",
+                "c.v.a so.",
+                "cva. so.",
+                "cva so.",
+                "comm. va so.",
+                "comm. va. so.",
+                "comm. v.a so.",
+                "comm. v.a. so.",
+                "com. va so.",
+                "com. va. so.",
+                "com. v.a so.",
+                "com. v.a. so."
+            ],
+            "commanditaire vennootschap op aandelen": [
+                "c.v.a.",
+                "c.v.a",
+                "cva.",
+                "cva",
+                "comm. va",
+                "comm. va.",
+                "comm. v.a",
+                "comm. v.a.",
+                "comm.v.a.",
+                "comm.v.a",
+                "comm.va.",
+                "comm.va",
+                "comm va",
+                "com. va",
+                "com. va.",
+                "com. v.a",
+                "com. v.a.",
+                "com.v.a.",
+                "com.v.a",
+                "com.va.",
+                "com.va",
+                "com va"
+            ],
+            "gewone commanditaire vennootschap met een sociaal oogmerk": [
+                "g.c.w. so",
+                "g.c.w so",
+                "gcw. so",
+                "gcw so",
+                "g.c.w. so.",
+                "g.c.w so.",
+                "gcw. so.",
+                "gcw so.",
+                "gcwso.",
+                "gcwso"
+            ],
+            "gewone commanditaire vennootschap": [
+                "g.comm. v",
+                "g.comm. v.",
+                "g.comm.v",
+                "g.comm.v.",
+                "g.comm v",
+                "g.commv.",
+                "g.commv",
+                "g comm. v",
+                "g comm. v.",
+                "g comm.v",
+                "g comm.v.",
+                "g comm v",
+                "g commv.",
+                "g commv",
+                "g.com. v",
+                "g.com. v.",
+                "g.com.v",
+                "g.com.v.",
+                "g.com v",
+                "g.comv.",
+                "g.comv",
+                "g com. v",
+                "g com. v.",
+                "g com.v",
+                "g com.v.",
+                "g com v",
+                "g comv.",
+                "g comv"
+            ],
+            "commanditaire vennootschap": [
+                "comm. v",
+                "comm. v.",
+                "comm.v",
+                "comm.v.",
+                "comm v",
+                "commv.",
+                "commv",
+                "com. v",
+                "com. v.",
+                "com.v",
+                "com.v.",
+                "com v",
+                "comv.",
+                "comv"
+            ],
+            "eenpersoons besloten vennootschap met beperkte aansprakelijkheid met een sociaal oogmerk": [
+                "e.b.v.b.a. so",
+                "e.b.v.b.a so",
+                "ebvba. so",
+                "ebvba so",
+                "e.b.v.b.a. so.",
+                "e.b.v.b.a so.",
+                "ebvba. so.",
+                "ebvba so.",
+                "ebvbaso.",
+                "ebvbaso."
+            ],
+            "eenpersoons besloten vennootschap met beperkte aansprakelijkheid": [
+                "e.b.v.b.a.",
+                "e.b.v.b.a",
+                "ebvba.",
+                "ebvba"
+            ],
+            "economisch samenwerkingsverband met een sociaal oogmerk": [
+                "e.s.v. so",
+                "e.s.v so",
+                "esv. so",
+                "esv so",
+                "e.s.v. so.",
+                "e.s.v so.",
+                "esv. so.",
+                "esv so.",
+                "esvso.",
+                "esvso"
+            ],
+            "economisch samenwerkingsverband": [
+                "e.s.v.",
+                "e.s.v",
+                "esv.",
+                "esv"
+            ],
+            "europees economisch samenwerkingsverband": [
+                "e.e.s.v.",
+                "e.e.s.v",
+                "eesv.",
+                "eesv"
+            ],
+            "europese coöperatieve vennootschap": [
+                "sce",
+                "sce.",
+                "s.c.e.",
+                "s.c.e"
+            ],
+            "onderneming-natuurlijk persoon": [
+                "onp",
+                "onp.",
+                "o.n.p.",
+                "o.n.p"
+            ],
+            "openbare instelling": [
+                "oi",
+                "oi.",
+                "o.i.",
+                "o.i"
+            ],
+            "vereniging zonder winstoogmerk van publiek recht": [
+                "v.z.w pr",
+                "v.z.w. pr",
+                "vzw. pr",
+                "vzw pr",
+                "v.z.w pr.",
+                "v.z.w. pr.",
+                "vzw. pr.",
+                "vzw pr.",
+                "vzwpr"
+            ],
+            "vennootschap of vereniging zonder rechtspersoonlijkheid": [
+                "v.v.z.r.l.",
+                "v.v.z.r.l",
+                "vvzrl.",
+                "vvzrl"
+            ],
+            "vennootschap onder firma met een sociaal oogmerk": [
+                "vof. so",
+                "vof so",
+                "v.o.f. so",
+                "v.o.f so",
+                "vof. so.",
+                "vof so.",
+                "v.o.f. so.",
+                "v.o.f so.",
+                "vof. s.o",
+                "vof s.o",
+                "v.o.f. s.o",
+                "v.o.f s.o",
+                "vof. s.o.",
+                "vof s.o.",
+                "v.o.f. s.o.",
+                "v.o.f s.o."
+            ],
+            "internationale vereniging zonder winstoogmerk": [
+                "ivzw.",
+                "ivzw",
+                "i.v.z.w.",
+                "i.v.z.w"
+            ],
+            "instelling zonder winstoogmerk": [
+                "izw.",
+                "izw",
+                "i.z.w.",
+                "i.z.w"
+            ],
+            "vennootschap onder firma": [
+                "vof.",
+                "vof",
+                "v.o.f.",
+                "v.o.f"
+            ],
+            "europese vennootschap ": [
+                "se",
+                "se.",
+                "s.e.",
+                "s.e"
+            ],
+            "coöperatieve vennootschap van publiek recht": [
+                "cv. pr",
+                "cv pr",
+                "c.v. pr",
+                "c.v pr",
+                "cv. pr.",
+                "cv pr.",
+                "c.v. pr.",
+                "c.v pr.",
+                "cvpr",
+                "cvpr."
+            ],
+            "coöperatieve vennootschap": [
+                "cv.",
+                "cv",
+                "c.v.",
+                "c.v"
+            ],
+            "vereniging zonder winstoogmerk": [
+                "vzw.",
+                "vzw",
+                "v.z.w.",
+                "v.z.w"
+            ],
+            "naamloze vennootschap met een sociaal oogmerk": [
+                "nv. so",
+                "nv so",
+                "n.v. so",
+                "n.v so",
+                "nv. so.",
+                "nv so.",
+                "n.v. so.",
+                "n.v so.",
+                "nv. s.o.",
+                "nv s.o.",
+                "n.v. s.o.",
+                "n.v s.o.",
+                "nv. s.o",
+                "nv s.o",
+                "n.v. s.o",
+                "n.v s.o"
+            ],
+            "maatschap": [
+                "ms.",
+                "ms",
+                "m.s.",
+                "m.s"
+            ],
+            "naamloze vennootschap van publiek recht": [
+                "nv. pr",
+                "nv pr",
+                "n.v. pr",
+                "n.v pr",
+                "nv. pr.",
+                "nv pr.",
+                "n.v. pr.",
+                "n.v pr.",
+                "nvpr.",
+                "nvpr"
+            ],
+            "naamloze vennootschap": [
+                "nv.",
+                "nv",
+                "n.v.",
+                "n.v"
+            ],
+            "stichting van openbaar nut": [
+                "s.o.n.",
+                "s.o.n",
+                "son.",
+                "son"
+            ],
+            "private stichting": [
+                "priv. st.",
+                "priv st.",
+                "priv st",
+                "p.s.",
+                "ps.",
+                "ps"
+            ],
+            "landbouwvennootschap": [
+                "l.v.",
+                "l.v",
+                "lv.",
+                "lv"
+            ]
+        },
+        "de": {
+            "aktiengesellschaft mit sozialer zielsetzung": [
+                "agmsz.",
+                "agmsz"
+            ],
+            "aktiengesellschaft": [
+                "ag.",
+                "ag"
+            ],
+            "europäische wirtschaftliche interessenvereinigung": [
+                "e.w.i.v.",
+                "e.w.i.v",
+                "ewiv.",
+                "ewiv"
+            ],
+            "einfache kommanditgesellschaft mit sozialer zielsetzung": [
+                "ekgmsz.",
+                "ekgmsz"
+            ],
+            "einrichtung ohne gewinnerzielungsabsicht": [
+                "e.o.g.",
+                "e.o.g",
+                "eog.",
+                "eog"
+            ],
+            "einfache kommanditgesellschaft": [
+                "e.k.g.",
+                "e.k.g",
+                "ekg.",
+                "ekg"
+            ],
+            "europäische gesellschaft ": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "europäische genossenschaft": [
+                "o.f.p.",
+                "o.f.p",
+                "ofp.",
+                "ofp"
+            ],
+            "genossenschaft mit beschränkter haftung mit sozialer zielsetzung": [
+                "g.b.h.s.z.",
+                "g.b.h.s.z",
+                "gbhsz.",
+                "gbhsz",
+                "gen.mbhsz",
+                "gen.mbhsz.",
+                "gen mbhsz.",
+                "gen mbhsz",
+                "gen.bhsz",
+                "gen.bhsz.",
+                "gen bhsz.",
+                "gen bhsz"
+            ],
+            "genossenschaft mit unbeschränkter haftung mit sozialer zielsetzung": [
+                "g.u.h.s.z.",
+                "g.u.h.s.z",
+                "guhsz.",
+                "guhsz",
+                "gen.muhsz",
+                "gen.muhsz.",
+                "gen muhsz.",
+                "gen muhsz",
+                "gen.uhsz",
+                "gen.uhsz.",
+                "gen uhsz.",
+                "gen uhsz"
+            ],
+            "genossenschaft mit beschränkter haftung": [
+                "g.b.h.",
+                "g.b.h",
+                "gbh.",
+                "gbh",
+                "gen.bh",
+                "gen.bh.",
+                "gen bh.",
+                "gen bh",
+                "gen.mbh",
+                "gen.mbh.",
+                "gen mbh.",
+                "gen mbh"
+            ],
+            "gesellschaften oder vereinigungen ohne rechtspersönlichkeit": [
+                "g.v.o.r.p.",
+                "g.v.o.r.p",
+                "gvorp.",
+                "gvorp",
+                "ges.v.o.r.p.",
+                "ges.v.o.r.p",
+                "ges v.o.r.p.",
+                "ges v.o.r.p",
+                "ges vorp.",
+                "ges vorp",
+                "ges.vorp.",
+                "ges.vorp"
+            ],
+            "gesellschaft des allgemeinen rechts": [
+                "g.a.r.",
+                "g.a.r",
+                "gar.",
+                "gar"
+            ],
+            "gesellschaft mit beschränkter haftung": [
+                "g.m.b.h.",
+                "g.m.b.h",
+                "gmbh.",
+                "gmbh",
+                "ges.m.b.h.",
+                "ges.m.b.h",
+                "ges m.b.h.",
+                "ges m.b.h",
+                "ges mbh.",
+                "ges mbh"
+            ],
+            "genossenschaft mit unbeschränkter haftung": [
+                "g.m.u.h.",
+                "g.m.u.h",
+                "gmuh.",
+                "gmuh",
+                "gen.mubh.",
+                "gen.mubh",
+                "gen. mubh",
+                "gen. mubh.",
+                "gen mubh.",
+                "gen mubh"
+            ],
+            "gemeinnützige stiftung": [
+                "g.n.s.",
+                "g.n.s",
+                "gns.",
+                "gns"
+            ],
+            "genossenschaft": [
+                "gen.",
+                "gen"
+            ],
+            "internationale vereinigung ohne gewinnerzielungsabsicht": [
+                "ivog.",
+                "ivog"
+            ],
+            "kommanditgesellschaft auf aktien mit sozialer zielsetzung": [
+                "kgaamsz.",
+                "kgaamsz"
+            ],
+            "kommanditgesellschaft auf aktien": [
+                "kgaa.",
+                "kgaa"
+            ],
+            "kommanditgesellschaft": [
+                "kommg",
+                "kommg."
+            ],
+            "landwirtschaftliche gesellschaft": [
+                "l.g.",
+                "l.g",
+                "lg.",
+                "lg"
+            ],
+            "öffentlich-rechtliche gesellschaft mit beschränkter haftung": [
+                "örgmbh.",
+                "örgmbh"
+            ],
+            "offene handelsgesellschaft mit sozialer zielsetzung": [
+                "ohgmsz.",
+                "ohgmsz"
+            ],
+            "offene handelsgesellschaft": [
+                "ohg.",
+                "ohg"
+            ],
+            "öffentlich-rechtliche vereinigung ohne gewinnerzielungsabsicht": [
+                "örvohgza.",
+                "örvohgza"
+            ],
+            "öffentlich-rechtliche genossenschaft mit unbeschränkter haftung, genossenschaft auf beteiligung": [
+                "gmuhgb.",
+                "gmuhgb"
+            ],
+            "öffentlich-rechtliche genossenschaft mit beschränkter haftung": [
+                "öfrgmbh.",
+                "öfrgmbh"
+            ],
+            "öffentlich-rechtliche aktiengesellschaft": [
+                "örag.",
+                "örag"
+            ],
+            "öffentlich-rechtliche genossenschaft": [
+                "örgen.",
+                "örgen"
+            ],
+            "öffentliche einrichtung": [
+                "öe.",
+                "öe"
+            ],
+            "privatgesellschaft mit beschränkter haftung mit sozialer zielsetzung mit einem alleingesellschafter": [
+                "pgbhsz.",
+                "pgbhsz"
+            ],
+            "privatgesellschaft mit beschränkter haftung mit einem alleingesellschafter": [
+                "pgmbhma.",
+                "pgmbhma"
+            ],
+            "privatgesellschaft mit beschränkter haftung mit sozialer zielsetzung": [
+                "pmbhsz.",
+                "pmbhsz"
+            ],
+            "privatgesellschaft mit beschränkter haftung": [
+                "pgmbh.",
+                "pgmbh"
+            ],
+            "privatstiftung": [
+                "prst.",
+                "prst"
+            ],
+            "unternehmen natürliche person": [
+                "u.n.p.",
+                "u.n.p",
+                "unp.",
+                "unp"
+            ],
+            "vereinigung ohne gewinnerzielungsabsicht": [
+                "v.o.g.",
+                "v.o.g",
+                "vog.",
+                "vog"
+            ],
+            "wirtschaftliche interessenvereinigung mit sozialer zielsetzung": [
+                "wivmsz.",
+                "wivmsz"
+            ],
+            "wirtschaftliche interessenvereinigung": [
+                "w.i.v.",
+                "w.i.v",
+                "wiv.",
+                "wiv"
+            ]
+        },
+        "fr": {
+            "coopérative à responsabilité illimitée, coopérative de participation, de droit ": [
+                "scri cp",
+                "scri. cp.",
+                "scri. cp",
+                "scri cp."
+            ],
+            "société coopérative à responsabilité limitée à finalité sociale": [
+                "scrl fs",
+                "scrl. fs.",
+                "scrl. fs",
+                "scrl fs."
+            ],
+            "société coopérative à responsabilité illimitée à finalité sociale": [
+                "scri fs",
+                "scri. fs.",
+                "scri. fs",
+                "scri fs."
+            ],
+            "société coopérative à responsabilité limitée": [
+                "scrl.",
+                "scrl"
+            ],
+           "société en commandite par actions à finalité sociale": [
+               "sca fs",
+               "sca. fs.",
+               "sca. fs",
+               "sca fs."
+            ],
+            "entreprise personne physique": [
+                "epp",
+                "epp."
+            ],
+            "société à responsabilité limitée": [
+                "srl",
+                "srl."
+            ],
+            "groupement européen d'intérêt économique": [
+                "geie",
+                "geie."
+            ],
+            "institution sans but lucratif": [
+                "isbl",
+                "isbl."
+            ],
+            "société en nom collectif à finalité sociale": [
+                "snc fs",
+                "snc. fs.",
+                "snc. fs",
+                "snc fs."
+            ],
+            "société privée à responsabilité limitée unipersonnelle": [
+                "sprlu",
+                "sprlu."
+            ],
+            "société ou association sans personnalité juridique": [
+                "saspj",
+                "saspj."
+            ],
+            "association sans but lucratif de droit ": [
+                "asbl dpu",
+                "asbl. dpu.",
+                "asbl. dpu",
+                "asbl dpu."
+            ],
+            "groupement d'intérêt économique": [
+                "gie",
+                "gie."
+            ],
+            "société coopérative de droit ": [
+                "sc dpu",
+                "sc. dpu.",
+                "sc. dpu",
+                "sc dpu."
+            ],
+            "société privée à responsabilité limitée à finalité sociale": [
+                "sprl fs",
+                "sprl. fs.",
+                "sprl. fs",
+                "sprl fs."
+            ],
+            "société de droit commun": [
+                "sdc",
+                "sdc."
+            ],
+            "société à responsabilité limitée de droit ": [
+                "srl dpu",
+                "srl. dpu.",
+                "srl. dpu",
+                "srl dpu."
+            ],
+            "société coopérative à responsabilité illimitée": [
+                "scri",
+                "scri."
+            ],
+            "société en commandite simple": [
+                "scs",
+                "scs."
+            ],
+            "société en commandite": [
+                "scomm",
+                "scomm."
+            ],
+            "société privée à responsabilité limitée": [
+                "sprl",
+                "sprl."
+            ],
+            "groupement d'intérêt économique à finalité sociale": [
+                "gie fs",
+                "gie. fs.",
+                "gie. fs",
+                "gie fs."
+            ],
+            "société privée à responsabilité limitée unipersonnelle à finalité sociale": [
+                "sprlu fs",
+                "sprlu. fs.",
+                "sprlu. fs",
+                "sprlu fs."
+            ],
+            "etablissement ": [
+                "etspubli",
+                "etspubli."
+            ],
+            "société anonyme de droit ": [
+                "sa dpu",
+                "sa. dpu.",
+                "sa. dpu",
+                "sa dpu."
+            ],
+            "société en commandite par actions": [
+                "s.c.a.",
+                "s.c.a",
+                "sca.",
+                "sca"
+            ],
+            "société en nom collectif": [
+                "s.n.c.",
+                "s.n.c",
+                "snc.",
+                "snc"
+            ],
+            "association internationale sans but lucratif": [
+                "aisbl",
+                "aisbl."
+            ],
+            "société anonyme à finalité sociale": [
+                "sa fs",
+                "sa. fs.",
+                "sa. fs",
+                "sa fs."
+            ],
+            "association sans but lucratif": [
+                "asbl",
+                "asbl."
+            ],
+            "société coopérative à responsabilité limitée de droit ": [
+                "scrl dpu",
+                "scrl. dpu.",
+                "scrl. dpu",
+                "scrl dpu."
+            ],
+            "société en commandite simple à finalité sociale": [
+                "scs fs",
+                "scs. fs.",
+                "scs. fs",
+                "scs fs."
+            ],
+            "fondation privée": [
+                "fondpriv",
+                "fondpriv.",
+                "fond. priv.",
+                "fond. priv",
+                "fond priv.",
+                "fond priv"
+            ],
+            "société coopérative européenne": [
+                "s.c.e.",
+                "s.c.e",
+                "sce.",
+                "sce"
+            ],
+            "société agricole": [
+                "s. agr.",
+                "s. agr",
+                "s agr.",
+                "s agr",
+                "sagr"
+            ],
+            "fondation d'utilité publique": [
+                "f.u.p.",
+                "f.u.p",
+                "fup.",
+                "fup"
+            ],
+            "société coopérative": [
+                "sc",
+                "sc."
+            ],
+            "société européenne ": [
+                "se",
+                "se."
+            ],
+            "société anonyme": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa"
+            ]
+        }
+    }
+}

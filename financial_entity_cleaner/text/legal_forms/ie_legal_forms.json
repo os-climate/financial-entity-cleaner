@@ -1,0 +1,143 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "en": {
+            "irish collective asset-management vehicle": [
+                "i.c.a.v.",
+                "i.c.a.v",
+                "icav.",
+                "icav"
+            ],
+            "european economic interest grouping": [
+                "e.e.i.g.",
+                "e.e.i.g",
+                "eeig.",
+                "eeig"
+            ],
+            "company limited by guarantee": [
+                "c.l.g.",
+                "c.l.g",
+                "clg.",
+                "clg"
+            ],
+            "general partnership": [
+                "gp.",
+                "g.p.",
+                "gp"
+            ],
+            "limited partnership": [
+                "lp.",
+                "lp",
+                "l.p.",
+                "l.p",
+                "lp"
+            ],
+            "societas europaea": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "unlimited company": [
+                "pulc / uc",
+                "pulc/uc",
+                "pulc uc",
+                "ulc / uc",
+                "ulc/uc",
+                "ulc uc",
+                "puc / uc",
+                "puc/uc",
+                "puc uc"
+            ],
+            "designated activity company": [
+                "d.a.c.",
+                "d.a.c",
+                "dac.",
+                "dac"
+            ],
+            "investment limited partnership": [
+                "i.l.p.",
+                "i.l.p",
+                "ilp.",
+                "ilp"
+            ],
+            "public limited company": [
+                "public lc.",
+                "public lc",
+                "pub. lc.",
+                "pub. lc",
+                "pub lc.",
+                "pub lc",
+                "p.l.c.",
+                "p.l.c",
+                "plc.",
+                "plc"
+            ],
+            "industrial and provident society": [
+                "i&ps",
+                "i.p.s.",
+                "i.p.s",
+                "ips.",
+                "ips"
+            ],
+            "limited": [
+                "limited.",
+                "limit",
+                "ltd.",
+                "ltd",
+                "l.t.d.",
+                "l.t.d",
+                "lt.",
+                "lt"
+            ]
+        },
+        "ga": {
+            "grupail eorpach um leas eacnamaioch": [
+                "g.e.l.e.",
+                "g.e.l.e",
+                "gele.",
+                "gele"
+            ],
+            "cuideachta ghníomhaíochta ainmnithe": [
+                "c.g.a.",
+                "c.g.a",
+                "cga.",
+                "cga"
+            ],
+            "cuideachta faoi theorainn ráthaíochta": [
+                "c.t.r.",
+                "c.t.r",
+                "ctr.",
+                "ctr"
+            ],
+            "cuideachta neamhtheoranta": [
+                "c.n.",
+                "c.n",
+                "cn.",
+                "cn"
+            ],
+            "comhpháirtíocht theoranta infheistíochta": [
+                "c.t.i.",
+                "c.t.i",
+                "cti.",
+                "cti"
+            ],
+            "teoranta": [
+                "t.e.o.",
+                "t.e.o",
+                "teo.",
+                "teo"
+            ],
+            "cuideachta phoiblí theoranta": [
+                "c.p.t.",
+                "c.p.t",
+                "cpt.",
+                "cpt"
+            ]
+        }
+    }
+}

@@ -1,0 +1,180 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-28",
+    "updated": "2022-07-28",
+    "legal_forms": {
+        "en": {
+            "limited liability company": [
+                "ltd. liability co.",
+                "ltd. liability co",
+                "ltd liability co.",
+                "ltd liability co",
+                "l.l.c.",
+                "l.l.c",
+                "llc.",
+                "llc"
+            ],
+            "limited": [
+                "limited.",
+                "limit",
+                "ltd.",
+                "ltd",
+                "l.t.d.",
+                "l.t.d",
+                "lt.",
+                "lt"
+            ],
+            "federal company": [
+                "fed. publ. co.",
+                "fed. publ. co",
+                "fed publ co",
+                "fed. publ. co"
+            ],
+            "limited partnership": [
+                "l.p.",
+                "l.p",
+                "lp.",
+                "lp"
+            ],
+            "general partnership": [
+                "gp.",
+                "g.p.",
+                "gp"
+            ],
+            "public limited company": [
+                "public lc.",
+                "public lc",
+                "pub. lc.",
+                "pub. lc",
+                "pub lc.",
+                "pub lc",
+                "p.l.c.",
+                "p.l.c",
+                "plc.",
+                "plc"
+            ]
+        },
+        "de": {
+            "gesellschaft mit beschränkter haftung": [
+                "g.m.b.h.",
+                "g.m.b.h",
+                "gmbh.",
+                "gmbh",
+                "ges.m.b.h.",
+                "ges.m.b.h",
+                "ges m.b.h.",
+                "ges m.b.h",
+                "ges mbh.",
+                "ges mbh"
+            ],
+            "kommanditgesellschaft": [
+                "k.g.",
+                "k.g",
+                "kg.",
+                "kg"
+            ],
+            "aktiengesellschaft": [
+                "a.g.",
+                "a.g",
+                "ag.",
+                "ag"
+            ]
+        },
+        "fr": {
+            "société à responsabilité limitée": [
+                "sarl.",
+                "sarl",
+                "s.a.r.l.",
+                "s.a.r.l"
+            ],
+            "société d'investissement à capital fixe": [
+                "s.i.c.f.",
+                "s.i.c.f",
+                "sicf.",
+                "sicf"
+            ],
+            "entreprise individuelle": [
+                "ei.",
+                "e.i.",
+                "ei.",
+                "ei"
+            ],
+            "société en commandite": [
+                "s.c.",
+                "s.c",
+                "sc.",
+                "sc"
+            ],
+            "société en nom collectif": [
+                "s.n.c.",
+                "s.n.c",
+                "snc.",
+                "snc"
+            ],
+            "société anonyme": [
+                "sa.",
+                "s.a.",
+                "s.a",
+                "sa"
+            ],
+            "société en commandite par actions": [
+                "s.c.a.",
+                "s.c.a",
+                "sca.",
+                "sca"
+            ],
+            "société d'investissement à capital variable": [
+                "s.i.c.v.",
+                "s.i.c.v",
+                "sicv.",
+                "sicv"
+            ]
+        },
+        "it": {
+            "società a garanzia limitata ": [
+                "s.a.g.l.",
+                "s.a.g.l",
+                "sagl.",
+                "sagl"
+            ],
+            "società in accomandita semplice": [
+                "s.a.s.",
+                "s.a.s",
+                "sas.",
+                "sas"
+            ],
+            "società in nome collettivo": [
+                "s.n.c.",
+                "s.n.c",
+                "snc",
+                "snc."
+            ],
+            "società anonima": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa"
+            ],
+            "rappresentanti d'indivisioni": [
+                "indivisioni"
+            ],
+            "società cooperativa": [
+                "soc. coop.",
+                "soc. coop",
+                "soc coop",
+                "s.c.",
+                "s.c",
+                "sc",
+                "sc."
+            ],
+            "società in accomandita per azioni": [
+                "s.a.p.a.",
+                "s.a.p.a",
+                "sapa",
+                "sapa."
+            ]
+        }
+    }
+}
