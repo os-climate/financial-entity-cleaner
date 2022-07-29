@@ -1,0 +1,111 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-29",
+    "updated": "2022-07-29",
+    "legal_forms": {
+        "el": {
+            "naftiki eteria": [
+                "s.c.",
+                "s.c",
+                "sc.",
+                "sc"
+            ],
+            "eterórithmi etería": [
+                "e.e.",
+                "e.e",
+                "ee.",
+                "ee"
+            ],
+            "etería periorisménis euthínis": [
+                "e.p.e.",
+                "e.p.e",
+                "epe.",
+                "epe"
+            ],
+            "monoprósopi etaireía periorisménis efthínis": [
+                "m.e.p.e.",
+                "m.e.p.e",
+                "mepe.",
+                "mepe"
+            ],
+            "astiki eteria": [
+                "s.p.",
+                "s.p",
+                "sp.",
+                "sp"
+            ],
+            "nomika prosopa dimosiou dikeou": [
+                "p.l.",
+                "p.l",
+                "pl.",
+                "pl"
+            ],
+            "afanis eteria": [
+                "s.l.p.",
+                "s.l.p",
+                "slp.",
+                "slp"
+            ],
+            "kinopraxia": [
+                "j.v.",
+                "j.v",
+                "jv.",
+                "jv"
+            ],
+            "idiotiki kefaleouhiki eteria": [
+                "i.k.e.",
+                "i.k.e",
+                "ike.",
+                "ike"
+            ],
+            "somatia idrimata": [
+                "c.l.f.",
+                "c.l.f",
+                "clf.",
+                "clf"
+            ],
+            "omórithmi etería": [
+                "o.e.",
+                "o.e",
+                "oe.",
+                "oe"
+            ],
+            "omórrithmi viomichanikí emborikí etaireía": [
+                "o.v.e.e.",
+                "o.v.e.e",
+                "ovee.",
+                "ovee"
+            ],
+            "idiotiki kefalaiouchiki etaireía": [
+                "i.k.e.",
+                "i.k.e",
+                "ike.",
+                "ike"
+            ],
+            "simplioktisia": [
+                "j.s.o.",
+                "j.s.o",
+                "jso.",
+                "jso"
+            ],
+            "anónimi viomichanikí emborikí etaireía": [
+                "a.v.e.e.",
+                "a.v.e.e",
+                "avee.",
+                "avee"
+            ],
+            "anónimi etería": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa",
+                "a.e.",
+                "a.e",
+                "ae.",
+                "ae"
+            ]
+        }
+    }
+}

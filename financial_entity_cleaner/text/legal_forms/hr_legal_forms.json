@@ -1,0 +1,91 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-29",
+    "updated": "2022-07-29",
+    "legal_forms": {
+        "hr": {
+            "sociedad en comandita simple": [
+                "s. en c.",
+                "s. en c",
+                "s.en.c.",
+                "s.en.c",
+                "s. com.",
+                "s. com",
+                "s.com.",
+                "s.com",
+                "scom.",
+                "scom"
+            ],
+            "gospodarsko interesno udruženje": [
+                "g.i.u.",
+                "g.i.u",
+                "giu.",
+                "giu"
+            ],
+            "europsko gospodarsko interesno udruženje ": [
+                "e.g.i.u.",
+                "e.g.i.u",
+                "egiu.",
+                "egiu"
+            ],
+            "europska zadruga ": [
+                "s.c.e.",
+                "s.c.e",
+                "sce.",
+                "sce"
+            ],
+            "trgovac pojedinac": [
+                "t.p.",
+                "t.p",
+                "tp.",
+                "tp"
+            ],
+            "europsko društvo ": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "javno trgovačko društvo": [
+                "j.t.d.",
+                "j.t.d",
+                "jtd.",
+                "jtd"
+            ],
+            "dioničko društvo": [
+                "d.d.",
+                "d.d",
+                "dd.",
+                "dd"
+            ],
+            "komanditno društvo": [
+                "k.d.",
+                "k.d",
+                "kd.",
+                "kd"
+            ],
+            "jednostavno društvo s ograničenom odgovornošću": [
+                "j.d.o.o.",
+                "j.d.o.o",
+                "jdoo.",
+                "jdoo",
+                "j d o o"
+            ],
+            "društvo s ograničenom odgovornošću": [
+                "d.o.o.",
+                "d.o.o",
+                "doo.",
+                "doo",
+                "d o o"
+            ],
+            "obiteljsko poljoprivredno gospodarstvo": [
+                "o.p.g.",
+                "o.p.g",
+                "opg.",
+                "opg"
+            ]
+        }
+    }
+}

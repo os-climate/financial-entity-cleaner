@@ -1,0 +1,109 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-29",
+    "updated": "2022-07-29",
+    "legal_forms": {
+        "hu": {
+            "nyilvánosan működő részvénytársaság": [
+                "n.y.r.t.",
+                "n.y.r.t",
+                "nyrt.",
+                "nyrt"
+            ],
+            "zártkörűen működő részvénytársaság": [
+                "z.r.t.",
+                "z.r.t",
+                "zrt.",
+                "zrt"
+            ],
+            "részvénytársaság": [
+                "r.t.",
+                "r.t",
+                "rt.",
+                "rt"
+            ],
+            "közhasznú társaság": [
+                "k.h.t.",
+                "k.h.t",
+                "kht.",
+                "kht"
+            ],
+            "közkereseti társaság": [
+                "k.k.t.",
+                "k.k.t",
+                "kkt.",
+                "kkt"
+            ],
+            "korlátolt felelősségű társaság": [
+                "k.f.t.",
+                "k.f.t",
+                "kft.",
+                "kft"
+            ],
+            "betéti társaság": [
+                "b.t.",
+                "b.t",
+                "bt.",
+                "bt"
+            ],
+            "szövetség ": [
+                "k.b.e.",
+                "k.b.e",
+                "kbe.",
+                "kbe"
+            ],
+            "közös vállalat": [
+                "k.v.",
+                "k.v",
+                "kv.",
+                "kv"
+            ],
+            "országos betétbiztosítási alap": [
+                "o.b.a.",
+                "o.b.a",
+                "oba.",
+                "oba"
+            ],
+            "takarék és hitelszövetkezet": [
+                "t.k.s.z.",
+                "t.k.s.z",
+                "tksz.",
+                "tksz",
+                "h.s.z.",
+                "h.s.z",
+                "hsz.",
+                "hsz"
+            ],
+            "egyéni vállalkozó": [
+                "e.v.",
+                "e.v",
+                "ev.",
+                "ev"
+            ],
+            "egyéni cég": [
+                "e.c.",
+                "e.c",
+                "ec.",
+                "ec"
+            ],
+            "európai részvénytársaság": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "szövetkezet": [
+                "s.z.ö.v.",
+                "s.z.ö.v",
+                "szöv.",
+                "szöv",
+                "s.z.o.v.",
+                "s.z.o.v",
+                "szov.",
+                "szov"
+            ]
+        }
+    }
+}

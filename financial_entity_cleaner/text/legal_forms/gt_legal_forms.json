@@ -1,0 +1,51 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-29",
+    "updated": "2022-07-29",
+    "legal_forms": {
+        "es": {
+            "sociedad en comandita simple": [
+                "s. en c.",
+                "s. en c",
+                "s.en.c.",
+                "s.en.c",
+                "s. com.",
+                "s. com",
+                "s.com.",
+                "s.com",
+                "scom.",
+                "scom"
+            ],
+            "sociedad de responsabilidad limitada": [
+                "l.t.d.a.",
+                "l.t.d.a",
+                "ltda.",
+                "ltda",
+                "cía. ltda.",
+                "cía ltda",
+                "cía. ltda",
+                "cía ltda.",
+                "cia. ltda.",
+                "cia ltda",
+                "cia. ltda",
+                "cia ltda."
+            ],
+            "sociedad en comandita por acciones": [
+                "s.c.a.",
+                "s.c.a",
+                "sca.",
+                "sca"
+            ],
+            "sociedad anónima": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa",
+                "s/a",
+                "s/a."
+            ]
+        }
+    }
+}

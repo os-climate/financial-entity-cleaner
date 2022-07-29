@@ -1,0 +1,69 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-29",
+    "updated": "2022-07-29",
+    "legal_forms": {
+        "is": {
+            "samlagshlutafélag": [
+                "s.l.h.f.",
+                "s.l.h.f",
+                "slhf.",
+                "slhf"
+            ],
+            "samlagsfélag": [
+                "s.l.f.",
+                "s.l.f",
+                "slf.",
+                "slf",
+                "s.a.f.",
+                "s.a.f",
+                "saf.",
+                "saf"
+            ],
+            "opinbert hlutafélag": [
+                "o.h.f.",
+                "o.h.f",
+                "ohf.",
+                "ohf"
+            ],
+            "einkahlutafélag": [
+                "e.h.f.",
+                "e.h.f",
+                "ehf.",
+                "ehf"
+            ],
+            "sjálfseignarstofnun": [
+                "s.f.s.",
+                "s.f.s",
+                "sfs.",
+                "sfs"
+            ],
+            "evrópufélag": [
+                "s.e.",
+                "s.e",
+                "se.",
+                "se"
+            ],
+            "hlutafélag": [
+                "h.f.",
+                "h.f",
+                "hf.",
+                "hf"
+            ],
+            "sameignarfélag": [
+                "s.f.",
+                "s.f",
+                "sf.",
+                "sf"
+            ],
+            "samvinnufélag": [
+                "s.v.",
+                "s.v",
+                "sv.",
+                "sv"
+            ]
+        }
+    }
+}

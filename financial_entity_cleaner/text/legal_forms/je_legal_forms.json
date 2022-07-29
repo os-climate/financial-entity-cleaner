@@ -1,0 +1,58 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-29",
+    "updated": "2022-07-29",
+    "legal_forms": {
+        "en": {
+            "separate limited partnerships": [
+                "s.l.p.",
+                "s.l.p",
+                "slp.",
+                "slp"
+            ],
+            "public limited company": [
+                "public lc.",
+                "public lc",
+                "pub. lc.",
+                "pub. lc",
+                "pub lc.",
+                "pub lc",
+                "p.l.c.",
+                "p.l.c",
+                "plc.",
+                "plc"
+            ],
+            "limited liability partnership": [
+                "l.l.p.",
+                "l.l.p",
+                "llp.",
+                "llp"
+            ],
+            "incorporated limited partnerships": [
+                "i.l.p.",
+                "i.l.p",
+                "ilp.",
+                "ilp"
+            ],
+            "limited partnership": [
+                "l.p.",
+                "l.p",
+                "lp.",
+                "lp"
+            ],
+            "limited": [
+                "limited.",
+                "limit",
+                "lim",
+                "ltd.",
+                "ltd",
+                "l.t.d.",
+                "l.t.d",
+                "lt.",
+                "lt"
+            ]
+        }
+    }
+}

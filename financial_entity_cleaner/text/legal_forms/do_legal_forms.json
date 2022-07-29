@@ -1,0 +1,80 @@
+{
+    "reference_license": "//SPDX-License-Identifier: CC0-1.0",
+    "reference_url": "https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list",
+    "reference_version": "1.3",
+    "created": "2022-07-29",
+    "updated": "2022-07-29",
+    "legal_forms": {
+        "es": {
+            "sociedad en comandita simple": [
+                "s. en c.",
+                "s. en c",
+                "s.en.c.",
+                "s.en.c",
+                "s. com.",
+                "s. com",
+                "s.com.",
+                "s.com",
+                "scom.",
+                "scom"
+            ],
+            "sociedad anónima simplificada": [
+                "s.a.s",
+                "s.a.s.",
+                "sas.",
+                "sas",
+                "s a s"
+            ],
+            "empresa individual de responsabilidad limitada ": [
+                "e.i.r.l.",
+                "e.i.r.l",
+                "eirl.",
+                "eirl"
+            ],
+            "sociedad en nombre colectivo": [
+                "s.n.c.",
+                "s.n.c",
+                "snc.",
+                "snc",
+                "s n c"
+            ],
+            "sociedad de responsabilidad limitada": [
+                "s.r.l",
+                "s.r.l.",
+                "srl.",
+                "srl",
+                "s r l.",
+                "s r l"
+            ],
+            "sociedad en comandita por acciones": [
+                "s.com. p. a.",
+                "s.com. p.a.",
+                "s.com.p.a.",
+                "s.com p.a.",
+                "s.com p.a",
+                "s.c.p.a.",
+                "s.c.p.a",
+                "scpa.",
+                "scpa"
+            ],
+            "compañía por acciones": [
+                "c.x.a.",
+                "c.x.a",
+                "cxa.",
+                "cxa",
+                "c. por a.",
+                "c. por a",
+                "c por a.",
+                "c por a"
+            ],
+            "sociedad anónima": [
+                "s.a.",
+                "s.a",
+                "sa.",
+                "sa",
+                "s/a",
+                "s/a."
+            ]
+        }
+    }
+}
