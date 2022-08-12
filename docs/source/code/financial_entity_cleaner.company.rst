@@ -1,4 +1,4 @@
-Company Name's Cleaner
+Name's Cleaner
 ==================================
 
 **Package path:** financial\_entity\_cleaner.text

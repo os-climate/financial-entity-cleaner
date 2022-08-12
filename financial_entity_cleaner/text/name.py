@@ -121,6 +121,9 @@ class CompanyNameCleaner:
         # unicode characters, while portuguese and french companies may not.
         self._remove_unicode = False
 
+        # Define if the letters with accents are replaced with non-accented ones
+        self._remove_accents = False
+
     # Setters and Getters for the properties, so to allow user to setup the library according to his/her needs.
     @property
     def mode(self):
@@ -153,6 +156,14 @@ class CompanyNameCleaner:
     @remove_unicode.setter
     def remove_unicode(self, new_value):
         self._remove_unicode = new_value
+
+    @property
+    def remove_accents(self):
+        return self._remove_accents
+
+    @remove_accents.setter
+    def remove_accents(self, new_value):
+        self._remove_accents = new_value
 
     @property
     def default_cleaning_rules(self):

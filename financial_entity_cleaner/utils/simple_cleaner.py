@@ -6,6 +6,7 @@ customized regex rules defined in a python dictionary.
 
 # Import python libs
 import re
+import unicode
 
 
 def perform_basic_cleaning(value):
@@ -77,6 +78,10 @@ def remove_all_spaces(value):
     # Remove excessive spaces in between words
     clean_value = re.sub(r"\s", "", value)
     return clean_value
+
+
+def remove_accents(value):
+    pass
 
 
 def apply_regex_rules(str_value, dict_regex_rules):

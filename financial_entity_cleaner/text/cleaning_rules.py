@@ -6,6 +6,7 @@ cleaning_rules_dict = {
     "remove_www_address": [" ", "https?://[.\w]{3,}|www.[.\w]{3,}"],
     "enforce_single_space_between_words": [" ", "\s+"],
     "replace_amperstand_by_AND": [" and ", "&"],
+    "add_space_between_amperstand": [" & ", "&"],
     "replace_amperstand_between_space_by_AND": [" and ", "\s+&\s+"],
     "replace_hyphen_by_space": [" ", "-"],
     "replace_hyphen_between_spaces_by_single_space": [" ", "\s+-\s+"],
@@ -24,6 +25,8 @@ cleaning_rules_dict = {
     "remove_brackets": ["", "\[|\]"],
     "remove_curly_brackets": ["", "\{|\}"],
     "remove_single_quote_next_character": [" ", "'\w+"],
+    "remove_single_quote": [" ", "'"],
+    "remove_double_quote": [" ", "\""],
     "remove_words_in_parentheses": [" ", "\([^()]*\)"],
     "repeat_remove_words_in_parentheses": [" ", "remove_words_in_parentheses"]
 }

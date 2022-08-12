@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "financial-entity-cleaner"
 version = "0.2.0"
-description = "Normalization of data for entity matching"
+description = "Data normalization and cleaning for entity matching"
 authors = ["Os-Climate Foundation <test_os-climate@gmail.com>"]
 license = "Apache 2"
 readme = "README.md"
 homepage = "https://github.com/os-climate/financial-entity-cleaner"
-keywords = ["cleaner", "validator", "data normalizer"]
+keywords = ["cleaner", "validator", "normalizer"]
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -15,9 +15,9 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: MacOS",
     "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.6.2",
     "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9"
+    "Programming Language :: Python :: 3.10"
 ]
 
 include = [
@@ -45,6 +45,7 @@ python = ">=3.6.2,<3.11"
 numpy = ">=1.16.0"
 hdx-python-utilities = "3.0.7"
 hdx-python-country = "3.0.7"
+libhxl="4.25"
 python-stdnum = "1.17"
 pandas = ">=1.1.5"
 tqdm=">=4.62.2"
