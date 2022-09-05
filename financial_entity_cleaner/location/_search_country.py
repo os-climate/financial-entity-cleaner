@@ -1,5 +1,8 @@
 from hdx.location.country import Country
 
+import numpy as np
+import pandas as pd
+
 
 def get_name_from_alpha2(country, lookup_dict_from_web=False):
     """
@@ -117,12 +120,76 @@ def get_alpha2_from_alpha3(country, lookup_dict_from_web=False):
         No exception is raised.
     """
 
-    alpha_code = Country.get_country_info_from_iso3(country, use_live=lookup_dict_from_web)
+    info_country = Country.get_country_info_from_iso3(country, use_live=lookup_dict_from_web)
 
     # The api returns a dictionary if the country is found
-    if not alpha_code:
+    if not info_country:
         return None
 
     # The key '#country+code+v_iso2' is used to get the alpha2 code
-    alpha_code = alpha_code["#country+code+v_iso2"]
+    alpha_code = info_country["#country+code+v_iso2"]
     return alpha_code
+
+
+def get_code_from_alpha3(country, lookup_dict_from_web=False):
+    """
+    Gets the code country given its alpha3 code.
+
+    Parameters:
+        country (str): the alpha3 code of a country
+        lookup_dict_from_web (bool): indicates if the country lib looks up for the updated dictionary
+            of countries available in the web
+    Returns:
+        country_id (str): the code of the country or None
+    Raises:
+        No exception is raised.
+    """
+
+    info_country = Country.get_country_info_from_iso3(country, use_live=lookup_dict_from_web)
+
+    # The api returns a dictionary if the country is found
+    if not info_country:
+        return None
+
+    # The key '#country+code+num+v_m49' is used to get the country code
+    code_country = info_country["#country+code+num+v_m49"]
+    return code_country
+
+
+def search_country_info(value):
+    # Default Null country info
+    code_id = np.nan
+    country_name = np.nan
+    alpha2_code = np.nan
+    alpha3_code = np.nan
+
+    # Call the correspondent search method, depending on the lenght of the country parameter
+    if len(value) == 2:
+        # Search by alpha2 code
+        country_info = get_name_from_alpha2(value)
+        if country_info:
+            country_name = country_info
+            alpha2_code = value
+            alpha3_code = get_alpha3_from_name(country_name)
+    elif len(value) == 3:
+        # Search by alpha3 code
+        country_info = get_name_from_alpha3(value)
+        if country_info:
+            country_name = country_info
+            alpha3_code = value
+            alpha2_code = get_alpha2_from_alpha3(alpha3_code)
+    else:
+        # Search by name
+        country_info = get_alpha3_from_name(value)
+        if country_info:
+            alpha3_code = country_info
+            country_name = get_name_from_alpha3(alpha3_code)
+            alpha2_code = get_alpha2_from_alpha3(alpha3_code)
+
+    # If the alpha3 code was retriedve, get the country id
+    if not pd.isna(alpha3_code):
+        country_info = get_code_from_alpha3(alpha3_code)
+        if country_info:
+            code_id = country_info
+
+    return code_id, country_name, alpha2_code, alpha3_code

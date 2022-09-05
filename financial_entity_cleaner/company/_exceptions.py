@@ -48,9 +48,9 @@ class LanguageNotSupported(FinancialCleanerError):
 
 
 class CountryNotSupported(FinancialCleanerError):
-    """The country informed is not currently supported."""
+    """The location informed is not currently supported."""
 
-    message = "The country informed is not currently supported."
+    message = "The location informed is not currently supported."
 
 
 class CleaningRuleNotFoundInTheDictionary(FinancialCleanerError):

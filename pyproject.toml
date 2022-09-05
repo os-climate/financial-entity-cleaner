@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "financial-entity-cleaner"
-version = "0.2.0"
+version = "1.0.0"
 description = "Data normalization and cleaning for entity matching"
 authors = ["Os-Climate Foundation <test_os-climate@gmail.com>"]
 license = "Apache 2"
@@ -15,9 +15,7 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: MacOS",
     "Operating System :: POSIX :: Linux",
-    "Programming Language :: Python :: 3.6.2",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.10"
+    "Programming Language :: Python :: 3.9"
 ]
 
 include = [
@@ -41,16 +39,17 @@ exclude = '''
 test = 'scripts:test'
 
 [tool.poetry.dependencies]
-python = ">=3.6.2,<3.11"
-numpy = ">=1.16.0"
-hdx-python-utilities = "3.0.7"
-hdx-python-country = "3.0.7"
-libhxl="4.25"
+python = ">=3.9"
+pandas = "1.4.3"
 python-stdnum = "1.17"
-pandas = ">=1.1.5"
-tqdm=">=4.62.2"
+hdx-python-country = "3.3.6"
+geopy = "2.2.0"
+tqdm = "4.64.0"
 
 [tool.poetry.dev-dependencies]
+sphinx = "5.1.1"
+sphinx_rtd_theme = "1.0.0"
+sphinx-licenseinfo = "0.3.1"
 pytest = "^6.2.5"
 black = "^21.8b0"
 pre-commit = "^2.15.0"

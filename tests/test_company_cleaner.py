@@ -1,6 +1,6 @@
 from unittest import TestCase, TestSuite, TextTestRunner
 
-from financial_entity_cleaner.text import name
+from financial_entity_cleaner.company import company
 from tests import test_data_reader
 
 # Test data from csv excel files
@@ -37,7 +37,7 @@ class TestCompanyCleaner(TestCase):
         total_rows = len(test_company_rows)
         print("Total cases to tests {}".format(total_rows))
         print("{:<30} - {:<30} - {:<30}".format("INPUT", "EXPECTED", "OUTPUT"))
-        company_cleaner = name.CompanyNameCleaner()
+        company_cleaner = company.CompanyNameCleaner()
         company_cleaner.mode = company_cleaner.mode.SILENT_MODE
 
         for data in test_company_rows:

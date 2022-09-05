@@ -7,3 +7,5 @@ validation of banking id's, such as:
 - Stock Exchange Daily Official List (SEDOL).
 
 """
+
+from .banking import BankingIdCleaner

@@ -14,8 +14,9 @@ cleaning_rules_dict = {
     "replace_underscore_between_spaces_by_single_space": [" ", "\s+_\s+"],
     "remove_all_punctuation": [" ", "([^\w\s])"],
     "remove_punctuation_except_dot": [" ", "([^\w\s.])"],
-    "remove_mentions": [" ", "@\S+"],
-    "remove_hashtags": [" ", "#\S+"],
+    "remove_mentions": [" ", "@+"],
+    "remove_hashtags": [" ", "#+"],
+    "remove_asterisk": [" ", "\*+"],
     "remove_numbers": [" ", "\w*\d+\w*"],
     "remove_text_puctuation": [" ", "\;|\:|\,|\.|\?|\!|\""],
     "remove_text_puctuation_except_dot": [" ", "\;|\:|\,|\?|\!|\""],
@@ -27,19 +28,24 @@ cleaning_rules_dict = {
     "remove_single_quote_next_character": [" ", "'\w+"],
     "remove_single_quote": [" ", "'"],
     "remove_double_quote": [" ", "\""],
-    "remove_words_in_parentheses": [" ", "\([^()]*\)"],
+    "remove_words_in_parentheses": [" ", "\([^()]*\)*"],
+    "remove_words_in_asterisk": [" ", "\*[^()]*\*"],
+    "remove_question_marks_in_parentheses": [" ", "\([?*^()]*\)"],
     "repeat_remove_words_in_parentheses": [" ", "remove_words_in_parentheses"]
 }
 
 default_company_cleaning_rules = [
-    "replace_amperstand_between_space_by_AND",
-    "replace_hyphen_between_spaces_by_single_space",
-    "replace_underscore_between_spaces_by_single_space",
+    "place_word_the_at_the_beginning",
+    "remove_words_in_asterisk",
+    "remove_question_marks_in_parentheses",
+    "replace_hyphen_by_space",
+    "replace_underscore_by_space",
     "remove_text_puctuation_except_dot",
     "remove_math_symbols",
-    "remove_words_in_parentheses",
     "remove_parentheses",
     "remove_brackets",
     "remove_curly_brackets",
+    "remove_single_quote_next_character",
+    "remove_double_quote",
     "enforce_single_space_between_words"
 ]

@@ -9,13 +9,12 @@ import enum
 import numpy as np
 
 # Import internal libraries
-from financial_entity_cleaner.utils import lib
-from financial_entity_cleaner.utils import simple_cleaner
+from financial_entity_cleaner.utils.utility import load_json_file
+from financial_entity_cleaner.utils import BaseCleaner
+from financial_entity_cleaner.text import SimpleCleaner
 
 from financial_entity_cleaner.text import cleaning_rules
-from financial_entity_cleaner.text import (
-    exceptions as custom_exception,
-)
+from financial_entity_cleaner.company import _exceptions as custom_exception
 
 
 class LegalTermLocation(enum.Enum):
@@ -23,7 +22,7 @@ class LegalTermLocation(enum.Enum):
     ANYWHERE = 2
 
 
-class CompanyNameCleaner:
+class CompanyNameCleaner(BaseCleaner):
     """
     Class to normalize/clean up text´s names.
 
@@ -40,13 +39,11 @@ class CompanyNameCleaner:
                     correspondent class property.
         _normalize_legal_terms (bool): a flag to indicate if the cleaning process must normalize
         text's legal terms. e.g. LTD => LIMITED.
-        _current_dict_legal_terms (dict): a subset of the legal terms dictionary filtered by language and country.
+        _current_dict_legal_terms (dict): a subset of the legal terms dictionary filtered by language and location.
                     This will be the legal term dictionary to be applied during cleaning. The user can call the
-                    set_current_legal_term_dict() method to change the dictionary to another language/country.
+                    set_current_legal_term_dict() method to change the dictionary to another language/location.
         _lang_legal_terms (str): the language of the legal term dictionary.
-        _country_legal_terms (str): the alpha2 code country of the legal term dictionary.
-        _output_lettercase (str): indicates the letter case (lower, by default) as the result of the cleaning
-                    Other options are: 'upper' and 'title'.
+        _country_legal_terms (str): the alpha2 code location of the legal term dictionary.
         _remove_unicode (bool): indicates if the unicode character should be removed or not, which may depend
                     on the language of the text's name.
     """
@@ -75,15 +72,19 @@ class CompanyNameCleaner:
             No exception is raised.
         """
 
+        super().__init__()
+
         # The mode property defines if exceptions must be thrown in case of errors
         # EXCEPTION_MODE is useful when debugging or building new applications
         # SILENT_MODE is prefered in production environments
-        self._mode = lib.ModeOfUse.SILENT_MODE
+        self._mode = self.SILENT_MODE
 
         # The dictionary of cleaning rules define which regex functions to apply to the data
         # A default set of regex rules is defined, but it can be changed by the user.
         self._dict_cleaning_rules = cleaning_rules.cleaning_rules_dict
         self._default_cleaning_rules = cleaning_rules.default_company_cleaning_rules
+
+        self._simple_cleaner = SimpleCleaner()
 
         # The dictionary of legal terms define how to normalize the text's legal form abreviations
         # By default, the library is set to normalize the legal terms and to use the us/english dictionary.
@@ -94,12 +95,12 @@ class CompanyNameCleaner:
         )
         self._current_dict_legal_terms = (
             {}
-        )  # the dictionary to be applied filtered by language/country
+        )  # the dictionary to be applied filtered by language/location
         self._default_dict_legal_terms = (
             {}
         )  # the default dictionary of legal terms is the us/english
 
-        # Retrieve the list of current dictionaries available by country and language
+        # Retrieve the list of current dictionaries available by location and language
         self._legal_terms_available = {}
         self.__load_available_legal_terms_dict()
 
@@ -113,7 +114,7 @@ class CompanyNameCleaner:
         self._legal_term_location = LegalTermLocation.AT_THE_END
 
         # Define the letter case of the cleaning output
-        self._output_lettercase = lib.LOWER_LETTER_CASE
+        self._letter_case = self.LOWER_LETTER_CASE
 
         # Define if unicode characters should be removed from text's name
         # This cleaning rule is treated separated from the regex rules because it depends on the
@@ -126,28 +127,12 @@ class CompanyNameCleaner:
 
     # Setters and Getters for the properties, so to allow user to setup the library according to his/her needs.
     @property
-    def mode(self):
-        return self._mode
-
-    @mode.setter
-    def mode(self, new_mode):
-        self._mode = new_mode
-
-    @property
     def normalize_legal_terms(self):
         return self._normalize_legal_terms
 
     @normalize_legal_terms.setter
     def normalize_legal_terms(self, new_value):
         self._normalize_legal_terms = new_value
-
-    @property
-    def output_lettercase(self):
-        return self._output_lettercase
-
-    @output_lettercase.setter
-    def output_lettercase(self, new_value):
-        self._output_lettercase = new_value
 
     @property
     def remove_unicode(self):
@@ -180,7 +165,7 @@ class CompanyNameCleaner:
     def __load_available_legal_terms_dict(self):
         """
         This method loads a dictionary that describes the legal terms available in the library
-        by country and language.
+        by location and language.
 
         Parameters:
             No parameters are needed.
@@ -200,7 +185,7 @@ class CompanyNameCleaner:
             raise custom_exception.ListOfLegalTermsAvailableDoesNotExist
 
         # Load the legal term dictionary
-        dict_json = lib.load_json_file(path_file_available_legal_terms)
+        dict_json = load_json_file(path_file_available_legal_terms)
         self._legal_terms_available = dict_json[self.__NAME_JSON_ENTRY_LEGAL_TERMS]
 
     def __load_legal_terms_dict(self, country):
@@ -226,13 +211,13 @@ class CompanyNameCleaner:
             raise custom_exception.LegalTermsDictionaryDoesNotExist
 
         # Load the legal term dictionary
-        dict_json = lib.load_json_file(path_file_legal_terms)
+        dict_json = load_json_file(path_file_legal_terms)
 
         # Check if there is a json key for the legal terms and load the entire dictionary
         if self.__NAME_JSON_ENTRY_LEGAL_TERMS not in dict_json:
             raise custom_exception.LegalTermsDictionaryNotFound
 
-        # Get the dictionary of legal terms of the specified country
+        # Get the dictionary of legal terms of the specified location
         dict_by_country = dict_json[self.__NAME_JSON_ENTRY_LEGAL_TERMS]
 
         return dict_by_country
@@ -257,12 +242,12 @@ class CompanyNameCleaner:
 
     def get_info_current_legal_term_dict(self):
         """
-        This method returns the current language and country of the legal term dictionary in use.
+        This method returns the current language and location of the legal term dictionary in use.
 
         Parameters:
             No parameters.
         Returns:
-            (list) with the language and country of the current legal term dictionary.
+            (list) with the language and location of the current legal term dictionary.
         Raises:
             No exception raised.
         """
@@ -270,12 +255,12 @@ class CompanyNameCleaner:
 
     def get_info_default_legal_term_dict(self):
         """
-        This method returns the default language and country of the legal term dictionary in use.
+        This method returns the default language and location of the legal term dictionary in use.
 
         Parameters:
             No parameters.
         Returns:
-            (list) with the language and country of the default legal term dictionary.
+            (list) with the language and location of the default legal term dictionary.
         Raises:
             No exception raised.
         """
@@ -288,7 +273,7 @@ class CompanyNameCleaner:
         Parameters:
             No parameters.
         Returns:
-            (dict) with the country/languages of the legal term dictionaries available in the library.
+            (dict) with the location/languages of the legal term dictionaries available in the library.
         Raises:
             No exception raised.
         """
@@ -315,22 +300,22 @@ class CompanyNameCleaner:
     ):
         """
         This method loads/change the current dictionary to be used during cleaning.
-        The current dictionary is based on the country and language informed as parameter.
+        The current dictionary is based on the location and language informed as parameter.
 
         Parameters:
-            country(str): the country of the legal term dictionary (currently using alpha2 code country)
+            country(str): the location of the legal term dictionary (currently using alpha2 code location)
             language(str): the language of the legal term dictionary
             merge_legal_terms(bool): the user sets a new dictionary of legal terms by
-                specifying the country and language, and additionaly can merge this new dictionary with the one
+                specifying the location and language, and additionaly can merge this new dictionary with the one
                 defined as default (by standard, the default is us-english)
         Returns:
             No return objects. The dictionary is made available in the class property.
         Raises:
-            CountryNotSupported: if the country is not supported by the library
+            CountryNotSupported: if the location is not supported by the library
             LanguageNotSupported: if the language is not supported by the library
         """
 
-        # Check if the library supports the legal terms for the specified country
+        # Check if the library supports the legal terms for the specified location
         if country not in self._legal_terms_available.keys():
             raise custom_exception.CountryNotSupported
 
@@ -359,20 +344,9 @@ class CompanyNameCleaner:
                 if key not in self._current_dict_legal_terms.keys():
                     self._current_dict_legal_terms[key] = list_legal_terms
 
-        # Update the language and country
+        # Update the language and location
         self._lang_legal_terms = language
         self._country_legal_terms = country
-
-    def _apply_cleaning_rules(self, company_name):
-        # APPLY THE CLEANING RULES FIRST
-        # Get the custom dictionary of regex rules to be applied in the cleaning
-        cleaning_dict = {}
-        for rule_name in self._default_cleaning_rules:
-            cleaning_dict[rule_name] = self._dict_cleaning_rules[rule_name]
-
-        # Apply all the cleaning rules
-        clean_company_name = simple_cleaner.apply_regex_rules(company_name, cleaning_dict)
-        return clean_company_name
 
     def _apply_normalization_of_legal_terms(self, company_name):
         # Make sure to remove extra spaces, so legal terms can be found in the end (if requested)
@@ -404,7 +378,7 @@ class CompanyNameCleaner:
                 )
         return clean_company_name
 
-    def get_clean_data(self, company_name):
+    def clean(self, company_name):
         """
         This method cleans up a text's name.
 
@@ -417,14 +391,14 @@ class CompanyNameCleaner:
         """
 
         if not isinstance(company_name, str):
-            if self._mode == lib.ModeOfUse.EXCEPTION_MODE:
+            if self._mode == self.EXCEPTION_MODE:
                 raise custom_exception.CompanyNameIsNotAString
             else:
                 return np.nan
 
         # Remove all unicode characters in the text's name, if requested
         if self._remove_unicode:
-            clean_company_name = simple_cleaner.remove_unicode(company_name)
+            clean_company_name = self._simple_cleaner.remove_unicode(company_name)
         else:
             clean_company_name = company_name
 
@@ -432,25 +406,28 @@ class CompanyNameCleaner:
         clean_company_name = clean_company_name.strip().lower()
 
         # Apply all the cleaning rules
-        clean_company_name = self._apply_cleaning_rules(clean_company_name)
+        clean_company_name = self._simple_cleaner.apply_cleaning_rules(clean_company_name,
+                                                                       self._default_cleaning_rules)
 
         # Apply normalization for legal terms
         if self.normalize_legal_terms:
             clean_company_name = self._apply_normalization_of_legal_terms(clean_company_name)
 
+        if self._remove_accents:
+            clean_company_name = self._simple_cleaner.remove_accents(clean_company_name)
+
         # Apply the letter case, if different from 'lower'
-        if self._output_lettercase == "upper":
+        if self._letter_case == self.UPPER_LETTER_CASE:
             clean_company_name = clean_company_name.upper()
-        elif self._output_lettercase == "title":
+        elif self._letter_case == self.TITLE_LETTER_CASE:
             clean_company_name = clean_company_name.title()
 
         # Remove excess of white space that might be introduced during previous cleaning
-        clean_company_name = clean_company_name.strip()
-        clean_company_name = re.sub(r"\s+", " ", clean_company_name)
+        clean_company_name = self._simple_cleaner.remove_extra_spaces(clean_company_name)
 
         return clean_company_name
 
-    def get_clean_df(
+    def clean_df(
             self,
             df,
             in_company_name_attribute,
@@ -460,14 +437,14 @@ class CompanyNameCleaner:
     ):
         """
         This method cleans up all text's names in a dataframe by selecting the correspondent dictionary of
-        legal terms according to a country attribute in that dataframe.
+        legal terms according to a location attribute in that dataframe.
 
         Parameters:
             df (dataframe): the input dataframe that contains the text's name to be cleaned
             in_company_name_attribute (str): the attribute in the dataframe for text's name
             out_company_name_attribute (str): the attribute to be created for the clean version of the text's name
-            in_country_attribute (str): the attribute in the dataframe that indicates the country, which will serve as a
-                filter to select the appropriated legal terms dictionary.
+            in_country_attribute (str): the attribute in the dataframe that indicates the location, which will serve as
+                a filter to select the appropriated legal terms dictionary.
             merge_legal_terms(bool): this flag indicates if the default dictionary
                 of legal terms should be merged to the new dictionary by coutry,
                 defined as default (by standard, the default is us-english)
@@ -485,7 +462,7 @@ class CompanyNameCleaner:
         # Keep the current legal term dictionary in order to restore it after finishing
         initial_dict_legal_terms = self._current_dict_legal_terms
 
-        # Check if the country attribute exists in the dataframe
+        # Check if the location attribute exists in the dataframe
         if in_country_attribute != "" and in_country_attribute not in df.columns:
             raise custom_exception.CountryNotFoundInDataFrame
 
@@ -494,36 +471,36 @@ class CompanyNameCleaner:
 
         # Creates the new output attribute that will have the clean version of the text's name
         new_df[out_company_name_attribute] = np.nan
-        # If the country attribute is provided, iterate over all the countries available in the dataframe
+        # If the location attribute is provided, iterate over all the countries available in the dataframe
         # as to select the related legal term dictionary
         if in_country_attribute != "":
             # Get all the countries available in the dataframe
             countries_in_df = list(new_df[in_country_attribute].unique())
             for country in countries_in_df:
-                # By default, if the legal term dictionary for that country is not available,  the library
+                # By default, if the legal term dictionary for that location is not available,  the library
                 # uses the default dictionary (initially set up as to be us-english)
                 if country not in self._legal_terms_available.keys():
                     self._current_dict_legal_terms = self._default_dict_legal_terms
                 else:
                     self.set_current_legal_term_dict(country, "", merge_legal_terms)
-                # Filter the dataframe for that country and apply the cleaning
+                # Filter the dataframe for that location and apply the cleaning
                 if str(country) == 'nan':
-                    # Case in which the country is null
+                    # Case in which the location is null
                     mask = new_df[in_country_attribute].isnull()
                 else:
-                    # Case in which the country was provided
+                    # Case in which the location was provided
                     mask = new_df[in_country_attribute] == country
                 new_df.loc[mask, out_company_name_attribute] = new_df[mask].apply(
-                    lambda row: self.get_clean_data(row[in_company_name_attribute]),
+                    lambda row: self.clean(row[in_company_name_attribute]),
                     axis=1,
                 )
-        # If the country is not informed, the library performs the cleaning by using the current legal term
+        # If the location is not informed, the library performs the cleaning by using the current legal term
         # dictionary in all entries of the dataframe
         else:
             # new_df.loc[:, out_company_name_attribute] = new_df.apply(
             #    lambda row: self.get_clean_data(row[in_company_name_attribute]), axis=1
             # )
-            new_df.loc[:, [out_company_name_attribute]] = [self.get_clean_data(name) for name
+            new_df.loc[:, [out_company_name_attribute]] = [self.clean(name) for name
                                                            in new_df[in_company_name_attribute]]
 
         # Return the current dictionary as the one setup before the function call

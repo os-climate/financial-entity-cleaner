@@ -3,15 +3,15 @@ import os
 import pandas as pd
 import traceback
 
-from financial_entity_cleaner.utils import lib
-from financial_entity_cleaner.text import name
-from financial_entity_cleaner.country import iso3166
+from financial_entity_cleaner.utils import base_cleaner
+from financial_entity_cleaner.company import company
+from financial_entity_cleaner.location import country
 from financial_entity_cleaner.id import banking
 
 
 class AutoCleaner:
     """
-    Class that cleans up csv files by applying cleaning by name, country and id as specified by a json setup file.
+    Class that cleans up csv files by applying cleaning by name, location and id as specified by a json setup file.
 
     Attributes:
 
@@ -25,7 +25,7 @@ class AutoCleaner:
     __SETUP_KEY_FILE_PROCESSING = "file_processing"
     __SETUP_KEY_ATTRIBUTE_PROCESSING = "attribute_processing"
     __SETUP_KEY_COMPANY_CLEANER = "text"
-    __SETUP_KEY_COUNTRY_CLEANER = "country"
+    __SETUP_KEY_COUNTRY_CLEANER = "location"
     __SETUP_KEY_IDS_CLEANER = "id"
 
     def __init__(self):
@@ -39,7 +39,7 @@ class AutoCleaner:
         Raises:
             No exception is raised.
         """
-        # Internal dictionaries to store required settings for the cleaners by text's name, country and id
+        # Internal dictionaries to store required settings for the cleaners by text's name, location and id
         self._setup_dict_company_cleaner = None
         self._setup_dict_country_cleaner = None
         self._setup_dict_ids_cleaner = None
@@ -67,7 +67,7 @@ class AutoCleaner:
         print("Reading cleaning settings from " + setup_cleaning_filename, file=sys.stdout)
 
         # Read the json file that contains the parameters for automatic cleaning
-        dict_json = lib.load_json_file(setup_cleaning_filename)
+        dict_json = base_cleaner.load_json_file(setup_cleaning_filename)
 
         # Check if there is a json key to setup the file processing
         if self.__SETUP_KEY_FILE_PROCESSING in dict_json.keys():
@@ -87,7 +87,7 @@ class AutoCleaner:
                 self.__SETUP_KEY_COMPANY_CLEANER
             ]
 
-        # Check if there is a json key to setup the cleaning by country
+        # Check if there is a json key to setup the cleaning by location
         if self.__SETUP_KEY_COUNTRY_CLEANER in dict_json.keys():
             self._setup_dict_country_cleaner = dict_json[
                 self.__SETUP_KEY_COUNTRY_CLEANER
@@ -99,25 +99,25 @@ class AutoCleaner:
 
     def __execute_cleaning_by_country(self, df):
         """
-        Applies the automatic cleaning for country information
+        Applies the automatic cleaning for location information
 
         Parameters:
-            df (pandas dataframe): dataframe to be cleaned that contains country attributes to be cleaned
+            df (pandas dataframe): dataframe to be cleaned that contains location attributes to be cleaned
         Returns:
-            (pandas dataframe) a new dataframe with cleaned country information
+            (pandas dataframe) a new dataframe with cleaned location information
         Raises:
             No exception is raised.
         """
         # Print info
-        print("Executing automatic cleaning by country", file=sys.stdout)
+        print("Executing automatic cleaning by location", file=sys.stdout)
 
-        country_cleaner_obj = iso3166.CountryCleaner()
+        country_cleaner_obj = country.CountryCleaner()
         country_cleaner_obj.lettercase_output = self._setup_dict_country_cleaner[
             "output_letter_case"
         ]
         country_attributes = self._setup_dict_country_cleaner["input_countries"]
         for country_attribute in country_attributes:
-            # For each country, setup the output name, alpha2 and alpha3 to store the cleaned values
+            # For each location, setup the output name, alpha2 and alpha3 to store the cleaned values
             output_name = (
                 country_attribute
                 + "_"
@@ -191,7 +191,7 @@ class AutoCleaner:
         # Print info
         print("Executing automatic cleaning by text name", file=sys.stdout)
 
-        company_cleaner_obj = name.CompanyNameCleaner()
+        company_cleaner_obj = company.CompanyNameCleaner()
         company_cleaner_obj.normalize_legal_terms = eval(
             self._setup_dict_company_cleaner["normalize_legal_terms"]
         )
@@ -222,7 +222,7 @@ class AutoCleaner:
         output_name = self._setup_dict_company_cleaner["output_company_name"]
         merge_legal_terms = eval(self._setup_dict_company_cleaner["merge_legal_terms"])
 
-        # Creates a temporary country attribute in lower case to match the country used in the dictionaries
+        # Creates a temporary location attribute in lower case to match the location used in the dictionaries
         if input_country != "":
             temp_input_country = input_country + "__temp"
             df[temp_input_country] = df[input_country].str.lower()
@@ -238,7 +238,7 @@ class AutoCleaner:
 
     def __execute_auto_cleaning(self, df):
         """
-        Execute the automatic cleaning for country, ids and text's name
+        Execute the automatic cleaning for location, ids and text's name
 
         Parameters:
             df (pandas dataframe): dataframe to be cleaned
@@ -263,7 +263,7 @@ class AutoCleaner:
             # Rename the columns
             df.columns = new_attribute_names
 
-        # If the settings for cleaning countries were provided, then perform the cleaning by country
+        # If the settings for cleaning countries were provided, then perform the cleaning by location
         if self._setup_dict_country_cleaner:
             df = self.__execute_cleaning_by_country(df)
 
