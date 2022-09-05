@@ -1,25 +1,25 @@
-Country's Cleaner
+Cleaner for Location
 ==================================
 
-**Package path: financial\_entity\_cleaner.country**
+**Package path: financial\_entity\_cleaner.location**
 
-.. automodule:: financial_entity_cleaner.country
+.. automodule:: financial_entity_cleaner.location
 
 .. toctree::
     :maxdepth: 2
 
-country.iso3166
+location.country
 ---------------------------------------------------
 
-.. automodule:: financial_entity_cleaner.country.iso3166
+.. automodule:: financial_entity_cleaner.location.country
    :members:
    :undoc-members:
    :show-inheritance:
 
-country.exceptions
+location.exceptions
 ---------------------------------------------------
 
-.. automodule:: financial_entity_cleaner.country.exceptions
+.. automodule:: financial_entity_cleaner.location.exceptions
    :members:
    :undoc-members:
    :show-inheritance:

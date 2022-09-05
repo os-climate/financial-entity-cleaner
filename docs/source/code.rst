@@ -12,7 +12,7 @@ The links below contains technical information on how to use the Financial-Entit
    :maxdepth: 2
 
    code/financial_entity_cleaner.company
-   code/financial_entity_cleaner.country
+   code/financial_entity_cleaner.location
    code/financial_entity_cleaner.id
    code/financial_entity_cleaner.utils
    code/financial_entity_cleaner.auto_cleaner
