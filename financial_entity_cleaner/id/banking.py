@@ -1,6 +1,15 @@
 """ The **id.banking** module contains the implementation of the **BankingIdCleaner()** class which validates
 official identifiers used in the banking industry. The current version of the library supports the validation of
 LEI, ISIN and SEDOL identifiers.
+
+To make use of the **BankingIdCleaner()** class you don't need to explicitly reference the id.banking module.
+Just, import the class directly from the **id** package as shown below:
+
+.. code-block:: python
+
+            from financial_entity_cleaner.id import BankingIdCleaner
+            id_cleaner = BankingIdCleaner()
+
 """
 
 from typing import Union, Tuple, List, Dict
