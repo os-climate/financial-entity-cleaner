@@ -131,16 +131,16 @@ def get_alpha2_from_alpha3(country, lookup_dict_from_web=False):
     return alpha_code
 
 
-def get_code_from_alpha3(country, lookup_dict_from_web=False):
+def get_info_from_alpha3(country, lookup_dict_from_web=False):
     """
-    Gets the code country given its alpha3 code.
+    Gets complete country info given its alpha3 code.
 
     Parameters:
         country (str): the alpha3 code of a country
         lookup_dict_from_web (bool): indicates if the country lib looks up for the updated dictionary
             of countries available in the web
     Returns:
-        country_id (str): the code of the country or None
+        country_id (dict): the country info as a dictionary
     Raises:
         No exception is raised.
     """
@@ -151,9 +151,7 @@ def get_code_from_alpha3(country, lookup_dict_from_web=False):
     if not info_country:
         return None
 
-    # The key '#country+code+num+v_m49' is used to get the country code
-    code_country = info_country["#country+code+num+v_m49"]
-    return code_country
+    return info_country
 
 
 def search_country_info(value):
@@ -186,10 +184,22 @@ def search_country_info(value):
             country_name = get_name_from_alpha3(alpha3_code)
             alpha2_code = get_alpha2_from_alpha3(alpha3_code)
 
+    country_info = {"country_name": country_name,
+                    "alpha2_code": alpha2_code,
+                    "alpha3_code": alpha3_code
+                    }
     # If the alpha3 code was retriedve, get the country id
     if not pd.isna(alpha3_code):
-        country_info = get_code_from_alpha3(alpha3_code)
-        if country_info:
-            code_id = country_info
+        info_from_alpha3 = get_info_from_alpha3(alpha3_code)
+        if info_from_alpha3:
+            country_info["short_name"] = info_from_alpha3["#country+alt+i_en+name+v_unterm"]
+            country_info["code_id"] = info_from_alpha3["#country+code+num+v_m49"]
+            country_info["region_name"] = info_from_alpha3["#region+main+name+preferred"]
+            country_info["region_code"] = info_from_alpha3["#region+code+main"]
+            country_info["subregion_name"] = info_from_alpha3["#region+name+preferred+sub"]
+            country_info["subregion_code"] = info_from_alpha3["#region+code+sub"]
+            country_info["geo_latitude"] = info_from_alpha3["#geo+lat"]
+            country_info["geo_longitude"] = info_from_alpha3["#geo+lon"]
+            country_info["currency_code"] = info_from_alpha3["#currency+code"]
 
-    return code_id, country_name, alpha2_code, alpha3_code
+    return country_info

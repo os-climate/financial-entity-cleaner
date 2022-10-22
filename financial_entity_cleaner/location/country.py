@@ -42,7 +42,19 @@ class CountryCleaner(BaseCleaner):
     ATTRIBUTE_NAME = "name"
     ATTRIBUTE_ALPHA2 = "alpha2"
     ATTRIBUTE_ALPHA3 = "alpha3"
-    __ALL_ATTRIBUTES = [ATTRIBUTE_CODE, ATTRIBUTE_NAME, ATTRIBUTE_ALPHA2, ATTRIBUTE_ALPHA3]
+    ATTRIBUTE_SHORT_NAME = "short_name"
+    ATTRIBUTE_REGION_NAME = "region_name"
+    ATTRIBUTE_REGION_CODE = "region_code"
+    ATTRIBUTE_SUBREGION_NAME = "subregion_name"
+    ATTRIBUTE_SUBREGION_CODE = "subregion_code"
+    ATTRIBUTE_GEO_LATITUDE = "geo_latitude"
+    ATTRIBUTE_GEO_LONGITUDE = "geo_longitude"
+    ATTRIBUTE_CURRENCY_CODE = "currency_code"
+
+    __ALL_ATTRIBUTES = [ATTRIBUTE_CODE, ATTRIBUTE_NAME, ATTRIBUTE_SHORT_NAME, ATTRIBUTE_ALPHA2, ATTRIBUTE_ALPHA3,
+                        ATTRIBUTE_REGION_CODE, ATTRIBUTE_REGION_NAME, ATTRIBUTE_SUBREGION_CODE,
+                        ATTRIBUTE_SUBREGION_NAME, ATTRIBUTE_GEO_LATITUDE,
+                        ATTRIBUTE_GEO_LONGITUDE, ATTRIBUTE_CURRENCY_CODE]
 
     def __init__(self):
 
@@ -61,6 +73,14 @@ class CountryCleaner(BaseCleaner):
         self._output_code = self.ATTRIBUTE_CODE
         self._output_alpha2 = self.ATTRIBUTE_ALPHA2
         self._output_alpha3 = self.ATTRIBUTE_ALPHA3
+        self._output_short_name = self.ATTRIBUTE_SHORT_NAME
+        self._output_region_name = self.ATTRIBUTE_REGION_NAME
+        self._output_region_code = self.ATTRIBUTE_REGION_CODE
+        self._output_subregion_name = self.ATTRIBUTE_SUBREGION_NAME
+        self._output_subregion_code = self.ATTRIBUTE_SUBREGION_CODE
+        self._output_geo_latitude = self.ATTRIBUTE_GEO_LATITUDE
+        self._output_geo_longitude = self.ATTRIBUTE_GEO_LONGITUDE
+        self._output_currency_code = self.ATTRIBUTE_CURRENCY_CODE
 
         # Set the return information as all
         self._output_info = self.__ALL_ATTRIBUTES
@@ -96,7 +116,7 @@ class CountryCleaner(BaseCleaner):
     @output_info.setter
     def output_info(self, new_value: List[str]):
         for item in new_value:
-            if item not in [self.ATTRIBUTE_NAME, self.ATTRIBUTE_CODE, self.ATTRIBUTE_ALPHA2, self.ATTRIBUTE_ALPHA3]:
+            if item not in self.__ALL_ATTRIBUTES:
                 raise custom_exception.CountryInfoNotSupported(new_value)
         self._output_info = new_value
 
@@ -143,6 +163,27 @@ class CountryCleaner(BaseCleaner):
         self._output_name = new_value
 
     @property
+    def output_short_name(self) -> str:
+        """
+        The dictionary key that identifies the official country name returned as part of the normalization process.
+
+        Examples:
+            .. code-block:: python
+
+                # Defines the output key for the short name as 'NEW_COUNTRY_SHORT_NAME'
+                country_cleaner.output_short_name = 'NEW_COUNTRY_SHORT_NAME'
+
+                # The output key for the short name is shown as 'NEW_COUNTRY_SHORT_NAME'
+                country_cleaner.clean('us')
+
+        """
+        return self._output_short_name
+
+    @output_short_name.setter
+    def output_short_name(self, new_value: str):
+        self._output_short_name = new_value
+
+    @property
     def output_alpha2(self) -> str:
         """
         The dictionary key that identifies the official alpha2 country code returned as part of the normalization
@@ -185,6 +226,139 @@ class CountryCleaner(BaseCleaner):
     def output_alpha3(self, new_value: str):
         self._output_alpha3 = new_value
 
+    @property
+    def output_region_name(self) -> str:
+        """
+        The dictionary key that identifies the country's region name returned as part of the normalization
+        process.
+
+        Examples:
+            .. code-block:: python
+
+                country_cleaner.output_region_name = 'NEW_REGION_NAME'
+                country_cleaner.clean('us')
+
+        """
+        return self._output_region_name
+
+    @output_region_name.setter
+    def output_region_name(self, new_value: str):
+        self._output_region_name = new_value
+
+    @property
+    def output_region_code(self) -> str:
+        """
+        The dictionary key that identifies the country's region code returned as part of the normalization
+        process.
+
+        Examples:
+            .. code-block:: python
+
+                country_cleaner.output_region_code = 'NEW_REGION_CODE'
+                country_cleaner.clean('us')
+
+        """
+        return self._output_region_code
+
+    @output_region_code.setter
+    def output_region_code(self, new_value: str):
+        self._output_region_code = new_value
+
+    @property
+    def output_subregion_name(self) -> str:
+        """
+        The dictionary key that identifies the country's subregion name returned as part of the normalization
+        process.
+
+        Examples:
+            .. code-block:: python
+
+                country_cleaner.output_subregion_name = 'NEW_SUBREGION_NAME'
+                country_cleaner.clean('us')
+
+        """
+        return self._output_subregion_name
+
+    @output_subregion_name.setter
+    def output_subregion_name(self, new_value: str):
+        self._output_subregion_name = new_value
+
+    @property
+    def output_subregion_code(self) -> str:
+        """
+        The dictionary key that identifies the country's subregion code returned as part of the normalization
+        process.
+
+        Examples:
+            .. code-block:: python
+
+                country_cleaner.output_subregion_code = 'NEW_SUBREGION_CODE'
+                country_cleaner.clean('us')
+
+        """
+        return self._output_subregion_code
+
+    @output_subregion_code.setter
+    def output_subregion_code(self, new_value: str):
+        self._output_subregion_code = new_value
+
+    @property
+    def output_geo_latitude(self) -> str:
+        """
+        The dictionary key that identifies the country's geo latitude returned as part of the normalization
+        process.
+
+        Examples:
+            .. code-block:: python
+
+                country_cleaner.output_geo_latitude = 'NEW_GEO_LATITUDE'
+                country_cleaner.clean('us')
+
+        """
+        return self._output_geo_latitude
+
+    @output_geo_latitude.setter
+    def output_geo_latitude(self, new_value: str):
+        self._output_geo_latitude = new_value
+
+    @property
+    def output_geo_longitude(self) -> str:
+        """
+        The dictionary key that identifies the country's geo longitude returned as part of the normalization
+        process.
+
+        Examples:
+            .. code-block:: python
+
+                country_cleaner.output_geo_longitude = 'NEW_GEO_LONGITUDE'
+                country_cleaner.clean('us')
+
+        """
+        return self._output_geo_longitude
+
+    @output_geo_longitude.setter
+    def output_geo_longitude(self, new_value: str):
+        self._output_geo_longitude = new_value
+
+    @property
+    def output_currency_code(self) -> str:
+        """
+        The dictionary key that identifies the country's currency code returned as part of the normalization
+        process.
+
+        Examples:
+            .. code-block:: python
+
+                country_cleaner.output_currency_code = 'NEW_CURRENCY_CODE'
+                country_cleaner.clean('us')
+
+        """
+        return self._output_currency_code
+
+    @output_currency_code.setter
+    def output_currency_code(self, new_value: str):
+        self._output_currency_code = new_value
+
     def __is_country_param_valid(self, country: str) -> bool:
         """
         This internal method performs basic checking on the country information passed as parameter.
@@ -216,6 +390,22 @@ class CountryCleaner(BaseCleaner):
         # Passed all checks
         return True
 
+    def reset_output_info(self) -> None:
+        """
+        Resets the output selection in order to return all the attributes available.
+
+        Examples:
+            .. code-block:: python
+
+                # Resets the output names
+                country_cleaner.reset_output_info()
+
+                # Shows the resultant dictionary with the default key names
+                country_cleaner.clean('us')
+
+        """
+        self._output_info = self.__ALL_ATTRIBUTES
+
     def reset_output_names(self) -> None:
         """
         Resets the dictionary key that identifies the official name, alpha2 and alpha3 codes returned as part of
@@ -236,6 +426,14 @@ class CountryCleaner(BaseCleaner):
         self._output_code = self.ATTRIBUTE_CODE
         self._output_alpha2 = self.ATTRIBUTE_ALPHA2
         self._output_alpha3 = self.ATTRIBUTE_ALPHA3
+        self._output_short_name = self.ATTRIBUTE_SHORT_NAME
+        self._output_region_name = self.ATTRIBUTE_REGION_NAME
+        self._output_region_code = self.ATTRIBUTE_REGION_CODE
+        self._output_subregion_name = self.ATTRIBUTE_SUBREGION_NAME
+        self._output_subregion_code = self.ATTRIBUTE_SUBREGION_CODE
+        self._output_geo_latitude = self.ATTRIBUTE_GEO_LATITUDE
+        self._output_geo_longitude = self.ATTRIBUTE_GEO_LONGITUDE
+        self._output_currency_code = self.ATTRIBUTE_CURRENCY_CODE
 
     def clean(self, country: str) -> Union[None, Dict[str, str]]:
         """
@@ -282,10 +480,10 @@ class CountryCleaner(BaseCleaner):
         value = SimpleCleaner.remove_extra_spaces(value)
 
         # Search for country information
-        code_id, country_name, alpha2_code, alpha3_code = _search_country.search_country_info(value)
+        info_country = _search_country.search_country_info(value)
 
         # Prepare the returning info
-        if pd.isna(country_name):
+        if pd.isna(info_country['country_name']):
             if self._mode == self.EXCEPTION_MODE:
                 raise custom_exception.CountryNotFound(country)
             return None
@@ -294,8 +492,17 @@ class CountryCleaner(BaseCleaner):
         dict_country = {}
         all_country_info = zip(self.__ALL_ATTRIBUTES,
                                [self._output_code, self._output_name,
-                                self._output_alpha2, self._output_alpha3],
-                               [code_id, country_name, alpha2_code, alpha3_code])
+                                self._output_short_name, self._output_alpha2,
+                                self._output_alpha3, self._output_region_code,
+                                self._output_region_name, self._output_subregion_code,
+                                self._output_subregion_name, self._output_geo_latitude,
+                                self._output_geo_longitude, self._output_currency_code],
+                               [info_country['code_id'], info_country['country_name'],
+                                info_country['short_name'], info_country['alpha2_code'],
+                                info_country['alpha3_code'], info_country['region_code'],
+                                info_country['region_name'], info_country['subregion_code'],
+                                info_country['subregion_name'], info_country['geo_latitude'],
+                                info_country['geo_longitude'], info_country['currency_code']])
         for return_info, output_name, search_value in all_country_info:
             if return_info in self._output_info:
                 dict_country[output_name] = search_value
@@ -330,7 +537,11 @@ class CountryCleaner(BaseCleaner):
             dict_country_info = {}
             all_country_info = zip(self.__ALL_ATTRIBUTES,
                                    [self._output_code, self._output_name,
-                                    self._output_alpha2, self._output_alpha3])
+                                    self._output_short_name, self._output_alpha2,
+                                    self._output_alpha3, self._output_region_code,
+                                    self._output_region_name, self._output_subregion_code,
+                                    self._output_subregion_name, self._output_geo_latitude,
+                                    self._output_geo_longitude, self._output_currency_code])
             for return_info, output_name in all_country_info:
                 if return_info in self._output_info:
                     dict_country_info[output_name] = np.nan
