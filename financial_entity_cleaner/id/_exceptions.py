@@ -1,4 +1,4 @@
-""" If **BankingIdCleaner()** is set to run in EXCEPTION_MODE, the library throws custom exceptions
+""" If **BankingIdCleaner()** is set to run in EXCEPTION_MODE, the library throws the custom exceptions
 defined in this module.
 """
 

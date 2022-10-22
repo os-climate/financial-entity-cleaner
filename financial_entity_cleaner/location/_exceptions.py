@@ -1,5 +1,5 @@
-""" If **CountryCleaner()** is set to run in EXCEPTION_MODE, the library throws custom exceptions
-defined in this module.
+""" If **CountryCleaner()** or AddressCleaner are set to run in EXCEPTION_MODE, the library throws the custom
+exceptions defined in this module.
 """
 
 from financial_entity_cleaner.utils.error_handler import FinancialCleanerError
