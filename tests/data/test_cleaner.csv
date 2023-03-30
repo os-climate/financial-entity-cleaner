@@ -1,13 +1,13 @@
-NAME;COUNTRY_HEAD;COUNTRY_BRANCH;LEI;ISIN;SEDOL
-Bechel   *Australia (Services) Pty Ltd;au;au;98 4500 e8da1de9a0d939;;
-NRI - KELLY's MERCHANDISE (AUST) PTY LTD;Australia;au;;au0000036949;
-meo -  serviços de comunicação e multimedia SA (a.k.a. MEO);PT;PT;5493001MT6YISZH3YV05;4ABL286115;
-Glass  Coatings & Concepts "CBG" LLC;United States;us;34123456;4AAAA255044;
-Brault Loisirs, Orl. SARL;FR;France;;FR0000036196;552111809
-Cole & Brothers  Fabric, Services LLC.;uk;uk;213800UHTTV6EGY74X82;;
-StarCOM Group Servizi **CAT** SRL;italy;ita;;;
-Wolbeck (Archer Daniels) *Unified* GmbH;de;de;;;HPA 706689
-Anheuser-BUSCH, Brothers (food services), LLC;gb;gb;US4567899888;4567788;
-Susamar-Patino, colectores (adm)   SA;ES;spain;;ES0176252718;A7830 4516
-Molino's agro, S.A. (adm)   SA;;ar;;ARP8637T1031;
+NAME;COUNTRY_HEAD;COUNTRY_BRANCH;LEI;ISIN;SEDOL;SIRET;SIREN
+Bechel   *Australia (Services) Pty Ltd;au;au;98 4500 e8da1de9a0d939;;;533 602 942 R.C.S. Nanterre;733602966
+NRI - KELLY's MERCHANDISE (AUST) PTY LTD;Australia;au;;au0000036949;;440 558 062;
+meo -  serviços de comunicação e multimedia SA (a.k.a. MEO);PT;PT;5493001MT6YISZH3YV05;4ABL286115;;784-00-03-412;
+Glass  Coatings & Concepts "CBG" LLC;United States;us;34123456;4AAAA255044;;be 0413458441;
+Brault Loisirs, Orl. SARL;FR;France;;FR0000036196;552111809;fr24313140642;
+Cole & Brothers  Fabric, Services LLC.;uk;uk;213800UHTTV6EGY74X82;;;333 171 544 00013;
+StarCOM Group Servizi **CAT** SRL;italy;ita;;;;
+Wolbeck (Archer Daniels) *Unified* GmbH;de;de;;;HPA 706689;;
+Anheuser-BUSCH, Brothers (food services), LLC;gb;gb;US4567899888;4567788;;;
+Susamar-Patino, colectores (adm)   SA;ES;spain;;ES0176252718;A7830 4516;;
+Molino's agro, S.A. (adm)   SA;;ar;;ARP8637T1031;;;
 

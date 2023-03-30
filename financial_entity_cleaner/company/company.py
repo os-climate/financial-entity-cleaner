@@ -9,11 +9,13 @@ import enum
 import numpy as np
 
 # Import internal libraries
+from financial_entity_cleaner.utils.utility import get_progress_bar
 from financial_entity_cleaner.utils.utility import load_json_file
 from financial_entity_cleaner.utils import BaseCleaner
 from financial_entity_cleaner.text import SimpleCleaner
 
 from financial_entity_cleaner.text import cleaning_rules
+from financial_entity_cleaner.text import exceptions as simple_cleaner_exceptions
 from financial_entity_cleaner.company import _exceptions as custom_exception
 
 
@@ -30,8 +32,6 @@ class CompanyNameCleaner(BaseCleaner):
         _mode (int): defines if the cleaning task should be performed in silent or exception mode.
                      - EXCEPTION_MODE: the library throws exceptions in case of error during cleaning.
                      - SILENT_MODE: the library returns NaN as the result of the cleaning.
-        _dict_cleaning_rules (dict): the dictionary of cleaning rules loaded from a json file. The cleaning rules
-                    are written in regex format and can be easily updated or incremented by changing the file.
         _default_cleaning_rules (list): a list of cleaning rules to be applied. The dictionary of
                     cleaning rules may contain rules that are not needed. Therefore, the _default_cleaning_rules
                     allows the user to select only the cleaning rules necessary of interest. This list is also
@@ -79,9 +79,7 @@ class CompanyNameCleaner(BaseCleaner):
         # SILENT_MODE is prefered in production environments
         self._mode = self.SILENT_MODE
 
-        # The dictionary of cleaning rules define which regex functions to apply to the data
         # A default set of regex rules is defined, but it can be changed by the user.
-        self._dict_cleaning_rules = cleaning_rules.cleaning_rules_dict
         self._default_cleaning_rules = cleaning_rules.default_company_cleaning_rules
 
         self._simple_cleaner = SimpleCleaner()
@@ -125,6 +123,12 @@ class CompanyNameCleaner(BaseCleaner):
         # Define if the letters with accents are replaced with non-accented ones
         self._remove_accents = False
 
+        # Use space as replacement when applying cleaning rules
+        self._space_as_replacement = True
+
+        # Cleaning rules applied in the post-processing
+        self._post_cleaning_rules = None
+
     # Setters and Getters for the properties, so to allow user to setup the library according to his/her needs.
     @property
     def normalize_legal_terms(self):
@@ -157,10 +161,25 @@ class CompanyNameCleaner(BaseCleaner):
     @default_cleaning_rules.setter
     def default_cleaning_rules(self, list_cleaning_rules):
         # Check if the items in the default list of cleaning rules exist in the dictionary of cleaning rules
-        if self.__cleaning_rules_exist_in_dict(list_cleaning_rules):
+        if cleaning_rules.is_valid(list_cleaning_rules):
             self._default_cleaning_rules = list_cleaning_rules
         else:
-            raise custom_exception.CleaningRuleNotFoundInTheDictionary
+            raise simple_cleaner_exceptions.CleaningRuleNotFoundInTheDictionary
+
+    @property
+    def post_cleaning_rules(self):
+        return self._post_cleaning_rules
+
+    @post_cleaning_rules.setter
+    def post_cleaning_rules(self, list_cleaning_rules):
+        if list_cleaning_rules is not None:
+            # Check if the post-processing list of cleaning rules exist in the dictionary of cleaning rules
+            if cleaning_rules.is_valid(list_cleaning_rules):
+                self._post_cleaning_rules = list_cleaning_rules
+            else:
+                raise simple_cleaner_exceptions.CleaningRuleNotFoundInTheDictionary
+        else:
+            self._post_cleaning_rules = None
 
     def __load_available_legal_terms_dict(self):
         """
@@ -222,24 +241,6 @@ class CompanyNameCleaner(BaseCleaner):
 
         return dict_by_country
 
-    def __cleaning_rules_exist_in_dict(self, list_cleaning_rules):
-        """
-        This method checks if all the names of cleaning rules informed in a list exist as a
-        regex rule in the dictionary of cleaning rules.
-
-        Parameters:
-            list_cleaning_rules(list): a list with the names of cleaning rules to be applied
-        Returns:
-            True: if all the items exist in the dictionary of cleaning rules.
-            False: if at least one item does not exist in the in the dictionary of cleaning rules.
-        Raises:
-            No exception is raised.
-        """
-        for cleaning_rule in list_cleaning_rules:
-            if not (cleaning_rule in self._dict_cleaning_rules):
-                return False
-        return True
-
     def get_info_current_legal_term_dict(self):
         """
         This method returns the current language and location of the legal term dictionary in use.
@@ -279,7 +280,8 @@ class CompanyNameCleaner(BaseCleaner):
         """
         return self._legal_terms_available
 
-    def get_cleaning_rules_available(self):
+    @staticmethod
+    def get_cleaning_rules_available():
         """
         This method returns the types of cleaning rules available for use in the library.
 
@@ -290,10 +292,13 @@ class CompanyNameCleaner(BaseCleaner):
         Raises:
             No exception raised.
         """
-        return list(self._dict_cleaning_rules.keys())
+        return list(cleaning_rules.cleaning_rules_dict.keys())
 
     def get_current_legal_term_dict(self):
         return self._current_dict_legal_terms
+
+    def reset_default_cleaning_rules(self):
+        self._default_cleaning_rules = cleaning_rules.default_company_cleaning_rules
 
     def set_current_legal_term_dict(
             self, country, language="", merge_legal_terms=False
@@ -405,17 +410,23 @@ class CompanyNameCleaner(BaseCleaner):
         # Remove space in the beginning and in the end and convert it to lower case
         clean_company_name = clean_company_name.strip().lower()
 
-        # Apply all the cleaning rules
+        # Apply all the pre-processing cleaning rules
         clean_company_name = self._simple_cleaner.apply_cleaning_rules(clean_company_name,
                                                                        self._default_cleaning_rules)
 
-        # Apply normalization for legal terms
+        # Apply normalization for legal terms if required
         if self.normalize_legal_terms:
             clean_company_name = self._apply_normalization_of_legal_terms(clean_company_name)
 
+        # Remove accents if required
         if self._remove_accents:
             clean_company_name = self._simple_cleaner.remove_accents(clean_company_name)
 
+        # Apply the post-processing cleaning rules if required
+        if self._post_cleaning_rules is not None:
+            # Apply all the post-processing cleaning rules
+            clean_company_name = self._simple_cleaner.apply_cleaning_rules(clean_company_name,
+                                                                           self._post_cleaning_rules)
         # Apply the letter case, if different from 'lower'
         if self._letter_case == self.UPPER_LETTER_CASE:
             clean_company_name = clean_company_name.upper()
@@ -430,9 +441,9 @@ class CompanyNameCleaner(BaseCleaner):
     def clean_df(
             self,
             df,
-            in_company_name_attribute,
-            out_company_name_attribute,
-            in_country_attribute="",
+            in_company_name,
+            out_company_name,
+            in_country="",
             merge_legal_terms=True,
     ):
         """
@@ -441,9 +452,9 @@ class CompanyNameCleaner(BaseCleaner):
 
         Parameters:
             df (dataframe): the input dataframe that contains the text's name to be cleaned
-            in_company_name_attribute (str): the attribute in the dataframe for text's name
-            out_company_name_attribute (str): the attribute to be created for the clean version of the text's name
-            in_country_attribute (str): the attribute in the dataframe that indicates the location, which will serve as
+            in_company_name (str): the attribute in the dataframe for text's name
+            out_company_name (str): the attribute to be created for the clean version of the text's name
+            in_country (str): the attribute in the dataframe that indicates the location, which will serve as
                 a filter to select the appropriated legal terms dictionary.
             merge_legal_terms(bool): this flag indicates if the default dictionary
                 of legal terms should be merged to the new dictionary by coutry,
@@ -456,59 +467,58 @@ class CompanyNameCleaner(BaseCleaner):
         """
 
         # Check if the company_name attribute exists in the dataframe
-        if in_company_name_attribute not in df.columns:
+        if in_company_name not in df.columns:
             raise custom_exception.CompanyNameNotFoundInDataFrame
 
         # Keep the current legal term dictionary in order to restore it after finishing
         initial_dict_legal_terms = self._current_dict_legal_terms
 
         # Check if the location attribute exists in the dataframe
-        if in_country_attribute != "" and in_country_attribute not in df.columns:
+        if in_country != "" and in_country not in df.columns:
             raise custom_exception.CountryNotFoundInDataFrame
 
         # Make a copy so not to change the original dataframe
         new_df = df.copy()
 
         # Creates the new output attribute that will have the clean version of the text's name
-        new_df[out_company_name_attribute] = np.nan
+        new_df[out_company_name] = np.nan
         # If the location attribute is provided, iterate over all the countries available in the dataframe
         # as to select the related legal term dictionary
-        if in_country_attribute != "":
+        if in_country != "":
             # Get all the countries available in the dataframe
-            countries_in_df = list(new_df[in_country_attribute].unique())
-            for country in countries_in_df:
+            countries_in_df = list(new_df[in_country].unique())
+
+            # Get the progress bar based on the dataframe rows
+            pg_bar = get_progress_bar(it_range=countries_in_df,
+                                      total_rows=len(countries_in_df),
+                                      desc='Cleaning company name...')
+            for country in pg_bar:
                 # By default, if the legal term dictionary for that location is not available,  the library
                 # uses the default dictionary (initially set up as to be us-english)
-                if country not in self._legal_terms_available.keys():
+                if str(country).lower() not in self._legal_terms_available.keys():
                     self._current_dict_legal_terms = self._default_dict_legal_terms
                 else:
-                    self.set_current_legal_term_dict(country, "", merge_legal_terms)
+                    self.set_current_legal_term_dict(str(country).lower(), "", merge_legal_terms)
                 # Filter the dataframe for that location and apply the cleaning
                 if str(country) == 'nan':
                     # Case in which the location is null
-                    mask = new_df[in_country_attribute].isnull()
+                    mask = new_df[in_country].isnull()
                 else:
                     # Case in which the location was provided
-                    mask = new_df[in_country_attribute] == country
-                new_df.loc[mask, out_company_name_attribute] = new_df[mask].apply(
-                    lambda row: self.clean(row[in_company_name_attribute]),
-                    axis=1,
-                )
+                    mask = new_df[in_country] == country
+                new_df.loc[mask, out_company_name] = new_df[mask].apply(lambda line: self.clean(line[in_company_name]),
+                                                                        axis=1)
         # If the location is not informed, the library performs the cleaning by using the current legal term
         # dictionary in all entries of the dataframe
         else:
-            # new_df.loc[:, out_company_name_attribute] = new_df.apply(
-            #    lambda row: self.get_clean_data(row[in_company_name_attribute]), axis=1
-            # )
-            new_df.loc[:, [out_company_name_attribute]] = [self.clean(name) for name
-                                                           in new_df[in_company_name_attribute]]
+            pg_bar = get_progress_bar(it_range=new_df.iterrows(),
+                                      total_rows=new_df.shape[0],
+                                      desc='Cleaning company name...')
+            for index, row in pg_bar:
+                new_df.loc[index, out_company_name] = self.clean(new_df.loc[index, in_company_name])
+
+            # new_df.loc[:, [out_company_name]] = [self.clean(name) for name in new_df[in_company_name]]
 
         # Return the current dictionary as the one setup before the function call
         self._current_dict_legal_terms = initial_dict_legal_terms
         return new_df
-
-    def __apply_cleaner_to_df_by_country(self):
-        pass
-
-    def __apply_cleaner_to_df_without_country(self):
-        pass

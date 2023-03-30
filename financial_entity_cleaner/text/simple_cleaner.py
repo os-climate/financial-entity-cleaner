@@ -115,11 +115,15 @@ class SimpleCleaner(BaseCleaner):
         clean_value = unidecode.unidecode(value)
         return clean_value
 
-    def apply_cleaning_rules(self, text, lst_rules):
+    def apply_cleaning_rules(self, text, lst_rules, replacement=None):
         # Create the dictionary of rules to apply
         cleaning_dict = {}
         for rule_name in lst_rules:
-            cleaning_dict[rule_name] = self._dict_cleaning_rules[rule_name]
+            if rule_name in self._dict_cleaning_rules.keys():
+                regex_rule = self._dict_cleaning_rules[rule_name].copy()
+                if replacement is not None:
+                    regex_rule[0] = replacement
+                cleaning_dict[rule_name] = regex_rule
 
         # Apply all the cleaning rules
         clean_text = self._apply_regex_rules(text, cleaning_dict)
@@ -160,7 +164,6 @@ class SimpleCleaner(BaseCleaner):
             # By adding a name of another regex rule in the place of the rule itself allows the execution
             # of a regex rule twice
             if regex_rule in dict_regex_rules.keys():
-                replacement = dict_regex_rules[cleaning_rule[1]][0]
                 regex_rule = dict_regex_rules[cleaning_rule[1]][1]
 
             # Make sure to use raw string

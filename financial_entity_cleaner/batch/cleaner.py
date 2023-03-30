@@ -2,11 +2,13 @@ import sys
 import os
 import pandas as pd
 import traceback
+from datetime import datetime
 
-from financial_entity_cleaner.utils import base_cleaner
-from financial_entity_cleaner.company import company
-from financial_entity_cleaner.location import country
-from financial_entity_cleaner.id import banking
+from financial_entity_cleaner.utils import utility
+from financial_entity_cleaner.company import CompanyNameCleaner
+from financial_entity_cleaner.location import CountryCleaner
+from financial_entity_cleaner.id import BankingIdCleaner
+from financial_entity_cleaner.batch import _exceptions as custom_exception
 
 
 class AutoCleaner:
@@ -24,9 +26,9 @@ class AutoCleaner:
     # Keys in the json file
     __SETUP_KEY_FILE_PROCESSING = "file_processing"
     __SETUP_KEY_ATTRIBUTE_PROCESSING = "attribute_processing"
-    __SETUP_KEY_COMPANY_CLEANER = "text"
-    __SETUP_KEY_COUNTRY_CLEANER = "location"
-    __SETUP_KEY_IDS_CLEANER = "id"
+    __SETUP_KEY_COMPANY_CLEANER = "company_cleaner"
+    __SETUP_KEY_COUNTRY_CLEANER = "country_cleaner"
+    __SETUP_KEY_IDS_CLEANER = "id_cleaner"
 
     def __init__(self):
         """
@@ -50,52 +52,100 @@ class AutoCleaner:
         # Internal dictionary to store required settings to process the attributes of the input dataset
         self._setup_dict_attribute_processing = None
 
-    def __read_cleaning_settings(self, setup_cleaning_filename):
+        self._settings_file = ""
+        self._input_filename = ""
+        self._output_filename = ""
+
+    @property
+    def settings_file(self) -> str:
+        return self._settings_file
+
+    @settings_file.setter
+    def settings_file(self, new_value: str):
+        self._settings_file = new_value
+        self.__read_cleaning_settings()
+
+    @property
+    def input_filename(self) -> str:
+        return self._input_filename
+
+    @input_filename.setter
+    def input_filename(self, new_value: str):
+        # if not os.path.isdir(new_value) or not os.path.isfile(new_value):
+        #    raise custom_exception.NotAFolderOrFile(new_value)
+        self._input_filename = new_value
+
+    @property
+    def output_filename(self) -> str:
+        return self._output_filename
+
+    @output_filename.setter
+    def output_filename(self, new_value: str):
+        self._output_filename = new_value
+
+    def __read_cleaning_settings(self):
         """
         Internal method that reads the cleaning settings from a json file and store its content into
         associated dictionaries
 
-        Parameters:
-            setup_cleaning_filename (str):  complete path and filename of a json file that contains the required
-                properties on how to clean up the input file.
         Returns:
             No return value.
         Raises:
             No exception is raised.
         """
-        # Print info...
-        print("Reading cleaning settings from " + setup_cleaning_filename, file=sys.stdout)
+        if self._settings_file == "":
+            raise custom_exception.SettingsNotDefined
 
-        # Read the json file that contains the parameters for automatic cleaning
-        dict_json = base_cleaner.load_json_file(setup_cleaning_filename)
+        # Filename and extension
+        file_name, file_extension = os.path.splitext(self._settings_file)
+
+        if file_extension == '.json':
+            # Read the json file that contains the parameters for automatic cleaning
+            dict_settings = utility.load_json_file(self._settings_file)
+        else:
+            raise custom_exception.SettingsFileTypeNotSupported(file_extension)
+
+        self.__set_cleaning_properties(dict_settings)
+
+    def __set_cleaning_properties(self, dict_settings):
 
         # Check if there is a json key to setup the file processing
-        if self.__SETUP_KEY_FILE_PROCESSING in dict_json.keys():
-            self._setup_dict_file_processing = dict_json[
+        if self.__SETUP_KEY_FILE_PROCESSING in dict_settings.keys():
+            self._setup_dict_file_processing = dict_settings[
                 self.__SETUP_KEY_FILE_PROCESSING
             ]
+        else:
+            self._setup_dict_file_processing = None
 
         # Check if there is a json key to setup the dataset processing
-        if self.__SETUP_KEY_ATTRIBUTE_PROCESSING in dict_json.keys():
-            self._setup_dict_attribute_processing = dict_json[
+        if self.__SETUP_KEY_ATTRIBUTE_PROCESSING in dict_settings.keys():
+            self._setup_dict_attribute_processing = dict_settings[
                 self.__SETUP_KEY_ATTRIBUTE_PROCESSING
             ]
+        else:
+            self._setup_dict_attribute_processing = None
 
         # Check if there is a json key to setup the cleaning by text's name
-        if self.__SETUP_KEY_COMPANY_CLEANER in dict_json.keys():
-            self._setup_dict_company_cleaner = dict_json[
+        if self.__SETUP_KEY_COMPANY_CLEANER in dict_settings.keys():
+            self._setup_dict_company_cleaner = dict_settings[
                 self.__SETUP_KEY_COMPANY_CLEANER
             ]
+        else:
+            self._setup_dict_company_cleaner = None
 
         # Check if there is a json key to setup the cleaning by location
-        if self.__SETUP_KEY_COUNTRY_CLEANER in dict_json.keys():
-            self._setup_dict_country_cleaner = dict_json[
+        if self.__SETUP_KEY_COUNTRY_CLEANER in dict_settings.keys():
+            self._setup_dict_country_cleaner = dict_settings[
                 self.__SETUP_KEY_COUNTRY_CLEANER
             ]
+        else:
+            self._setup_dict_country_cleaner = None
 
         # Check if there is a json key to setup the cleaning by id
-        if self.__SETUP_KEY_IDS_CLEANER in dict_json.keys():
-            self._setup_dict_ids_cleaner = dict_json[self.__SETUP_KEY_IDS_CLEANER]
+        if self.__SETUP_KEY_IDS_CLEANER in dict_settings.keys():
+            self._setup_dict_ids_cleaner = dict_settings[self.__SETUP_KEY_IDS_CLEANER]
+        else:
+            self._setup_dict_ids_cleaner = None
 
     def __execute_cleaning_by_country(self, df):
         """
@@ -111,36 +161,18 @@ class AutoCleaner:
         # Print info
         print("Executing automatic cleaning by location", file=sys.stdout)
 
-        country_cleaner_obj = country.CountryCleaner()
-        country_cleaner_obj.lettercase_output = self._setup_dict_country_cleaner[
-            "output_letter_case"
-        ]
-        country_attributes = self._setup_dict_country_cleaner["input_countries"]
-        for country_attribute in country_attributes:
-            # For each location, setup the output name, alpha2 and alpha3 to store the cleaned values
-            output_name = (
-                country_attribute
-                + "_"
-                + self._setup_dict_country_cleaner["name_suffix_clean"]
-            )
-            country_cleaner_obj.country_name_output = output_name
+        country_cleaner_obj = CountryCleaner()
+        country_cleaner_obj.letter_case = self._setup_dict_country_cleaner["output_letter_case"]
+        country_cleaner_obj.output_info = [CountryCleaner.ATTRIBUTE_SHORT_NAME,
+                                           CountryCleaner.ATTRIBUTE_ALPHA2]
+        country_cleaner_obj.output_short_name = self._setup_dict_country_cleaner["name_suffix_clean"]
+        country_cleaner_obj.output_alpha2 = self._setup_dict_country_cleaner["alpha2_suffix_clean"]
 
-            output_name = (
-                country_attribute
-                + "_"
-                + self._setup_dict_country_cleaner["alpha2_suffix_clean"]
-            )
-            country_cleaner_obj.country_alpha2_output = output_name
+        if "cleaning_rules" in self._setup_dict_country_cleaner:
+            country_cleaner_obj.cleaning_rules = self._setup_dict_country_cleaner["cleaning_rules"]
 
-            output_name = (
-                country_attribute
-                + "_"
-                + self._setup_dict_country_cleaner["alpha3_suffix_clean"]
-            )
-            country_cleaner_obj.country_alpha3_output = output_name
-
-            # Perform the cleaning
-            df = country_cleaner_obj.get_clean_df(df, country_attribute)
+        # Perform the cleaning
+        df = country_cleaner_obj.clean_df(df=df, cols=self._setup_dict_country_cleaner["input_countries"])
         return df
 
     def __execute_cleaning_by_id(self, df):
@@ -158,22 +190,27 @@ class AutoCleaner:
         # Print info
         print("Executing automatic cleaning by id", file=sys.stdout)
 
-        id_cleaner_obj = banking.BankingIdCleaner()
-        id_cleaner_obj.lettercase_output = self._setup_dict_ids_cleaner[
-            "output_letter_case"
-        ]
+        id_cleaner_obj = BankingIdCleaner()
+        id_cleaner_obj.letter_case = self._setup_dict_ids_cleaner["output_letter_case"]
+        id_cleaner_obj.output_cleaned_id = self._setup_dict_ids_cleaner["id_suffix_clean"]
+        id_cleaner_obj.output_validated_id = self._setup_dict_ids_cleaner["id_suffix_valid"]
+        id_cleaner_obj.invalid_ids_as_nan = eval(self._setup_dict_ids_cleaner["invalid_ids_as_null"])
+        id_cleaner_obj.validation_as_categorical = eval(self._setup_dict_ids_cleaner["validation_as_categorical"])
         ids_attributes = self._setup_dict_ids_cleaner["input_ids"]
-        out_id_suffix_clean = self._setup_dict_ids_cleaner["id_suffix_clean"]
-        out_id_suffix_valid = self._setup_dict_ids_cleaner["id_suffix_valid"]
-        set_null_for_invalid_ids = eval(
-            self._setup_dict_ids_cleaner["set_null_for_invalid_ids"]
-        )
-        id_cleaner_obj.set_null_for_invalid_ids = set_null_for_invalid_ids
-        for id_attribute, id_type in ids_attributes.items():
-            id_cleaner_obj.id_type = id_type
-            df = id_cleaner_obj.apply_cleaner_to_df(
-                df, id_attribute, out_id_suffix_clean, out_id_suffix_valid
-            )
+
+        # Perform convertion Siret to Siren if required
+        if "convert_siret_to_siren" in self._setup_dict_ids_cleaner:
+            replace_siren = eval(self._setup_dict_ids_cleaner["replace_siren_if_exists"])
+            for siret_col, siren_col in self._setup_dict_ids_cleaner["convert_siret_to_siren"].items():
+                df = id_cleaner_obj.siret_to_siren_df(df=df,
+                                                      siret_col_name=siret_col,
+                                                      siren_col_name=siren_col,
+                                                      replace_if_exists=replace_siren)
+
+        # Perform the cleaning
+        df = id_cleaner_obj.clean_df(df=df,
+                                     cols=list(ids_attributes.keys()),
+                                     types=list(ids_attributes.values()))
         return df
 
     def __execute_cleaning_by_name(self, df):
@@ -191,49 +228,38 @@ class AutoCleaner:
         # Print info
         print("Executing automatic cleaning by text name", file=sys.stdout)
 
-        company_cleaner_obj = company.CompanyNameCleaner()
-        company_cleaner_obj.normalize_legal_terms = eval(
-            self._setup_dict_company_cleaner["normalize_legal_terms"]
-        )
-        company_cleaner_obj.output_lettercase = self._setup_dict_company_cleaner[
-            "output_letter_case"
-        ]
-        company_cleaner_obj.remove_unicode = eval(
-            self._setup_dict_company_cleaner["remove_unicode_chars"]
-        )
-        if "cleaning_rules" in self._setup_dict_company_cleaner:
-            cleaning_rules = self._setup_dict_company_cleaner["cleaning_rules"]
-            company_cleaner_obj.default_cleaning_rules = cleaning_rules
-        use_cleaning_country = eval(
-            self._setup_dict_company_cleaner["use_clean_country"]
-        )
-        country_attribute = self._setup_dict_company_cleaner["input_country"]
+        company_cleaner_obj = CompanyNameCleaner()
+        company_cleaner_obj.normalize_legal_terms = eval(self._setup_dict_company_cleaner["normalize_legal_terms"])
+        company_cleaner_obj.letter_case = self._setup_dict_company_cleaner["output_letter_case"]
+        company_cleaner_obj.remove_unicode = eval(self._setup_dict_company_cleaner["remove_unicode_chars"])
+        merge_legal_terms = eval(self._setup_dict_company_cleaner["merge_legal_terms"])
+        company_cleaner_obj.remove_accents = eval(self._setup_dict_company_cleaner["remove_accents"])
+        use_cleaning_country = False
+        input_names = []
+
+        if "input_names_by_country" in self._setup_dict_company_cleaner:
+            use_cleaning_country = True
+            input_names = self._setup_dict_company_cleaner["input_names_by_country"]
+
+        if "input_names" in self._setup_dict_company_cleaner:
+            input_names = self._setup_dict_company_cleaner["input_names"]
+
+        if "pre_cleaning_rules" in self._setup_dict_company_cleaner:
+            company_cleaner_obj.default_cleaning_rules = self._setup_dict_company_cleaner["pre_cleaning_rules"]
+
+        if "post_cleaning_rules" in self._setup_dict_company_cleaner:
+            company_cleaner_obj.post_cleaning_rules = self._setup_dict_company_cleaner["post_cleaning_rules"]
 
         if use_cleaning_country:
-            input_country = (
-                country_attribute
-                + "_"
-                + self._setup_dict_country_cleaner["alpha2_suffix_clean"]
-            )
+            for output_name, input_name_country in input_names.items():
+                input_name = input_name_country[0]
+                input_country = (input_name_country[1]
+                                 + "_"
+                                 + self._setup_dict_country_cleaner["alpha2_suffix_clean"])
+                df = company_cleaner_obj.clean_df(df, input_name, output_name, input_country, merge_legal_terms)
         else:
-            input_country = ""
-
-        input_name = self._setup_dict_company_cleaner["input_company_name"]
-        output_name = self._setup_dict_company_cleaner["output_company_name"]
-        merge_legal_terms = eval(self._setup_dict_company_cleaner["merge_legal_terms"])
-
-        # Creates a temporary location attribute in lower case to match the location used in the dictionaries
-        if input_country != "":
-            temp_input_country = input_country + "__temp"
-            df[temp_input_country] = df[input_country].str.lower()
-            df = company_cleaner_obj.apply_cleaner_to_df(
-                df, input_name, output_name, temp_input_country, merge_legal_terms
-            )
-            df.drop(columns=[temp_input_country], inplace=True)
-        else:
-            df = company_cleaner_obj.apply_cleaner_to_df(
-                df, input_name, output_name, "", merge_legal_terms
-            )
+            for output_name, input_name in input_names.items():
+                df = company_cleaner_obj.clean_df(df, input_name, output_name, "", merge_legal_terms)
         return df
 
     def __execute_auto_cleaning(self, df):
@@ -248,74 +274,87 @@ class AutoCleaner:
             No exception is raised.
         """
 
-        # If the settings for selecting and renaming attributes were provided in the json file,
-        # then select only the attributes of interest and rename them
-        if self._setup_dict_attribute_processing:
-            # Get the names of attribute to be selected from the dataset
-            attributes_to_read = list(
-                self._setup_dict_attribute_processing.keys()
-            )  # current names
-            new_attribute_names = list(
-                self._setup_dict_attribute_processing.values()
-            )  # new names
-            # Select only the attributes of interest
-            df = df[attributes_to_read]
-            # Rename the columns
-            df.columns = new_attribute_names
-
         # If the settings for cleaning countries were provided, then perform the cleaning by location
-        if self._setup_dict_country_cleaner:
+        if self._setup_dict_country_cleaner is not None:
             df = self.__execute_cleaning_by_country(df)
 
         # If the settings for cleaning ids were provided, then perform the cleaning by id
-        if self._setup_dict_ids_cleaner:
+        if self._setup_dict_ids_cleaner is not None:
             df = self.__execute_cleaning_by_id(df)
 
         # If the settings for cleaning text´s name were provided, then perform the cleaning by name
-        if self._setup_dict_company_cleaner:
+        if self._setup_dict_company_cleaner is not None:
             df = self.__execute_cleaning_by_name(df)
-
         return df
 
-    def clean_csv_file(self, input_filename, setup_cleaning_filename, output_filename):
+    def read_latest_csv_file(self, input_path):
+        # Check if settings for automatic cleaning was defined
+        if self._settings_file == "":
+            raise custom_exception.SettingsNotDefined
+
+        input_filename = utility.get_newest_filename(input_path,
+                                                     '*' + self._setup_dict_file_processing["file_extension"],
+                                                     self._setup_dict_file_processing["filename_pattern"], )
+        if input_filename is None:
+            raise custom_exception.InputFileNotFound(input_path)
+
+        # Update the filename
+        self.input_filename = input_filename
+
+        # Print info
+        print("Reading csv file from " + input_filename, file=sys.stdout)
+        df = self.__read_csv_file(input_filename)
+        return df
+
+    def __read_csv_file(self, input_filename):
+        df = pd.read_csv(
+            input_filename,
+            sep=self._setup_dict_file_processing["separator"],
+            encoding=self._setup_dict_file_processing["encoding"],
+            dtype=object,
+        )
+        if self._setup_dict_attribute_processing is not None:
+            df = df.loc[:, list(self._setup_dict_attribute_processing.keys())].copy()
+            df.columns = list(self._setup_dict_attribute_processing.values())
+        return df
+
+    def clean_file(self):
         """
         Cleans up a csv file and returns another csv files as a result of the cleaning process
 
-        Parameters:
-            input_filename (str): complete path and filename to be cleaned in csv format
-            setup_cleaning_filename (str): complete path and filename of a json file that contains the required
-                properties on how to clean up the input file.
-            output_filename (str): complete path and filename to be generated after cleaning (also in csv format)
         Returns:
             (csv file) the cleaned dataset in csv format
         Raises:
             No exception is raised.
         """
         try:
-            # Get the settings for automatic cleaning
-            self.__read_cleaning_settings(setup_cleaning_filename)
+            df = None
+            if os.path.isdir(self._input_filename):
+                df = self.read_latest_csv_file(self._input_filename)
 
-            # Print info
-            print("Reading csv file from " + input_filename, file=sys.stdout)
-
-            df = pd.read_csv(
-                input_filename,
-                sep=self._setup_dict_file_processing["csv_file_sep"],
-                encoding=self._setup_dict_file_processing["csv_file_encoding"],
-                dtype=str,
-            )
+            if os.path.isfile(self._input_filename):
+                df = self.__read_csv_file(self._input_filename)
 
             # Execute automatic cleaning
+            print("Cleaning file:" + self._input_filename, file=sys.stdout)
             df_cleaned = self.__execute_auto_cleaning(df)
+            if os.path.isdir(self._output_filename):
+                output_dir = os.path.abspath(self._output_filename)
+                current_dt = datetime.now().strftime('%d%m%Y_%H%M%S')
+                in_path, filename = os.path.split(self._input_filename)
+                len_extension = len(self._setup_dict_file_processing["file_extension"]) * -1
+                filename = filename[:len_extension] + "_CLEAN_"
+                filename = filename + current_dt + self._setup_dict_file_processing["file_extension"]
+                self._output_filename = "{}{}{}".format(output_dir, os.sep, filename)
 
             # Print info
-            print("Saving csv output file at " + output_filename, file=sys.stdout)
+            print("Saving output file at " + self._output_filename, file=sys.stdout)
 
             # Save results to csv file
             df_cleaned.to_csv(
-                output_filename,
-                sep=self._setup_dict_file_processing["csv_file_sep"],
-                encoding=self._setup_dict_file_processing["csv_file_encoding"],
+                self._output_filename,
+                sep=self._setup_dict_file_processing["separator"],
+                encoding=self._setup_dict_file_processing["encoding"],
                 index=False,
                 header=True,
             )
@@ -326,22 +365,21 @@ class AutoCleaner:
             traceback.print_exc(file=sys.stderr)
             return False
 
-    def clean_df(self, df, setup_cleaning_filename):
+    def clean_df(self, df):
         """
         Cleans up a pandas dataframe and returns another dataframe as result of the cleaning process
 
         Parameters:
             df (pandas dataframe): dataframe to be cleaned
-            setup_cleaning_filename (str): complete path and filename of a json file that contains the required
-                properties on how to clean up the input file.
         Returns:
             (pandas dataframe) the cleaned dataframe
         Raises:
             No exception is raised.
         """
         try:
-            # Get the settings for automatic cleaning
-            self.__read_cleaning_settings(setup_cleaning_filename)
+            # Check if settings for automatic cleaning was defined
+            if self._settings_file == "":
+                raise custom_exception.SettingsNotDefined
 
             # Execute automatic cleaning
             df_cleaned = self.__execute_auto_cleaning(df)

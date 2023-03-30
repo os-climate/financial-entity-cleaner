@@ -7,7 +7,9 @@ import pandas as pd
 
 from financial_entity_cleaner.utils.utility import get_progress_bar, get_missing_items
 from financial_entity_cleaner.utils import BaseCleaner
+from financial_entity_cleaner.text import cleaning_rules
 from financial_entity_cleaner.text import SimpleCleaner
+from financial_entity_cleaner.text import exceptions as simple_cleaner_exceptions
 
 from financial_entity_cleaner.location import _exceptions as custom_exception
 from financial_entity_cleaner.location import _search_country
@@ -56,6 +58,23 @@ class CountryCleaner(BaseCleaner):
                         ATTRIBUTE_SUBREGION_NAME, ATTRIBUTE_GEO_LATITUDE,
                         ATTRIBUTE_GEO_LONGITUDE, ATTRIBUTE_CURRENCY_CODE]
 
+    # Old country names still in use in some databases
+    __OTHER_COUNTRY_NAMES = {
+        "britain": "gb",
+        "uk": "gb",
+        "scotland": "gb",
+        "czech": "cz",
+        "czech republic": "cz",
+        "marshall island": "mh",
+        "turkey": "tr",
+        "macau": "mo",
+        "south korea": "kr",
+        "north korea": "kp",
+        "curacao": "cw",
+        "vietnam": "vn",
+        "macedonia": "mk"
+    }
+
     def __init__(self):
 
         super().__init__()
@@ -84,6 +103,10 @@ class CountryCleaner(BaseCleaner):
 
         # Set the return information as all
         self._output_info = self.__ALL_ATTRIBUTES
+
+        self._default_cleaning_rules = None
+
+        self._simple_cleaner = SimpleCleaner()
 
     # Setters and Getters for the properties, so to allow user to setup the library according to his/her needs.
     @property
@@ -359,6 +382,18 @@ class CountryCleaner(BaseCleaner):
     def output_currency_code(self, new_value: str):
         self._output_currency_code = new_value
 
+    @property
+    def cleaning_rules(self):
+        return self._default_cleaning_rules
+
+    @cleaning_rules.setter
+    def cleaning_rules(self, list_cleaning_rules):
+        # Check if the items in the default list of cleaning rules exist in the dictionary of cleaning rules
+        if cleaning_rules.is_valid(list_cleaning_rules):
+            self._default_cleaning_rules = list_cleaning_rules
+        else:
+            raise simple_cleaner_exceptions.CleaningRuleNotFoundInTheDictionary
+
     def __is_country_param_valid(self, country: str) -> bool:
         """
         This internal method performs basic checking on the country information passed as parameter.
@@ -478,6 +513,13 @@ class CountryCleaner(BaseCleaner):
         # Perform simple cleaning by removing unicode characters and extra spaces
         value = SimpleCleaner.remove_unicode(country)
         value = SimpleCleaner.remove_extra_spaces(value)
+
+        # Apply all the cleaning rules
+        if self._default_cleaning_rules is not None:
+            value = self._simple_cleaner.apply_cleaning_rules(value, self._default_cleaning_rules)
+
+        if value in self.__OTHER_COUNTRY_NAMES.keys():
+            value = self.__OTHER_COUNTRY_NAMES[value]
 
         # Search for country information
         info_country = _search_country.search_country_info(value)
@@ -603,8 +645,6 @@ class CountryCleaner(BaseCleaner):
             for column_name in cols:
                 # Temporary variable to store the new column name
                 new_col_name = ''
-
-                pg_bar.set_description("Cleaning column [{}]".format(column_name))
                 country_info = self.__get_clean_df(row[column_name])
 
                 for key in country_info.keys():

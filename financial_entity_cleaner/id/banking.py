@@ -16,12 +16,15 @@ from typing import Union, Tuple, List, Dict
 
 import numpy as np
 import pandas as pd
-from stdnum import isin, lei
+from stdnum import isin, lei, cusip, bic
 from stdnum.gb import sedol
+from stdnum.fr import siren, siret
 
 from financial_entity_cleaner.utils.utility import get_progress_bar, get_missing_items
 from financial_entity_cleaner.utils import BaseCleaner
+from financial_entity_cleaner.text import cleaning_rules
 from financial_entity_cleaner.text import SimpleCleaner
+from financial_entity_cleaner.text import exceptions as simple_cleaner_exceptions
 
 from financial_entity_cleaner.id import _exceptions as custom_exception
 
@@ -57,9 +60,15 @@ class BankingIdCleaner(BaseCleaner):
     __LEI_NAME = "lei"
     __ISIN_NAME = "isin"
     __SEDOL_NAME = "sedol"
+    __CUSIP_NAME = "cusip"
+    __BIC_NAME = "bic"
+    __SIREN_NAME = "siren"
+    __SIRET_NAME = "siret"
 
     # Types of id validation available
-    __VALIDATIONS_SUPPORTED = [__LEI_NAME, __ISIN_NAME, __SEDOL_NAME]
+    __VALIDATIONS_SUPPORTED = [__LEI_NAME, __ISIN_NAME, __SEDOL_NAME,
+                               __CUSIP_NAME, __BIC_NAME, __SIREN_NAME,
+                               __SIRET_NAME]
 
     # Suffix used to name the attributes for cleaned and validated id
     __ATTRIBUTE_CLEANED_ID = "cleaned_id"
@@ -87,6 +96,10 @@ class BankingIdCleaner(BaseCleaner):
 
         # Default letter case as 'upper'
         self._letter_case = self.UPPER_LETTER_CASE
+
+        self._default_cleaning_rules = None
+
+        self._simple_cleaner = SimpleCleaner()
 
     @property
     def id_type(self) -> str:
@@ -222,6 +235,18 @@ class BankingIdCleaner(BaseCleaner):
     def output_validated_id(self, new_value: str):
         self._output_validated_id = new_value
 
+    @property
+    def cleaning_rules(self):
+        return self._default_cleaning_rules
+
+    @cleaning_rules.setter
+    def cleaning_rules(self, list_cleaning_rules):
+        # Check if the items in the default list of cleaning rules exist in the dictionary of cleaning rules
+        if cleaning_rules.is_valid(list_cleaning_rules):
+            self._default_cleaning_rules = list_cleaning_rules
+        else:
+            raise simple_cleaner_exceptions.CleaningRuleNotFoundInTheDictionary
+
     def reset_output_names(self) -> None:
         """
         Resets the dictionary key that identifies the cleaned ID and if it is valid, as the result of get_clean_data()
@@ -296,6 +321,11 @@ class BankingIdCleaner(BaseCleaner):
 
         clean_id = SimpleCleaner.remove_unicode(id_value)
         clean_id = SimpleCleaner.remove_all_spaces(clean_id)
+
+        # Apply all the cleaning rules
+        if self._default_cleaning_rules is not None:
+            clean_id = self._simple_cleaner.apply_cleaning_rules(clean_id, self._default_cleaning_rules)
+
         is_valid_id = False
 
         # Validating the ID according to its type
@@ -308,6 +338,18 @@ class BankingIdCleaner(BaseCleaner):
         if self._id_type == self.__SEDOL_NAME:
             is_valid_id = sedol.is_valid(clean_id)
 
+        if self._id_type == self.__SIREN_NAME:
+            is_valid_id = siren.is_valid(clean_id)
+
+        if self._id_type == self.__SIRET_NAME:
+            is_valid_id = siret.is_valid(clean_id)
+
+        if self._id_type == self.__BIC_NAME:
+            is_valid_id = bic.is_valid(clean_id)
+
+        if self._id_type == self.__CUSIP_NAME:
+            is_valid_id = cusip.is_valid(clean_id)
+
         # Adjust the validation value to int, if required
         if self._validation_as_categorical:
             if is_valid_id:
@@ -315,6 +357,11 @@ class BankingIdCleaner(BaseCleaner):
             else:
                 is_valid_id = 0
 
+        clean_id = self.__treat_letter_case(clean_id)
+
+        return is_valid_id, clean_id
+
+    def __treat_letter_case(self, clean_id):
         # Setting the output letter case
         if self._letter_case == self.UPPER_LETTER_CASE:
             clean_id = clean_id.upper()
@@ -324,8 +371,7 @@ class BankingIdCleaner(BaseCleaner):
 
         if self._letter_case == self.TITLE_LETTER_CASE:
             clean_id = clean_id.title()
-
-        return is_valid_id, clean_id
+        return clean_id
 
     def clean(self, id_value: Union[str, float]) -> Union[None, Dict[str, Union[str, Union[bool, int]]]]:
         """
@@ -415,6 +461,40 @@ class BankingIdCleaner(BaseCleaner):
 
         return self.__VALIDATIONS_SUPPORTED
 
+    def siret_to_siren(self, siret_code):
+        clean_code = siret.to_siren(siret_code)
+        clean_code = self._simple_cleaner.apply_cleaning_rules(clean_code, ["remove_all_punctuation",
+                                                                            "remove_all_letters",
+                                                                            "remove_spaces"])
+        if len(clean_code) < 9:
+            return np.nan
+        clean_code = self.__treat_letter_case(clean_code)
+        return clean_code
+
+    def siret_to_siren_df(self, df: pd.DataFrame,
+                          siret_col_name: str,
+                          siren_col_name: str,
+                          replace_if_exists: False):
+
+        # Check if the attribute exists in the dataframe
+        if siret_col_name not in df.columns:
+            raise custom_exception.IdAttributeNotInDataFrame
+
+        # Make a copy so not to change the original dataframe
+        new_df = df.copy()
+
+        if siren_col_name not in df.columns:
+            new_df[siren_col_name] = np.nan
+
+        mask = new_df[siret_col_name].notnull()
+        if not replace_if_exists:
+            mask = mask & new_df[siren_col_name].isnull()
+
+        if new_df[mask].shape[0] > 0:
+            new_df.loc[mask, siren_col_name] = new_df[mask].apply(lambda line:
+                                                                  self.siret_to_siren(line[siret_col_name]), axis=1)
+        return new_df
+
     def clean_df(self, df: pd.DataFrame,
                  cols: List[str],
                  remove_cols: bool = False,
@@ -495,7 +575,6 @@ class BankingIdCleaner(BaseCleaner):
         # Clean up and validate the id
         for index, row in pg_bar:
             for column_name, type_id in zip(cols, types):
-                pg_bar.set_description("Column [{}] Type [{}] ".format(column_name, type_id))
                 # Clean up the column according to its type ID
                 self._id_type = type_id
                 id_info = self.clean(row[column_name])
@@ -522,9 +601,5 @@ class BankingIdCleaner(BaseCleaner):
         # Remove the original input column if required
         if remove_cols:
             new_df.drop(cols, inplace=True, axis=1)
-
-        # Adjust the column type for the validation values
-        if not self._validation_as_categorical:
-            new_df[new_validation_cols] = new_df[new_validation_cols].astype(bool)
 
         return new_df

@@ -53,12 +53,6 @@ class CountryNotSupported(FinancialCleanerError):
     message = "The location informed is not currently supported."
 
 
-class CleaningRuleNotFoundInTheDictionary(FinancialCleanerError):
-    """The cleaning rule informed was not found in the dictionary of cleaning rules."""
-
-    message = "Some of the cleaning rules was not found in the dictionary."
-
-
 class ListOfLegalTermsAvailableDoesNotExist(FinancialCleanerError):
     """The file that describes the legal terms available does not exist"""
 

@@ -2,21 +2,47 @@
   "file_processing": {
     "filename_extension": ".csv",
     "encoding": "utf-8",
-    "separator": ","
+    "separator": ";"
   },
   "attribute_processing": {
     "NAME" : "COMPANY_NAME",
-    "COUNTRY_ALPHA2" : "COUNTRY_ALPHA2"
+    "COUNTRY_HEAD" : "COUNTRY_INCORP",
+    "COUNTRY_BRANCH": "COUNTRY_BUSINESS",
+    "LEI": "LEI",
+    "ISIN": "ISIN",
+    "SEDOL": "SEDOL",
+    "SIRET": "SIRET",
+    "SIREN": "SIREN"
+  },
+  "id_cleaner": {
+    "convert_siret_to_siren": {
+      "SIRET": "SIREN"
+    },
+    "replace_siren_if_exists": "False",
+    "input_ids": {
+      "LEI": "lei",
+      "ISIN": "isin",
+      "SEDOL": "sedol",
+      "SIRET": "siret",
+      "SIREN": "siren"
+    },
+    "id_suffix_clean": "CLEAN",
+    "id_suffix_valid": "VALID",
+    "invalid_ids_as_null": "False",
+    "validation_as_categorical": "True",
+    "output_letter_case": "upper",
+    "cleaning_rules": ["remove_all_punctuation","remove_spaces"]
   },
   "country_cleaner": {
-    "input_countries": ["COUNTRY_ALPHA2"],
+    "input_countries": ["COUNTRY_INCORP", "COUNTRY_BUSINESS"],
     "name_suffix_clean": "NAME_CLEAN",
-    "alpha2_suffix_clean": "CLEAN",
+    "alpha2_suffix_clean": "ALPHA2_CLEAN",
     "output_letter_case": "upper"
   },
   "company_cleaner": {
     "input_names_by_country": {
-      "COMPANY_NAME_CLEAN" : ["COMPANY_NAME", "COUNTRY_ALPHA2"]
+      "COMPANY_NAME_INCORP_CLEAN" : ["COMPANY_NAME", "COUNTRY_INCORP"],
+      "COMPANY_NAME_BUSINESS_CLEAN" : ["COMPANY_NAME", "COUNTRY_BUSINESS"]
     },
     "pre_cleaning_rules": [
         "place_word_the_at_the_beginning",
@@ -36,6 +62,7 @@
         "remove_double_quote",
         "enforce_single_space_between_words"
     ],
+    "post_cleaning_rules": ["remove_all_punctuation"],
     "normalize_legal_terms": "True",
     "merge_legal_terms": "True",
     "remove_unicode_chars": "False",

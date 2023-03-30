@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import glob
 import logging
 import logging.config
 from tqdm import tqdm
@@ -99,3 +100,50 @@ def get_missing_items(ref_list, target_list):
         return None
 
     return missing_items
+
+
+def get_newest_filename(path, extension_pattern='', filename_pattern=''):
+    """
+    Retrieves the complete path and name of the newest file on a given folder. Patterns for the name and file extension
+    can be provided as filters to better select the files of interest.
+
+    Parameters:
+        path (str)
+            Complete path of a folder
+        extension_pattern (str)
+            The file extension used to filter files of interest.
+        filename_pattern (str)
+            A string pattern that describes a file name and serves as a filter to select the files of interest.
+
+    Returns:
+        (bool)
+            True if is a folder or False otherwise
+
+    Examples:
+        >>> my_folder = '/home/User/Desktop/'
+        >>> newest_filename = get_newest_filename(my_folder, '*.csv', 'my_settings_')
+
+    """
+
+    # Normalize path and get all files in the directory
+    path = os.path.normpath(path)
+    if extension_pattern != '':
+        path = "{}{}{}".format(path, os.sep, extension_pattern)
+    all_files = glob.glob(path)
+
+    # Create a list of files that follows the filename_pattern
+    filtered_files = []
+    if filename_pattern != '':
+        for file in all_files:
+            if str(file).find(filename_pattern) != -1:
+                if str(file).find('CLEAN') == -1:
+                    filtered_files.append(file)
+    else:
+        filtered_files = all_files
+
+    if len(filtered_files) == 0:
+        return None
+
+    # Get the newest file
+    newest_file = max(filtered_files, key=os.path.getctime)
+    return newest_file

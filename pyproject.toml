@@ -44,7 +44,6 @@ wheel = "0.37.1"
 pandas = "1.4.4"
 python-stdnum = "1.17"
 hdx-python-country = "3.3.7"
-geopy = "2.2.0"
 tqdm = "4.64.1"
 
 [tool.poetry.dev-dependencies]
