@@ -1,1 +1,1 @@
-CALL python -m financial_entity_cleaner --set C:\test_cleaning\gleif.json --in C:\test_cleaning\gleif_golden_copy_small.csv --out C:\test_cleaning\gleif_golden_copy_small_result.csv
+CALL python -m financial_entity_cleaner --set C:\test_cleaning\gleif.json --in C:\test_cleaning --out C:\test_cleaning

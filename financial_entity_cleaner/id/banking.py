@@ -12,8 +12,6 @@ Just, import the class directly from the **id** package as shown below:
 
 """
 
-from typing import Union, Tuple, List, Dict
-
 import numpy as np
 import pandas as pd
 from stdnum import isin, lei, cusip, bic
@@ -102,7 +100,7 @@ class BankingIdCleaner(BaseCleaner):
         self._simple_cleaner = SimpleCleaner()
 
     @property
-    def id_type(self) -> str:
+    def id_type(self):
         """
         Sets the ID type to be validated. The current version supports:
 
@@ -128,7 +126,7 @@ class BankingIdCleaner(BaseCleaner):
         return self._id_type
 
     @id_type.setter
-    def id_type(self, new_id_type: str):
+    def id_type(self, new_id_type):
         # Make sure the new type is in lower case
         new_id_type = new_id_type.lower()
 
@@ -138,7 +136,7 @@ class BankingIdCleaner(BaseCleaner):
         self._id_type = new_id_type
 
     @property
-    def validation_as_categorical(self) -> bool:
+    def validation_as_categorical(self):
         """
         Sets the return of the validation process as categorical data: 0 for False and 1 for True
 
@@ -157,11 +155,11 @@ class BankingIdCleaner(BaseCleaner):
         return self._validation_as_categorical
 
     @validation_as_categorical.setter
-    def validation_as_categorical(self, new_valid_return: bool):
+    def validation_as_categorical(self, new_valid_return):
         self._validation_as_categorical = new_valid_return
 
     @property
-    def invalid_ids_as_nan(self) -> bool:
+    def invalid_ids_as_nan(self):
         """
         If *True*, sets the return value of the cleaned ID equal to NaN if the ID is invalid, as shown below:
 
@@ -188,11 +186,11 @@ class BankingIdCleaner(BaseCleaner):
         return self._is_invalid_ids_nan
 
     @invalid_ids_as_nan.setter
-    def invalid_ids_as_nan(self, new_value: bool):
+    def invalid_ids_as_nan(self, new_value):
         self._is_invalid_ids_nan = new_value
 
     @property
-    def output_cleaned_id(self) -> str:
+    def output_cleaned_id(self):
         """
         The output dictionary key that identifies a cleaned ID. By default, it is defined as 'cleaned_id'.
 
@@ -210,11 +208,11 @@ class BankingIdCleaner(BaseCleaner):
         return self._output_cleaned_id
 
     @output_cleaned_id.setter
-    def output_cleaned_id(self, new_value: str):
+    def output_cleaned_id(self, new_value):
         self._output_cleaned_id = new_value
 
     @property
-    def output_validated_id(self) -> str:
+    def output_validated_id(self):
         """
         The output dictionary key that identifies if the ID is valid or not. By default, it is defined as 'isvalid_id'.
 
@@ -232,7 +230,7 @@ class BankingIdCleaner(BaseCleaner):
         return self._output_validated_id
 
     @output_validated_id.setter
-    def output_validated_id(self, new_value: str):
+    def output_validated_id(self, new_value):
         self._output_validated_id = new_value
 
     @property
@@ -247,7 +245,7 @@ class BankingIdCleaner(BaseCleaner):
         else:
             raise simple_cleaner_exceptions.CleaningRuleNotFoundInTheDictionary
 
-    def reset_output_names(self) -> None:
+    def reset_output_names(self):
         """
         Resets the dictionary key that identifies the cleaned ID and if it is valid, as the result of get_clean_data()
         method. When this method runs, the keys are set back to its default names: "cleaned_id" and "isvalid_id".
@@ -265,7 +263,7 @@ class BankingIdCleaner(BaseCleaner):
         self._output_cleaned_id = self.__ATTRIBUTE_CLEANED_ID
         self._output_validated_id = self.__ATTRIBUTE_VALIDATED_ID
 
-    def __is_id_param_valid(self, id_value: Union[str, float]) -> bool:
+    def __is_id_param_valid(self, id_value):
         """
         Private method that validates an official identifier.
 
@@ -306,7 +304,7 @@ class BankingIdCleaner(BaseCleaner):
         # Passed all checks
         return True
 
-    def __validate_id(self, id_value: str) -> Tuple[Union[bool, int], str]:
+    def __validate_id(self, id_value):
         """
         Private method that validates an official identifier.
 
@@ -373,7 +371,7 @@ class BankingIdCleaner(BaseCleaner):
             clean_id = clean_id.title()
         return clean_id
 
-    def clean(self, id_value: Union[str, float]) -> Union[None, Dict[str, Union[str, Union[bool, int]]]]:
+    def clean(self, id_value):
         """
         Returns a clean ID and if that identifier is valid or not.
 
@@ -421,7 +419,7 @@ class BankingIdCleaner(BaseCleaner):
             dict_clean_id[self._output_validated_id] = is_valid_id
         return dict_clean_id
 
-    def is_valid(self, id_value: Union[str, float]) -> Union[None, Union[bool, int]]:
+    def is_valid(self, id_value):
         """
         Performs only the validation of an ID (no cleaning up).
 
@@ -450,7 +448,7 @@ class BankingIdCleaner(BaseCleaner):
         validation_return = self.__validate_id(id_value)
         return validation_return[0]
 
-    def get_types(self) -> List[str]:
+    def get_types(self):
         """
         Returns the types of identifiers that can be validated by the library.
 
@@ -471,10 +469,10 @@ class BankingIdCleaner(BaseCleaner):
         clean_code = self.__treat_letter_case(clean_code)
         return clean_code
 
-    def siret_to_siren_df(self, df: pd.DataFrame,
-                          siret_col_name: str,
-                          siren_col_name: str,
-                          replace_if_exists: False):
+    def siret_to_siren_df(self, df,
+                          siret_col_name,
+                          siren_col_name,
+                          replace_if_exists=False):
 
         # Check if the attribute exists in the dataframe
         if siret_col_name not in df.columns:
@@ -495,11 +493,11 @@ class BankingIdCleaner(BaseCleaner):
                                                                   self.siret_to_siren(line[siret_col_name]), axis=1)
         return new_df
 
-    def clean_df(self, df: pd.DataFrame,
-                 cols: List[str],
-                 remove_cols: bool = False,
-                 output_names_as: str = 'suffix',
-                 types: List[str] = None) -> pd.DataFrame:
+    def clean_df(self, df,
+                 cols,
+                 remove_cols=False,
+                 output_names_as='suffix',
+                 types=None):
         """
         This method performs the same process described in **clean()** method. However, the ID verification
         and cleaning are applied to columns of a dataframe. The output dataframe is a copy of the dataframe sent

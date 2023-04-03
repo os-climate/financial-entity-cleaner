@@ -1,6 +1,6 @@
 {
   "file_processing": {
-    "filename_extension": ".csv",
+    "format": ".csv",
     "encoding": "utf-8",
     "separator": ";"
   },

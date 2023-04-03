@@ -318,6 +318,26 @@ class AutoCleaner:
             df.columns = list(self._setup_dict_attribute_processing.values())
         return df
 
+    def __save_csv_file(self, df_cleaned):
+        if os.path.isdir(self._output_filename):
+            output_dir = os.path.abspath(self._output_filename)
+            current_dt = datetime.now().strftime('%d%m%Y_%H%M%S')
+            filename = self._setup_dict_file_processing["filename_pattern"] + "_CLEAN_" + current_dt
+            filename = filename + self._setup_dict_file_processing["file_extension"]
+            self._output_filename = "{}{}{}".format(output_dir, os.sep, filename)
+
+        # Print info
+        print("Saving output file at " + self._output_filename, file=sys.stdout)
+
+        # Save results to csv file
+        df_cleaned.to_csv(
+            self._output_filename,
+            sep=self._setup_dict_file_processing["separator"],
+            encoding=self._setup_dict_file_processing["encoding"],
+            index=False,
+            header=True,
+        )
+
     def clean_file(self):
         """
         Cleans up a csv file and returns another csv files as a result of the cleaning process
@@ -338,39 +358,22 @@ class AutoCleaner:
             # Execute automatic cleaning
             print("Cleaning file:" + self._input_filename, file=sys.stdout)
             df_cleaned = self.__execute_auto_cleaning(df)
-            if os.path.isdir(self._output_filename):
-                output_dir = os.path.abspath(self._output_filename)
-                current_dt = datetime.now().strftime('%d%m%Y_%H%M%S')
-                in_path, filename = os.path.split(self._input_filename)
-                len_extension = len(self._setup_dict_file_processing["file_extension"]) * -1
-                filename = filename[:len_extension] + "_CLEAN_"
-                filename = filename + current_dt + self._setup_dict_file_processing["file_extension"]
-                self._output_filename = "{}{}{}".format(output_dir, os.sep, filename)
-
-            # Print info
-            print("Saving output file at " + self._output_filename, file=sys.stdout)
-
-            # Save results to csv file
-            df_cleaned.to_csv(
-                self._output_filename,
-                sep=self._setup_dict_file_processing["separator"],
-                encoding=self._setup_dict_file_processing["encoding"],
-                index=False,
-                header=True,
-            )
+            self.__save_csv_file(df_cleaned)
             return True
+
         except Exception as e:
             # Print error
             print("Error " + repr(e) + " ocurred", file=sys.stderr)
             traceback.print_exc(file=sys.stderr)
             return False
 
-    def clean_df(self, df):
+    def clean_df(self, df, save_file=False):
         """
         Cleans up a pandas dataframe and returns another dataframe as result of the cleaning process
 
         Parameters:
             df (pandas dataframe): dataframe to be cleaned
+            save_file (bool): indicates if the file should be saved
         Returns:
             (pandas dataframe) the cleaned dataframe
         Raises:
@@ -383,6 +386,8 @@ class AutoCleaner:
 
             # Execute automatic cleaning
             df_cleaned = self.__execute_auto_cleaning(df)
+            if save_file:
+                self.__save_csv_file(df_cleaned)
             return df_cleaned
         except Exception as e:
             # Print error

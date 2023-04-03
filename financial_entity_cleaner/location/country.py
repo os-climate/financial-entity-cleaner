@@ -1,7 +1,6 @@
 """ The **location.country** module contains the implementation of the **CountryCleaner()** class that provides the
 normalized values of country's name, alpha2 and alpha3 codes as defined in the ISO 3166 standard."""
 
-from typing import Union, List, Dict
 import numpy as np
 import pandas as pd
 
@@ -110,7 +109,7 @@ class CountryCleaner(BaseCleaner):
 
     # Setters and Getters for the properties, so to allow user to setup the library according to his/her needs.
     @property
-    def output_info(self) -> List[str]:
+    def output_info(self):
         """
         The type of country information to return when cleaning the data. By default it is set to None, meaning that
         the user didn't customized the output attributes and, therefore, the cleaning methods will return all info
@@ -137,14 +136,14 @@ class CountryCleaner(BaseCleaner):
         return self._output_info
 
     @output_info.setter
-    def output_info(self, new_value: List[str]):
+    def output_info(self, new_value):
         for item in new_value:
             if item not in self.__ALL_ATTRIBUTES:
                 raise custom_exception.CountryInfoNotSupported(new_value)
         self._output_info = new_value
 
     @property
-    def output_code(self) -> str:
+    def output_code(self):
         """
         The dictionary key that identifies the official country code returned as part of the normalization process.
 
@@ -161,11 +160,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_code
 
     @output_code.setter
-    def output_code(self, new_value: str):
+    def output_code(self, new_value):
         self._output_code = new_value
 
     @property
-    def output_name(self) -> str:
+    def output_name(self):
         """
         The dictionary key that identifies the official country name returned as part of the normalization process.
 
@@ -182,11 +181,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_name
 
     @output_name.setter
-    def output_name(self, new_value: str):
+    def output_name(self, new_value):
         self._output_name = new_value
 
     @property
-    def output_short_name(self) -> str:
+    def output_short_name(self):
         """
         The dictionary key that identifies the official country name returned as part of the normalization process.
 
@@ -203,11 +202,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_short_name
 
     @output_short_name.setter
-    def output_short_name(self, new_value: str):
+    def output_short_name(self, new_value):
         self._output_short_name = new_value
 
     @property
-    def output_alpha2(self) -> str:
+    def output_alpha2(self):
         """
         The dictionary key that identifies the official alpha2 country code returned as part of the normalization
         process.
@@ -224,11 +223,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_alpha2
 
     @output_alpha2.setter
-    def output_alpha2(self, new_value: str):
+    def output_alpha2(self, new_value):
         self._output_alpha2 = new_value
 
     @property
-    def output_alpha3(self) -> str:
+    def output_alpha3(self):
         """
         The dictionary key that identifies the official alpha3 country code returned as part of the normalization
         process.
@@ -246,11 +245,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_alpha3
 
     @output_alpha3.setter
-    def output_alpha3(self, new_value: str):
+    def output_alpha3(self, new_value):
         self._output_alpha3 = new_value
 
     @property
-    def output_region_name(self) -> str:
+    def output_region_name(self):
         """
         The dictionary key that identifies the country's region name returned as part of the normalization
         process.
@@ -265,11 +264,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_region_name
 
     @output_region_name.setter
-    def output_region_name(self, new_value: str):
+    def output_region_name(self, new_value):
         self._output_region_name = new_value
 
     @property
-    def output_region_code(self) -> str:
+    def output_region_code(self):
         """
         The dictionary key that identifies the country's region code returned as part of the normalization
         process.
@@ -284,11 +283,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_region_code
 
     @output_region_code.setter
-    def output_region_code(self, new_value: str):
+    def output_region_code(self, new_value):
         self._output_region_code = new_value
 
     @property
-    def output_subregion_name(self) -> str:
+    def output_subregion_name(self):
         """
         The dictionary key that identifies the country's subregion name returned as part of the normalization
         process.
@@ -303,11 +302,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_subregion_name
 
     @output_subregion_name.setter
-    def output_subregion_name(self, new_value: str):
+    def output_subregion_name(self, new_value):
         self._output_subregion_name = new_value
 
     @property
-    def output_subregion_code(self) -> str:
+    def output_subregion_code(self):
         """
         The dictionary key that identifies the country's subregion code returned as part of the normalization
         process.
@@ -322,11 +321,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_subregion_code
 
     @output_subregion_code.setter
-    def output_subregion_code(self, new_value: str):
+    def output_subregion_code(self, new_value):
         self._output_subregion_code = new_value
 
     @property
-    def output_geo_latitude(self) -> str:
+    def output_geo_latitude(self):
         """
         The dictionary key that identifies the country's geo latitude returned as part of the normalization
         process.
@@ -341,11 +340,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_geo_latitude
 
     @output_geo_latitude.setter
-    def output_geo_latitude(self, new_value: str):
+    def output_geo_latitude(self, new_value):
         self._output_geo_latitude = new_value
 
     @property
-    def output_geo_longitude(self) -> str:
+    def output_geo_longitude(self):
         """
         The dictionary key that identifies the country's geo longitude returned as part of the normalization
         process.
@@ -360,11 +359,11 @@ class CountryCleaner(BaseCleaner):
         return self._output_geo_longitude
 
     @output_geo_longitude.setter
-    def output_geo_longitude(self, new_value: str):
+    def output_geo_longitude(self, new_value):
         self._output_geo_longitude = new_value
 
     @property
-    def output_currency_code(self) -> str:
+    def output_currency_code(self):
         """
         The dictionary key that identifies the country's currency code returned as part of the normalization
         process.
@@ -379,7 +378,7 @@ class CountryCleaner(BaseCleaner):
         return self._output_currency_code
 
     @output_currency_code.setter
-    def output_currency_code(self, new_value: str):
+    def output_currency_code(self, new_value):
         self._output_currency_code = new_value
 
     @property
@@ -394,7 +393,7 @@ class CountryCleaner(BaseCleaner):
         else:
             raise simple_cleaner_exceptions.CleaningRuleNotFoundInTheDictionary
 
-    def __is_country_param_valid(self, country: str) -> bool:
+    def __is_country_param_valid(self, country):
         """
         This internal method performs basic checking on the country information passed as parameter.
 
@@ -425,7 +424,7 @@ class CountryCleaner(BaseCleaner):
         # Passed all checks
         return True
 
-    def reset_output_info(self) -> None:
+    def reset_output_info(self):
         """
         Resets the output selection in order to return all the attributes available.
 
@@ -441,7 +440,7 @@ class CountryCleaner(BaseCleaner):
         """
         self._output_info = self.__ALL_ATTRIBUTES
 
-    def reset_output_names(self) -> None:
+    def reset_output_names(self):
         """
         Resets the dictionary key that identifies the official name, alpha2 and alpha3 codes returned as part of
         the normalization process. When this method runs, the keys are set back to its default names: "name", "code",
@@ -470,7 +469,7 @@ class CountryCleaner(BaseCleaner):
         self._output_geo_longitude = self.ATTRIBUTE_GEO_LONGITUDE
         self._output_currency_code = self.ATTRIBUTE_CURRENCY_CODE
 
-    def clean(self, country: str) -> Union[None, Dict[str, str]]:
+    def clean(self, country):
         """
         This method searches for country information and if the match is positive, it returns the following: code,
         name, alpha2 and alpha3 codes. The user can pass any country data as input, even incomplete names.
@@ -559,7 +558,7 @@ class CountryCleaner(BaseCleaner):
                 dict_country[key] = value.title()
         return dict_country
 
-    def __get_clean_df(self, country: str):
+    def __get_clean_df(self, country):
         """
         This is an internal method that supports get_clean_df() method as a mean to treat the case in which
         get_clean_data() method returns None (country was not found). In this case, a dictionary of NaN objects is
@@ -589,10 +588,10 @@ class CountryCleaner(BaseCleaner):
                     dict_country_info[output_name] = np.nan
         return dict_country_info
 
-    def clean_df(self, df: pd.DataFrame,
-                 cols: List[str],
-                 remove_cols: bool = False,
-                 output_names_as: str = 'suffix') -> pd.DataFrame:
+    def clean_df(self, df,
+                 cols,
+                 remove_cols=False,
+                 output_names_as='suffix'):
         """
         This method performs the same country search described in the *clean()* method. However, the country
         normalization is applied to columns of a dataframe. The output dataframe is a copy of the dataframe sent
