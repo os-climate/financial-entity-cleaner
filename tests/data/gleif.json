@@ -1,0 +1,69 @@
+{
+  "file_processing": {
+    "file_extension": ".csv",
+    "filename_pattern": "GLEIF_REFERENCE",
+    "encoding": "utf-8",
+    "separator": ","
+  },
+  "attribute_processing": {
+    "LEI":  "LEI",
+    "Entity.LegalName":  "ENTITY_NAME",
+    "Entity.OtherEntityNames.OtherEntityName.1":  "OTHER_NAME1",
+    "Entity.OtherEntityNames.OtherEntityName.2":  "OTHER_NAME2",
+    "Entity.OtherEntityNames.OtherEntityName.3":  "OTHER_NAME3",
+    "Entity.LegalAddress.Country":  "COUNTRY_INCORP",
+    "Entity.HeadquartersAddress.Country":  "COUNTRY_BUSINESS"
+  },
+  "country_cleaner": {
+    "input_countries": ["COUNTRY_INCORP", "COUNTRY_BUSINESS"],
+    "name_suffix_clean": "NAME_CLEAN",
+    "alpha2_suffix_clean": "ALPHA2_CLEAN",
+    "output_letter_case": "upper"
+  },
+  "id_cleaner": {
+    "input_ids": {
+      "LEI":  "lei"
+    },
+    "id_suffix_clean": "CLEAN",
+    "id_suffix_valid": "VALID",
+    "invalid_ids_as_null": "False",
+    "validation_as_categorical": "True",
+    "output_letter_case": "upper"
+  },
+  "company_cleaner": {
+    "input_names_by_country": {
+      "ENTITY_NAME_INCORP_CLEAN" : ["ENTITY_NAME", "COUNTRY_INCORP"],
+      "ENTITY_NAME_BUSINESS_CLEAN" : ["ENTITY_NAME", "COUNTRY_BUSINESS"],
+      "OTHER_NAME1_INCORP_CLEAN" : ["OTHER_NAME1", "COUNTRY_INCORP"],
+      "OTHER_NAME1_BUSINESS_CLEAN" : ["OTHER_NAME1", "COUNTRY_BUSINESS"],
+      "OTHER_NAME2_INCORP_CLEAN" : ["OTHER_NAME2", "COUNTRY_INCORP"],
+      "OTHER_NAME2_BUSINESS_CLEAN" : ["OTHER_NAME2", "COUNTRY_BUSINESS"],
+      "OTHER_NAME3_INCORP_CLEAN" : ["OTHER_NAME3", "COUNTRY_INCORP"],
+      "OTHER_NAME3_BUSINESS_CLEAN" : ["OTHER_NAME3", "COUNTRY_BUSINESS"]
+    },
+    "pre_cleaning_rules": [
+        "place_word_the_at_the_beginning",
+        "remove_words_in_parentheses",
+        "repeat_remove_words_in_parentheses",
+        "remove_words_in_asterisk",
+        "add_space_between_amperstand",
+        "replace_amperstand_between_space_by_AND",
+        "replace_hyphen_by_space",
+        "replace_underscore_by_space",
+        "remove_text_puctuation_except_dot",
+        "remove_math_symbols",
+        "remove_parentheses",
+        "remove_brackets",
+        "remove_curly_brackets",
+        "remove_single_quote_next_character",
+        "remove_double_quote",
+        "enforce_single_space_between_words"
+    ],
+    "post_cleaning_rules": ["remove_all_punctuation"],
+    "normalize_legal_terms": "True",
+    "merge_legal_terms": "True",
+    "remove_unicode_chars": "False",
+    "output_letter_case": "upper",
+    "remove_accents": "True"
+  }
+}
