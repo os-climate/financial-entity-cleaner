@@ -1,3 +1,7 @@
+
+> [!IMPORTANT]
+> On June 26 2024, Linux Foundation announced the merger of its financial services umbrella, the Fintech Open Source Foundation ([FINOS](https://finos.org)), with OS-Climate, an open source community dedicated to building data technologies, modeling, and analytic tools that will drive global capital flows into climate change mitigation and resilience; OS-Climate projects are in the process of transitioning to the [FINOS governance framework](https://community.finos.org/docs/governance); read more on [finos.org/press/finos-join-forces-os-open-source-climate-sustainability-esg](https://finos.org/press/finos-join-forces-os-open-source-climate-sustainability-esg)
+
 # financial-entity-cleaner
 The financial-entity-cleaner is a library that is part of the Entity-Matching project developed by OS-Climate Foundation. The main purpose of the financial-cleaner is to provide methods for validation and standardization of data used in the banking industry as to solve the problem of determining if two entities in a data set refer to the same real-world object (entity matching).
 
